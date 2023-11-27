@@ -9,17 +9,19 @@
 
 
 <h1> Задачи </h1>
-<ul>
 
-    <p *ngFor="let i of allItems">
-                  
+
+    <ul *ngFor="let i of allItems">
+
             <app-item (remove)="remove(i)" [item]="i"></app-item>
             <small *ngIf="i.done === true;else work">Выполнено</small>
             <ng-template #work>
                 <small>В процессе</small>
             </ng-template>
         
-    </p>
+    </ul>
 
-</ul>
+    
 
+    
+      
