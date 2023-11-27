@@ -3,6 +3,8 @@ import { CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ItemComponent } from './item/item.component';
+import { Item } from "./item";
+
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,7 @@ export class AppComponent {
     { description: 'training', done: true },
     { description: 'eat', done: true },
     { description: 'sleep', done: false },
+    { description: 'drink', done: false },
   ];
 
   get items() {

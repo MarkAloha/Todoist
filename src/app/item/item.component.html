@@ -4,18 +4,17 @@
 
     <div *ngIf="!editable">
         <button class="btn" (click)="editable = !editable">Изменить</button>
-        <!-- <button class="btn" (click)="remove.emit()">Удалить</button> -->
+        <button class="btn" (click)="remove.emit()">Удалить</button>
     </div>
 
     <div *ngIf="editable">
         <input placeholder="edit item" [value]="item.description" #editedItem>
-        <!-- (keyup.enter)="saveItem(editedItem.value)"> -->
+        (keyup.enter)="saveItem(editedItem.value)">
 
 
 
         <div>
-            <p>отмена, сохранить</p>
-            <!-- <button (click)="editable = !editable">Отмена</button> -->
+            <button (click)="editable = !editable">Отмена</button>
             <button (click)="saveItem(editedItem.value)">Сохранить</button>
         </div>
     </div>

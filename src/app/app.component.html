@@ -1,4 +1,4 @@
-<app-item></app-item>
+
 
 <h1>todo list</h1>
 
@@ -12,10 +12,8 @@
 <ul>
 
     <p *ngFor="let i of allItems">
-         {{i.description}} 
-            <input type="checkbox" name="isCompleted">
-            <button>Удалить</button>
-            <button>Изменить</button>
+                  
+            <app-item (remove)="remove(i)" [item]="i"></app-item>
             <small *ngIf="i.done === true;else work">Выполнено</small>
             <ng-template #work>
                 <small>В процессе</small>
