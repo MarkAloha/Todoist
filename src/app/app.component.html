@@ -1,16 +1,18 @@
 <h1>todo list</h1>
 
-<form action="#">
-    <input type="text" name="title">
-    <button>Добавить новую запись</button>
-</form>
+    <label for="addItemInput">add</label>
+    <input #newItem (keyup.enter)="addItem(newItem.value); newItem.value=' '" id="addItemInput" >
+    <button (click)="addItem(newItem.value); newItem.value=' '" class="btn-add" >Добавить новую запись</button>
+    
+
+
 <h1> Задачи </h1>
 <ul>
 
     <p *ngFor="let i of allItems">
-        <li> {{i.description}} 
+         {{i.description}} 
             <input type="checkbox" name="isCompleted">
-        </li>
+        
     </p>
 
 </ul>
