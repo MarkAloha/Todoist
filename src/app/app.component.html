@@ -12,21 +12,14 @@
     <p *ngFor="let i of allItems">
          {{i.description}} 
             <input type="checkbox" name="isCompleted">
+            <button>Удалить</button>
+            <button>Изменить</button>
+            <small *ngIf="i.done === true;else work">Выполнено</small>
+            <ng-template #work>
+                <small>В процессе</small>
+            </ng-template>
         
     </p>
 
 </ul>
 
-<ul>
-    <li>
-        <input type="checkbox" name="isCompleted" checked="checked">
-        <span>Выполнить</span>
-        <span>Удалить</span>
-    </li>
-
-    <li>
-        <input type="checkbox" name="isCompleted">
-        <span>Выполнено</span>
-        <span>Удалить</span>
-    </li>
-</ul>

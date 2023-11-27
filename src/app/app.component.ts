@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgFor],
+  imports: [CommonModule, RouterOutlet, NgFor, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'todo';
+  done = true
 
   filter: 'all' | 'active' | 'done' = 'all';
 
@@ -36,4 +38,8 @@ export class AppComponent {
     });    
     console.log(this.allItems)
   }  
+
+  editItem() {
+    
+  }
 }
