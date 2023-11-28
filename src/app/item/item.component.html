@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <input [id]="item.description" type="checkbox" (change)="item.done = !item.done" [checked]="item.done" />
     <label [for]="item.description">{{item.description}}</label>
 
@@ -8,8 +8,8 @@
     </div>
 
     <div *ngIf="editable">
-        <input placeholder="edit item" [value]="item.description" #editedItem>
-        (keyup.enter)="saveItem(editedItem.value)">
+        <input placeholder="edit item" [value]="item.description" #editedItem
+            (keyup.enter)="saveItem(editedItem.value)">
 
 
 
@@ -19,4 +19,4 @@
         </div>
     </div>
 
-</div>
+</div> -->

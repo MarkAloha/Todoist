@@ -1,27 +1,32 @@
-
-
 <h1>todo list</h1>
 
-    <label for="addItemInput">add</label>
-    <input #newItem (keyup.enter)="addItem(newItem.value); newItem.value=' '" id="addItemInput" >
-    <button (click)="addItem(newItem.value); newItem.value=' '" class="btn-add" >Добавить новую запись</button>
-    
+<label for="addItemInput">add</label>
+<input #newItem (keyup.enter)="addItem(newItem.value); newItem.value=' '" id="addItemInput">
+<button (click)="addItem(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button>
+
 
 
 <h1> Задачи </h1>
 
+<app-table></app-table>
 
-    <ul *ngFor="let i of allItems">
 
-            <app-item (remove)="remove(i)" [item]="i"></app-item>
-            <small *ngIf="i.done === true;else work">Выполнено</small>
-            <ng-template #work>
-                <small>В процессе</small>
-            </ng-template>
-        
-    </ul>
 
-    
 
-    
-      
+<!-- 
+<ul *ngFor="let i of allItems">
+
+    <app-item (remove)="remove(i)" [item]="i"></app-item>
+    <small *ngIf="i.done === true; else work">Выполнено</small>
+    <ng-template #work>
+        <small>В процессе</small>
+        {{i.description}}
+        {{i.description}}
+        {{i.description}}
+        {{i.description}}
+        {{i.description}}
+    </ng-template>    
+
+
+</ul>
+ -->
