@@ -6,7 +6,7 @@ import { ItemComponent } from './item/item.component';
 import { TableModule } from 'primeng/table'
 import { Item } from './item';
 import { TableComponent } from './table/table.component';
-import {ProductService} from './services/product.service'
+// import {ProductService} from './services/product.service'
 
 
 @Component({

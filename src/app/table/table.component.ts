@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ProductService} from '../services/product.service'
+import { Product } from '../domain/product';
 
 
 
@@ -8,19 +9,19 @@ import {ProductService} from '../services/product.service'
   selector: 'app-table',
   standalone: true,
   imports: [CommonModule],
-  providers: [ProductService],
+  // providers: [ProductService],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent  {
-  // products!: Product[];
+  products!: Product[];
   
 
   constructor(private productService : ProductService ) {}
 
-  // ngOnInit() {
-  //     this.productService.getProductsMini().then((data) => {
-  //         this.products = data;
-  //     });
-  // }
+  ngOnInit() {
+      this.productService.getProductsMini().then((data) => {
+          this.products = data;
+      });
+  }
 }
