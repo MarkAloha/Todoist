@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 
 
 
+
 @Component({
   selector: 'app-table',
   standalone: true,

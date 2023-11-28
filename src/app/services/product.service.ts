@@ -10,19 +10,23 @@ export class ProductService {
         return [
             {id:'1', 
             name: 'поиграть в доту',  
-            code: '1142142'      
+            code: '1142142',
+            description: 'последний раз'     
             },
             {id:'2', 
             name: 'тренировка',     
-            code: '2142142'   
+            code: '2142142',
+            description: 'ноги'  
             },
             {id:'3', 
             name: 'поспать',    
-            code: '12442'    
+            code: '12442',
+            description: 'сон' 
             },
             {id:'4', 
             name: 'поесть',      
-            code: '4124142'  
+            code: '4124142' ,
+            description: 'еду'
             },
         ]
     }
