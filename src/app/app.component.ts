@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Injectable } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -6,15 +6,21 @@ import { ItemComponent } from './item/item.component';
 import { TableModule } from 'primeng/table'
 import { Item } from './item';
 import { TableComponent } from './table/table.component';
+import {ProductService} from './services/product.service'
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, NgFor, FormsModule, ItemComponent, TableModule, TableComponent],
+  // providers: [ ]
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+
 export class AppComponent {
+
+
   title = 'todo';
   done = true;
 
