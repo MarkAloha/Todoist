@@ -34,11 +34,11 @@ export class TableComponent {
 
   getSeverity(status: string) {
     switch (status) {
-      case 'INSTOCK':
+      case 'Выполнено':
         return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
+      case 'WORK':
+        return 'В процессе';
+      case 'DONE':
         return 'danger';
         default: return 'warning'
     }
