@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
 import { Product } from '../domain/product';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -11,11 +9,13 @@ import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
-@Component({
+@Component({   
+    selector: 'product-list-demo', 
+  providers: [DialogService, MessageService, ProductService],
   standalone: true,
   imports: [
-    CommonModule,
     TableModule,
     ButtonModule,
     RippleModule,
@@ -24,52 +24,31 @@ import { ToastModule } from 'primeng/toast';
     DynamicDialogModule,
     ToastModule
   ],
-  template: `
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="name">
-          Name <p-sortIcon field="vin"></p-sortIcon>
-        </th>
-        <th pSortableColumn="year">Image</th>
-        <th pSortableColumn="price">
-          Brand <p-sortIcon field="price"></p-sortIcon>
-        </th>
-        <th pSortableColumn="inventoryStatus">
-          Status <p-sortIcon field="inventoryStatus"></p-sortIcon>
-        </th>
-        <th style="width:4em"></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr>
-        <td>{{ product.name }}</td>
-        <td>
-          <img
-            src="https://primefaces.org/cdn/primeng/images/demo/product/{{
-              product.image
-            }}"
-            [alt]="product.image"
-            class="w-4rem h-4rem shadow-2"
-          />
-        </td>
-        <td>{{ product.price }}</td>
-        <td>
-          <p-tag
-            [value]="product.inventoryStatus"
-            [severity]="getSeverity(product.inventoryStatus)"
-          ></p-tag>
-        </td>
-        <td>
-          <button
-            type="button"
-            pButton
-            icon="pi pi-plus"
-            (click)="selectProduct(product)"
-          ></button>
-        </td>
-      </tr>
-    </ng-template>
-  `,
+  templateUrl: './createwindow.html'
+//   template: ` <p-table [value]="products" responsiveLayout="scroll" [paginator]="true" [rows]="5" [responsive]="true">
+//   <ng-template pTemplate="header">
+//       <tr>
+//           <th pSortableColumn="name">Name <p-sortIcon field="vin"></p-sortIcon></th>
+//           <th pSortableColumn="year">Image</th>
+//           <th pSortableColumn="price">Brand <p-sortIcon field="price"></p-sortIcon></th>
+//           <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+//           <th style="width:4em"></th>
+//       </tr>
+//   </ng-template>
+//   <ng-template pTemplate="body" let-product>
+//       <tr>
+//           <td>{{ product.name }}</td>
+//           <td><img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.image" class="w-4rem h-4rem shadow-2" /></td>
+//           <td>{{ product.price }}</td>
+//           <td>
+//               <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
+//           </td>
+//           <td>
+//               <button type="button" pButton icon="pi pi-plus" (click)="selectProduct(product)"></button>
+//           </td>
+//       </tr>
+//   </ng-template>
+// </p-table>`,
 })
 export class ProductListDemo implements OnInit {
   products!: Product[];
@@ -98,7 +77,7 @@ export class ProductListDemo implements OnInit {
       case 'OUTOFSTOCK':
         return 'danger';
       default:
-        return 
+        return 'danger'
     }
   }
 }

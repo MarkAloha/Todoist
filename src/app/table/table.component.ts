@@ -27,16 +27,19 @@ import { MessageService } from 'primeng/api';
     RatingModule,
     TagModule,
     FormsModule,
-    // DynamicDialogModule,
     ProductListDemo,
     ToastModule,
+    DynamicDialogModule
   ],
-  providers: [DialogService, MessageService],
+  providers: [DialogService, MessageService, ProductService, DynamicDialogRef],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss',
+  styleUrl: './table.component.scss'
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   products!: Product[];
+
+
+  ref: DynamicDialogRef | undefined;
 
   constructor(
     private productService: ProductService,
@@ -50,7 +53,6 @@ export class TableComponent {
     });
   }
 
-  ref: DynamicDialogRef | undefined;
 
   show() {
       this.ref = this.dialogService.open(ProductListDemo, {
