@@ -9,11 +9,16 @@ import { TableComponent } from './table/table.component';
 
 
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgFor, FormsModule, ItemComponent, TableModule, TableComponent],
+  imports: [CommonModule, 
+    RouterOutlet, 
+    NgFor, 
+    FormsModule, 
+    ItemComponent, 
+    TableModule, 
+    TableComponent],
   // providers: [ ]
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
