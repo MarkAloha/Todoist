@@ -1,12 +1,11 @@
 import { Component,Injectable } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { ItemComponent } from './item/item.component';
 import { TableModule } from 'primeng/table'
 import { Item } from './item';
 import { TableComponent } from './table/table.component';
-// import {ProductService} from './services/product.service'
 
 
 
