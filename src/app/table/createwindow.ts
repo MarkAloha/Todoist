@@ -10,12 +10,14 @@ import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';  
 
 @Component({   
     selector: 'product-list-demo', 
   providers: [DialogService, MessageService, ProductService],
   standalone: true,
   imports: [
+    CommonModule,
     TableModule,
     ButtonModule,
     RippleModule,
@@ -24,33 +26,14 @@ import { MessageService } from 'primeng/api';
     DynamicDialogModule,
     ToastModule
   ],
-  templateUrl: './createwindow.html'
-//   template: ` <p-table [value]="products" responsiveLayout="scroll" [paginator]="true" [rows]="5" [responsive]="true">
-//   <ng-template pTemplate="header">
-//       <tr>
-//           <th pSortableColumn="name">Name <p-sortIcon field="vin"></p-sortIcon></th>
-//           <th pSortableColumn="year">Image</th>
-//           <th pSortableColumn="price">Brand <p-sortIcon field="price"></p-sortIcon></th>
-//           <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-//           <th style="width:4em"></th>
-//       </tr>
-//   </ng-template>
-//   <ng-template pTemplate="body" let-product>
-//       <tr>
-//           <td>{{ product.name }}</td>
-//           <td><img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.image" class="w-4rem h-4rem shadow-2" /></td>
-//           <td>{{ product.price }}</td>
-//           <td>
-//               <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
-//           </td>
-//           <td>
-//               <button type="button" pButton icon="pi pi-plus" (click)="selectProduct(product)"></button>
-//           </td>
-//       </tr>
-//   </ng-template>
-// </p-table>`,
+  // templateUrl: './createwindow.html'
+  template: ` 
+  
+<label for="addItemInput">add</label>
+<input #newItem (keyup.enter)="AddTask(newItem.value); newItem.value=' '" id="addItemInput">
+<button (click)="AddTask(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button>`,
 })
-export class ProductListDemo implements OnInit {
+export class CreateWindow implements OnInit  {
   products!: Product[];
 
   constructor(
@@ -80,4 +63,18 @@ export class ProductListDemo implements OnInit {
         return 'danger'
     }
   }
+
+  AddTask(name: string) {
+    this.productService.getAddTask(name)
+    console.log(this.productService.getProductsData())
+  }
+  
+
+  // addItem(description: string) {
+  //   this.allItems.unshift({
+  //     id:1, 
+  //     description,
+  //     done: false,
+  //   });
+  // }
 }

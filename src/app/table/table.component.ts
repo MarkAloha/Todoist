@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
@@ -8,13 +8,17 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import {
+  DynamicDialogModule,
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
-import { ProductListDemo } from './createwindow';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CreateWindow } from './createwindow';
 import { MessageService } from 'primeng/api';
-
-
+import { DialogModule } from 'primeng/dialog';
+import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-table',
@@ -27,25 +31,29 @@ import { MessageService } from 'primeng/api';
     RatingModule,
     TagModule,
     FormsModule,
-    ProductListDemo,
     ToastModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    DialogModule
   ],
-  providers: [DialogService, MessageService, ProductService, DynamicDialogRef],
+  providers: [
+    DialogService,
+    MessageService,
+    ProductService,
+    DynamicDialogConfig,
+  ],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnDestroy {
   products!: Product[];
 
+  constructor(
+    public dialogService: DialogService,
+    public messageService: MessageService,
+    private productService: ProductService
+  ) {}
 
   ref: DynamicDialogRef | undefined;
-
-  constructor(
-    private productService: ProductService,
-    public dialogService: DialogService,
-    public messageService: MessageService
-  ) {}
 
   ngOnInit() {
     this.productService.getProductsMini().then((data) => {
@@ -53,43 +61,57 @@ export class TableComponent implements OnInit {
     });
   }
 
+  
+  visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
+  }
 
   show() {
-      this.ref = this.dialogService.open(ProductListDemo, {
-          header: 'Select a Product',
-          width: '70%',
-          contentStyle: { overflow: 'auto' },
-          baseZIndex: 10000,
-          maximizable: true
-      });
+    this.ref = this.dialogService.open(CreateWindow, {
+      header: 'Select a Product',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+    });
 
-      this.ref.onClose.subscribe((product: Product) => {
-          if (product) {
-              this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name });
-          }
-      });
+    this.ref.onClose.subscribe((product: Product) => {
+      if (product) {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Product Selected',
+          detail: product.name,
+        });
+      }
+    });
 
-      this.ref.onMaximize.subscribe((value:any) => {
-          this.messageService.add({ severity: 'info', summary: 'Maximized', detail: `maximized: ${value.maximized}` });
+    this.ref.onMaximize.subscribe((value: any) => {
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Maximized',
+        detail: `maximized: ${value.maximized}`,
       });
+    });
   }
 
   ngOnDestroy() {
-      if (this.ref) {
-          this.ref.close();
-      }
-  }
+    if (this.ref) {
+      this.ref.close();
+    }
+  } 
 
   getSeverity(status: string) {
     switch (status) {
       case 'Выполнено':
         return 'success';
-      case 'WORK':
-        return 'В процессе';
-      case 'DONE':
-        return 'danger';
+      case 'В процессе':
+        return 'warning';
       default:
         return 'warning';
     }
   }
+
+  
 }

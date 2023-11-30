@@ -18,7 +18,7 @@ import { TableComponent } from './table/table.component';
     FormsModule, 
     ItemComponent, 
     TableModule, 
-    TableComponent],
+    TableComponent,],
   // providers: [ ]
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -49,15 +49,7 @@ export class AppComponent {
     return this.allItems.filter((item) =>
       this.filter ? item.done : !item.done
     );
-  }
-
-  addItem(description: string) {
-    this.allItems.unshift({
-      id:1, 
-      description,
-      done: false,
-    });
-  }
+  } 
 
   remove(item: any) {
     this.allItems.splice(this.allItems.indexOf(item), 1);
