@@ -33,7 +33,7 @@ import { ItemComponent } from '../item/item.component';
     FormsModule,
     ToastModule,
     DynamicDialogModule,
-    DialogModule
+    DialogModule,
   ],
   providers: [
     DialogService,
@@ -57,10 +57,9 @@ export class TableComponent implements OnDestroy {
 
   ngOnInit() {
     this.productService.getProductsMini().then((data) => {
-      this.products = data;
-      console.log(this.products)      
+      this.products = data;      
     });
-  }  
+  }
 
   show() {
     this.ref = this.dialogService.open(CreateWindow, {
@@ -70,7 +69,6 @@ export class TableComponent implements OnDestroy {
       baseZIndex: 10000,
       maximizable: true,
     });
-
 
     this.ref.onClose.subscribe((product: Product) => {
       if (product) {
@@ -95,7 +93,7 @@ export class TableComponent implements OnDestroy {
     if (this.ref) {
       this.ref.close();
     }
-  } 
+  }
 
   getSeverity(status: string) {
     switch (status) {
@@ -108,5 +106,11 @@ export class TableComponent implements OnDestroy {
     }
   }
 
-  
+  getLocalStorage() {
+    const myNumber = '11 ';
+      localStorage.setItem('number', myNumber);
+      
+      localStorage.removeItem('number');
+      console.log(localStorage.getItem('number'));
+  }
 }
