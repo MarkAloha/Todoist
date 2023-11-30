@@ -6,25 +6,33 @@ import { ItemComponent } from './item/item.component';
 import { TableModule } from 'primeng/table'
 import { Item } from './item';
 import { TableComponent } from './table/table.component';
+import { ProductService } from './services/product.service';
+import { AuthorizationComponent } from './authorization/authorization.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  providers: [ProductService],
   imports: [CommonModule, 
     RouterOutlet, 
     NgFor, 
     FormsModule, 
     ItemComponent, 
     TableModule, 
-    TableComponent,],
+    TableComponent,
+    AuthorizationComponent],
   // providers: [ ]
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
+
+  constructor(
+    private productService: ProductService
+  ) {}
 
 
   title = 'todo';
@@ -54,4 +62,9 @@ export class AppComponent {
   remove(item: any) {
     this.allItems.splice(this.allItems.indexOf(item), 1);
   }
+
+  callData = () => {
+    this.productService.data
+  }
+
 }

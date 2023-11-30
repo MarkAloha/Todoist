@@ -50,7 +50,7 @@ export class TableComponent implements OnDestroy {
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
-    private productService: ProductService
+    public productService: ProductService
   ) {}
 
   ref: DynamicDialogRef | undefined;
@@ -58,15 +58,9 @@ export class TableComponent implements OnDestroy {
   ngOnInit() {
     this.productService.getProductsMini().then((data) => {
       this.products = data;
+      console.log(this.products)      
     });
-  }
-
-  
-  visible: boolean = false;
-
-  showDialog() {
-    this.visible = true;
-  }
+  }  
 
   show() {
     this.ref = this.dialogService.open(CreateWindow, {
@@ -76,6 +70,7 @@ export class TableComponent implements OnDestroy {
       baseZIndex: 10000,
       maximizable: true,
     });
+
 
     this.ref.onClose.subscribe((product: Product) => {
       if (product) {
