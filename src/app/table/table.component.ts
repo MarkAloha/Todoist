@@ -57,7 +57,7 @@ export class TableComponent implements OnDestroy {
 
   ngOnInit() {
     this.productService.getProductsMini().then((data) => {
-      this.products = data;      
+      this.products = data;
     });
   }
 
@@ -107,10 +107,34 @@ export class TableComponent implements OnDestroy {
   }
 
   getLocalStorage() {
-    const myNumber = '11 ';
-      localStorage.setItem('number', myNumber);
-      
-      localStorage.removeItem('number');
-      console.log(localStorage.getItem('number'));
+
+    const data = [{
+      id: '1',
+      name: 'поиграть в доту',
+      code: '1142142',
+      description: 'последний раз',
+      status: 'Выполнено',
+    }];
+
+    const addItem = data.unshift({
+      id: '3',
+      name: 'поспать',
+      code: '12442',
+      description: 'сон',
+      status: 'Выполнено',
+    })
+
+    addItem
+    
+    localStorage.setItem('number', JSON.stringify(data));
+
+    const raw:any = localStorage.getItem('number');
+ 
+    const dataParse = JSON.parse(raw);
+
+    
+
+    console.log(dataParse);
+
   }
 }
