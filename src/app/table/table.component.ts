@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
@@ -50,9 +50,11 @@ export class TableComponent implements OnDestroy {
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
-    public productService: ProductService
+    public productService: ProductService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
+ 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
@@ -60,6 +62,8 @@ export class TableComponent implements OnDestroy {
       this.products = data;
     });
   }
+
+  
 
   show() {
     this.ref = this.dialogService.open(CreateWindow, {
@@ -106,35 +110,31 @@ export class TableComponent implements OnDestroy {
     }
   }
 
+  // getLocalStorageTwo(){
+  //   this.productService.setData()
+  // }
+
   getLocalStorage() {
 
-    const data = [{
+    const data = {
       id: '1',
       name: 'поиграть в доту',
       code: '1142142',
       description: 'последний раз',
       status: 'Выполнено',
-    }];
-
-    const addItem = data.unshift({
-      id: '3',
-      name: 'поспать',
-      code: '12442',
-      description: 'сон',
-      status: 'Выполнено',
+    };
+   
+    
+    localStorage.setItem('dataStorage', JSON.stringify(data));
+    const raw:any = localStorage.getItem('dataStorage'); 
+    const dataParse = JSON.parse(raw);  
+    
+    
+    this.productService.getData(dataParse)
+    console.log('dataParse', dataParse)
+    console.log('data',this.productService.getProductsData())
+    this.productService.getProductsMini().then((data) => {
+      this.products = data;
     })
-
-    addItem
-    
-    localStorage.setItem('number', JSON.stringify(data));
-
-    const raw:any = localStorage.getItem('number');
- 
-    const dataParse = JSON.parse(raw);
-
-    
-
-    console.log(dataParse);
-
   }
 }

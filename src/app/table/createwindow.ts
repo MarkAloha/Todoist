@@ -28,10 +28,11 @@ import { CommonModule } from '@angular/common';
   ],
   // templateUrl: './createwindow.html'
   template: ` 
-  
+<!--   
 <label for="addItemInput">add</label>
 <input #newItem (keyup.enter)="AddTask(newItem.value); newItem.value=' '" id="addItemInput">
-<button (click)="AddTask(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button>`,
+<button (click)="AddTask(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button> -->
+`,
 })
 export class CreateWindow implements OnInit  {
   products!: Product[];
@@ -64,10 +65,10 @@ export class CreateWindow implements OnInit  {
     }
   }
 
-  AddTask(name: string) {
-    this.productService.getAddTask(name)
-    console.log(this.productService.getProductsData())
-  }
+  // AddTask(name: string) {
+  //   this.productService.getAddTask(name)
+  //   console.log(this.productService.getProductsData())
+  // }
   
 
   // addItem(description: string) {
