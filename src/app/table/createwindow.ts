@@ -11,6 +11,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';  
+import { TableComponent } from './table.component';
 
 @Component({   
     selector: 'product-list-demo', 
@@ -24,14 +25,15 @@ import { CommonModule } from '@angular/common';
     RatingModule,
     TagModule,
     DynamicDialogModule,
-    ToastModule
+    ToastModule,
+    TableComponent
   ],
   // templateUrl: './createwindow.html'
   template: ` 
-<!--   
+  
 <label for="addItemInput">add</label>
 <input #newItem (keyup.enter)="AddTask(newItem.value); newItem.value=' '" id="addItemInput">
-<button (click)="AddTask(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button> -->
+<button (click)="AddTask(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button>
 `,
 })
 export class CreateWindow implements OnInit  {
@@ -44,7 +46,7 @@ export class CreateWindow implements OnInit  {
 
   ngOnInit() {
     this.productService
-      .getProductsSmall()
+      .getProductsData2()
       .then((products) => (this.products = products));
   }
 
@@ -65,10 +67,22 @@ export class CreateWindow implements OnInit  {
     }
   }
 
-  // AddTask(name: string) {
-  //   this.productService.getAddTask(name)
-  //   console.log(this.productService.getProductsData())
-  // }
+  AddTask(name: string) {
+    const testAdd = {
+      id: '1',
+      name,
+      code: '1142142',
+      description: 'последний раз',
+      status: 'Выполнено',
+    };
+    this.productService.getData(testAdd);
+    this.productService.getProductsData2().then((data) => {
+      this.products = data;
+    });
+    
+    // console.log('products', this.products)
+    // console.log('data', this.productService.getProductsData())
+  }
   
 
   // addItem(description: string) {

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
-
-
+// const dataStorage = {};
+// localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+// const raw: any = localStorage.getItem('dataStorage');
+// const dataParse = JSON.parse(raw);
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-
   data = [
     {
       id: '1',
@@ -41,17 +42,16 @@ export class ProductService {
       status: 'Выполнено',
     },
   ];
-    
-  getData(block:any) {
-    return this.data.unshift(block)
-    
+
+  getData(block: any) {
+    return this.data.unshift(block), console.log(this.data);
+
     // console.log('block',block)
   }
-  
-  
-  // setData() {       
-  //   return localStorage.setItem('dataStorage', JSON.stringify(this.data));     
-  //  } 
+
+  // setData() {
+  //   return localStorage.setItem('dataStorage', JSON.stringify(this.data));
+  //  }
 
   // getAddTask(name: string) {
   //   return Promise.resolve(
@@ -66,7 +66,11 @@ export class ProductService {
   // }
 
   getProductsData() {
-    return this.data
+    return this.data;
+  }
+
+  getProductsData2() {
+    return Promise.resolve(this.getProductsData());
   }
 
   getProductsWithOrdersData() {

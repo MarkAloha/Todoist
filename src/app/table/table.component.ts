@@ -51,10 +51,8 @@ export class TableComponent implements OnDestroy {
     public dialogService: DialogService,
     public messageService: MessageService,
     public productService: ProductService,
-    private cdRef: ChangeDetectorRef
   ) {}
 
- 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
@@ -62,8 +60,6 @@ export class TableComponent implements OnDestroy {
       this.products = data;
     });
   }
-
-  
 
   show() {
     this.ref = this.dialogService.open(CreateWindow, {
@@ -81,7 +77,9 @@ export class TableComponent implements OnDestroy {
           summary: 'Product Selected',
           detail: product.name,
         });
+        
       }
+      
     });
 
     this.ref.onMaximize.subscribe((value: any) => {
@@ -89,6 +87,7 @@ export class TableComponent implements OnDestroy {
         severity: 'info',
         summary: 'Maximized',
         detail: `maximized: ${value.maximized}`,
+        
       });
     });
   }
@@ -96,7 +95,9 @@ export class TableComponent implements OnDestroy {
   ngOnDestroy() {
     if (this.ref) {
       this.ref.close();
+      
     }
+    
   }
 
   getSeverity(status: string) {
@@ -115,7 +116,6 @@ export class TableComponent implements OnDestroy {
   // }
 
   getLocalStorage() {
-
     const data = {
       id: '1',
       name: 'поиграть в доту',
@@ -123,18 +123,16 @@ export class TableComponent implements OnDestroy {
       description: 'последний раз',
       status: 'Выполнено',
     };
-   
+    // const dataStorage = {}
+    // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+    // const raw: any = localStorage.getItem('dataStorage');
+    // const dataParse = JSON.parse(raw);
+    // this.productService.getData(dataParse);
     
-    localStorage.setItem('dataStorage', JSON.stringify(data));
-    const raw:any = localStorage.getItem('dataStorage'); 
-    const dataParse = JSON.parse(raw);  
-    
-    
-    this.productService.getData(dataParse)
-    console.log('dataParse', dataParse)
-    console.log('data',this.productService.getProductsData())
+    // console.log('dataParse', dataParse);
+    // console.log('data', this.productService.getProductsData());
     this.productService.getProductsMini().then((data) => {
       this.products = data;
-    })
+    });
   }
 }
