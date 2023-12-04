@@ -1,4 +1,4 @@
-export interface Product {
+export interface Task {
     id?: string;
     code?: string;
     name?: string;
