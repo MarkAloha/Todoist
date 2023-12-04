@@ -60,11 +60,11 @@ export class TaskService {
     // console.log(dataParse, 'dataParse');
   }
 
-  // any убирать
   addData(item:Task) {
     const localData = this.getTasksData()
-    localData.unshift(item)
+    localData.push(item)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
+    console.log('data', localData)
   }
 
   setData() {
