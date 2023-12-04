@@ -61,16 +61,15 @@ export class TaskService {
   }
 
   // any убирать
-  addData(block: any) {
-    //в локал стораж добавлять задачу
-    this.data.unshift(block), console.log(this.data);
-
-    // console.log('block',block)
+  addData(item:Task) {
+    const localData = this.getTasksData()
+    localData.unshift(item)
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
   }
 
-  // setData() {
-  //   return localStorage.setItem('dataStorage', JSON.stringify(this.data));
-  //  }
+  setData() {
+    return localStorage.setItem('dataStorage', JSON.stringify(this.data));
+   }
 
   // getAddTask(name: string) {
   //   return Promise.resolve(

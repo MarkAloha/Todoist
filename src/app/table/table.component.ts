@@ -52,14 +52,16 @@ export class TableComponent implements OnDestroy {
 
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
+    
     // this.taskService.getTasksMini().then((data) => {
     //   this.tasks = data;
     // });
+    console.log(this.taskService.getTasksData())
   }
 
   show() {
     this.ref = this.dialogService.open(CreateWindow, {
-      header: 'Select a Task',
+      header: 'Новая задача',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -101,6 +103,11 @@ export class TableComponent implements OnDestroy {
   //   this.taskService.setData()
   // }
 
+  clearTask() {
+    localStorage.clear();  
+    this.tasks = this.taskService.getTasksData();
+  }
+
   getLocalStorage() {
     const data = {
       id: '1',
@@ -113,7 +120,9 @@ export class TableComponent implements OnDestroy {
     // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
     const raw: any = localStorage.getItem('dataStorage');
     const dataParse = JSON.parse(raw);
-    this.taskService.addData(dataParse);
+    // this.taskService.addData(dataParse);
+    this.taskService.setData()
+    this.tasks = this.taskService.getTasksData();
 
     // console.log('dataParse', dataParse);
     // console.log('data', this.taskService.getTasksData());

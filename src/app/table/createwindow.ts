@@ -30,7 +30,7 @@ import { TableComponent } from './table.component';
   ],
   // templateUrl: './createwindow.html'
   template: `
-    <label for="addItemInput">add</label>
+    <label for="addItemInput">Мне нужно</label>
     <input
       #newItem
       (keyup.enter)="addTask(newItem.value); newItem.value = ' '"
@@ -40,7 +40,7 @@ import { TableComponent } from './table.component';
       (click)="addTask(newItem.value); newItem.value = ' '"
       class="btn-add"
     >
-      Добавить новую запись
+      запланировать!
     </button>
   `,
 })
@@ -55,28 +55,28 @@ export class CreateWindow implements OnInit {
     //   .then((tasks) => (this.tasks = tasks));
   }
 
-  getSeverity(status: string) {
-    switch (status) {
-      case 'INSTOCK':
-        return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
-        return 'danger';
-      default:
-        return 'danger';
-    }
-  }
+  // getSeverity(status: string) {
+  //   switch (status) {
+  //     case 'INSTOCK':
+  //       return 'success';
+  //     case 'LOWSTOCK':
+  //       return 'warning';
+  //     case 'OUTOFSTOCK':
+  //       return 'danger';
+  //     default:
+  //       return 'danger';
+  //   }
+  // }
 
   addTask(name: string) {
-    const testAdd = {
+    const sampleAdd = {
       id: '1',
       name,
       code: '1142142',
       description: 'последний раз',
-      status: 'Выполнено',
+      status: 'В процессе',
     };
-    this.taskService.addData(testAdd);
+    this.taskService.addData(sampleAdd);
     this.ref.close();
 
     // this.taskService.getTasksData2().then((data) => {
