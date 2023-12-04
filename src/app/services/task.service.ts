@@ -40,25 +40,25 @@ export class TaskService {
     },
   ];
 
-  constructor() {
-    // const dataStorage = this.data;
+  // constructor() {
+  //   // const dataStorage = this.data;
 
-    // if (typeof window !== 'undefined') {
-    //   localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-    //   const raw: any = localStorage.getItem('dataStorage');
-    //   const dataParse = JSON.parse(raw);
+  //   // if (typeof window !== 'undefined') {
+  //   //   localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+  //   //   const raw: any = localStorage.getItem('dataStorage');
+  //   //   const dataParse = JSON.parse(raw);
 
-    //   console.log(dataStorage, 'dataStorage');
-    //   console.log(dataParse, 'dataParse');
-    // }
+  //   //   console.log(dataStorage, 'dataStorage');
+  //   //   console.log(dataParse, 'dataParse');
+  //   // }
 
-    // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-    // const raw: any = localStorage.getItem('dataStorage');
-    // const dataParse = JSON.parse(raw);
+  //   // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+  //   // const raw: any = localStorage.getItem('dataStorage');
+  //   // const dataParse = JSON.parse(raw);
 
-    // console.log(dataStorage, 'dataStorage');
-    // console.log(dataParse, 'dataParse');
-  }
+  //   // console.log(dataStorage, 'dataStorage');
+  //   // console.log(dataParse, 'dataParse');
+  // }
 
   addData(item:Task) {
     const localData = this.getTasksData()
