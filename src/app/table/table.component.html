@@ -20,6 +20,7 @@
 </div> -->
 
 
+<p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button>
 <p-button (click)="getLocalStorage()" icon="pi pi-info-circle" label="testADD"></p-button>
 <p-button (click)="clearTask()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
@@ -32,6 +33,7 @@
                 <div class="card flex justify-content-center">
                     <p-toast></p-toast>
                     <p-button (click)="show()" icon="pi pi-info-circle" label="Создать"></p-button>
+                    
                 </div>
             </div>
         </ng-template>
@@ -39,12 +41,18 @@
             <tr>
                 <th>Name</th>
                 
+                <th>Описание</th>
                 <th>Status</th>
             </tr>
+            
         </ng-template>
         <ng-template pTemplate="body" let-task>
             <tr> 
-                <td>{{task.name}}</td>
+                
+                <td>{{task.name}}
+                    <button icon="pi pi-info-circle" label="Удалить">Удалить</button>
+               </td>
+                <td>{{task.description}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
             </tr>
         </ng-template>

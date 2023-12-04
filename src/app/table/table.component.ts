@@ -108,6 +108,10 @@ export class TableComponent implements OnDestroy {
     this.tasks = this.taskService.getTasksData();
   }
 
+  consoleLog() {
+    
+  }
+
   getLocalStorage() {
     const data = {
       id: '1',
@@ -120,6 +124,7 @@ export class TableComponent implements OnDestroy {
     // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
     const raw: any = localStorage.getItem('dataStorage');
     const dataParse = JSON.parse(raw);
+    // console.log(dataParse.lastIndexOf(Object))
     // this.taskService.addData(dataParse);
     this.taskService.setData()
     this.tasks = this.taskService.getTasksData();

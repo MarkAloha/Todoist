@@ -69,8 +69,12 @@ export class CreateWindow implements OnInit {
   // }
 
   addTask(name: string) {
-    const sampleAdd = {
-      id: '1',
+    const raw: any = localStorage.getItem('dataStorage');
+    const dataParse = JSON.parse(raw);
+    const lastIndex = dataParse.length + 1
+
+    const sampleAdd: Task = {
+      id: `${lastIndex}`,
       name,
       code: '1142142',
       description: 'последний раз',
