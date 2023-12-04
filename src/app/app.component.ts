@@ -6,7 +6,7 @@ import { ItemComponent } from './item/item.component';
 import { TableModule } from 'primeng/table'
 import { Item } from './item';
 import { TableComponent } from './table/table.component';
-import { ProductService } from './services/product.service';
+import { TaskService } from './services/task.service';
 import { AuthorizationComponent } from './authorization/authorization.component';
 
 
@@ -14,7 +14,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 @Component({
   selector: 'app-root',
   standalone: true,
-  providers: [ProductService],
+  providers: [TaskService],
   imports: [CommonModule, 
     RouterOutlet, 
     NgFor, 
@@ -31,7 +31,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 export class AppComponent {
 
   constructor(
-    private productService: ProductService
+    private taskService: TaskService
   ) {}
 
 
@@ -64,7 +64,7 @@ export class AppComponent {
   }
 
   callData = () => {
-    this.productService.data
+    this.taskService.data
   }
 
 }

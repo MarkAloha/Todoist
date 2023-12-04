@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { Product } from '../domain/product';
+import { TaskService } from '../services/task.service';
+import { Task } from '../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -10,12 +10,12 @@ import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
 
-@Component({   
-    selector: 'product-list-demo', 
-  providers: [DialogService, MessageService, ProductService],
+@Component({
+  selector: 'task-list-demo',
+  providers: [DialogService, MessageService, TaskService],
   standalone: true,
   imports: [
     CommonModule,
@@ -26,32 +26,33 @@ import { TableComponent } from './table.component';
     TagModule,
     DynamicDialogModule,
     ToastModule,
-    TableComponent
+    TableComponent,
   ],
   // templateUrl: './createwindow.html'
-  template: ` 
-  
-<label for="addItemInput">add</label>
-<input #newItem (keyup.enter)="AddTask(newItem.value); newItem.value=' '" id="addItemInput">
-<button (click)="AddTask(newItem.value); newItem.value=' '" class="btn-add">Добавить новую запись</button>
-`,
+  template: `
+    <label for="addItemInput">add</label>
+    <input
+      #newItem
+      (keyup.enter)="addTask(newItem.value); newItem.value = ' '"
+      id="addItemInput"
+    />
+    <button
+      (click)="addTask(newItem.value); newItem.value = ' '"
+      class="btn-add"
+    >
+      Добавить новую запись
+    </button>
+  `,
 })
-export class CreateWindow implements OnInit  {
-  products!: Product[];
+export class CreateWindow implements OnInit {
+  tasks!: Task[];
 
-  constructor(
-    private productService: ProductService,
-    public ref: DynamicDialogRef
-  ) {}
+  constructor(private taskService: TaskService, public ref: DynamicDialogRef) {}
 
   ngOnInit() {
-    this.productService
-      .getProductsData2()
-      .then((products) => (this.products = products));
-  }
-
-  selectProduct(product: Product) {
-    this.ref.close(product);
+    // this.taskService
+    //   .getTasksData2()
+    //   .then((tasks) => (this.tasks = tasks));
   }
 
   getSeverity(status: string) {
@@ -63,11 +64,11 @@ export class CreateWindow implements OnInit  {
       case 'OUTOFSTOCK':
         return 'danger';
       default:
-        return 'danger'
+        return 'danger';
     }
   }
 
-  AddTask(name: string) {
+  addTask(name: string) {
     const testAdd = {
       id: '1',
       name,
@@ -75,19 +76,20 @@ export class CreateWindow implements OnInit  {
       description: 'последний раз',
       status: 'Выполнено',
     };
-    this.productService.getData(testAdd);
-    this.productService.getProductsData2().then((data) => {
-      this.products = data;
-    });
-    
-    // console.log('products', this.products)
-    // console.log('data', this.productService.getProductsData())
+    this.taskService.addData(testAdd);
+    this.ref.close();
+
+    // this.taskService.getTasksData2().then((data) => {
+    //   this.tasks = data;
+    // });
+
+    // console.log('tasks', this.tasks)
+    // console.log('data', this.taskService.getTasksData())
   }
-  
 
   // addItem(description: string) {
   //   this.allItems.unshift({
-  //     id:1, 
+  //     id:1,
   //     description,
   //     done: false,
   //   });

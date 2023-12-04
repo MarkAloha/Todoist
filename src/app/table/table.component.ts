@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ProductService } from '../services/product.service';
-import { Product } from '../domain/product';
+import { TaskService } from '../services/task.service';
+import { Task } from '../domain/types';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -35,69 +35,55 @@ import { ItemComponent } from '../item/item.component';
     DynamicDialogModule,
     DialogModule,
   ],
-  providers: [
-    DialogService,
-    MessageService,
-    ProductService,
-    DynamicDialogConfig,
-  ],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
 export class TableComponent implements OnDestroy {
-  products!: Product[];
+  tasks!: Task[];
 
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
-    public productService: ProductService,
+    public taskService: TaskService
   ) {}
 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
-    this.productService.getProductsMini().then((data) => {
-      this.products = data;
-    });
+    this.tasks = this.taskService.getTasksData();
+    // this.taskService.getTasksMini().then((data) => {
+    //   this.tasks = data;
+    // });
   }
 
   show() {
     this.ref = this.dialogService.open(CreateWindow, {
-      header: 'Select a Product',
+      header: 'Select a Task',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      maximizable: true,
+      // maximizable: true,
     });
 
-    this.ref.onClose.subscribe((product: Product) => {
-      if (product) {
+    this.ref.onClose.subscribe((task: Task) => {
+      // заново получать таски
+      this.tasks = this.taskService.getTasksData();
+
+      if (task) {
         this.messageService.add({
           severity: 'info',
-          summary: 'Product Selected',
-          detail: product.name,
+          summary: 'Task Selected',
+          detail: task.name,
         });
-        
       }
-      
-    });
-
-    this.ref.onMaximize.subscribe((value: any) => {
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Maximized',
-        detail: `maximized: ${value.maximized}`,
-        
-      });
     });
   }
 
   ngOnDestroy() {
     if (this.ref) {
       this.ref.close();
-      
     }
-    
   }
 
   getSeverity(status: string) {
@@ -112,7 +98,7 @@ export class TableComponent implements OnDestroy {
   }
 
   // getLocalStorageTwo(){
-  //   this.productService.setData()
+  //   this.taskService.setData()
   // }
 
   getLocalStorage() {
@@ -123,16 +109,16 @@ export class TableComponent implements OnDestroy {
       description: 'последний раз',
       status: 'Выполнено',
     };
-    // const dataStorage = {}
+    const dataStorage = {};
     // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-    // const raw: any = localStorage.getItem('dataStorage');
-    // const dataParse = JSON.parse(raw);
-    // this.productService.getData(dataParse);
-    
+    const raw: any = localStorage.getItem('dataStorage');
+    const dataParse = JSON.parse(raw);
+    this.taskService.addData(dataParse);
+
     // console.log('dataParse', dataParse);
-    // console.log('data', this.productService.getProductsData());
-    this.productService.getProductsMini().then((data) => {
-      this.products = data;
-    });
+    // console.log('data', this.taskService.getTasksData());
+    // this.taskService.getTasksMini().then((data) => {
+    //   this.tasks = data;
+    // });
   }
 }

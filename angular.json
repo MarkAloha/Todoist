@@ -41,7 +41,7 @@
             }
           },
           "configurations": {
-            "production": {
+            "taskion": {
               "budgets": [
                 {
                   "type": "initial",
@@ -62,13 +62,13 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "taskion"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "angular-project:build:production"
+            "taskion": {
+              "buildTarget": "angular-project:build:taskion"
             },
             "development": {
               "buildTarget": "angular-project:build:development"

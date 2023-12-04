@@ -1,5 +1,5 @@
 <!-- <div class="card">
-    <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="tasks" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
                 <th>Code</th>
@@ -8,12 +8,12 @@
                 <th>Quantity</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-task>
             <tr>
-                <td>{{ product.code }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.id }}</td>
-                <td>{{ product.description }}</td>
+                <td>{{ task.code }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.id }}</td>
+                <td>{{ task.description }}</td>
             </tr>
         </ng-template>
     </p-table>
@@ -24,7 +24,7 @@
 
 
 <div class="card">
-    <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
+    <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Задачи
@@ -41,15 +41,15 @@
                 <th>Status</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-task>
             <tr> 
-                <td>{{product.name}}</td>
-                <td><p-tag [value]="product.status" [severity]="getSeverity(product.status)"></p-tag></td>
+                <td>{{task.name}}</td>
+                <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{products ? products.length : 0 }} products.
+                In total there are {{tasks ? tasks.length : 0 }} tasks.
             </div>
         </ng-template>
     </p-table>
