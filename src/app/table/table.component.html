@@ -50,7 +50,7 @@
             <tr> 
                 
                 <td>{{task.name}}
-                    <button icon="pi pi-info-circle" label="Удалить">Удалить</button>
+                    <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button>
                </td>
                 <td>{{task.description}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
@@ -58,7 +58,7 @@
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{tasks ? tasks.length : 0 }} tasks.
+                Всего {{tasks ? tasks.length : 0 }} задачи.
             </div>
         </ng-template>
     </p-table>

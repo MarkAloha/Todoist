@@ -56,7 +56,12 @@ export class TableComponent implements OnDestroy {
     // this.taskService.getTasksMini().then((data) => {
     //   this.tasks = data;
     // });
-    console.log(this.taskService.getTasksData())
+    // console.log(this.taskService.getTasksData())
+  }
+
+  deleteTask(id:number) {
+    this.taskService.deleteData(id);
+    this.tasks = this.taskService.getTasksData()
   }
 
   show() {

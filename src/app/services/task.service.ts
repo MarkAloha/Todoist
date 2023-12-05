@@ -8,7 +8,7 @@ export class TaskService {
   // удалить поле
   data: Task[] = [
     {
-      id: '1',
+      id: 0,
       name: 'поиграть в доту',
       code: '1142142',
       description: 'последний раз',
@@ -16,7 +16,7 @@ export class TaskService {
     },
 
     {
-      id: '2',
+      id: 1,
       name: 'тренировка',
       code: '2142142',
       description: 'ноги',
@@ -24,7 +24,7 @@ export class TaskService {
     },
 
     {
-      id: '3',
+      id: 2,
       name: 'поспать',
       code: '12442',
       description: 'сон',
@@ -32,7 +32,7 @@ export class TaskService {
     },
 
     {
-      id: '4',
+      id: 3,
       name: 'поесть',
       code: '4124142',
       description: 'еду',
@@ -59,6 +59,13 @@ export class TaskService {
   //   // console.log(dataStorage, 'dataStorage');
   //   // console.log(dataParse, 'dataParse');
   // }
+
+  deleteData(id:number) {
+    const localData = this.getTasksData()
+    delete(localData[id])
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
+    console.log('id', id)
+  }
 
   addData(item:Task) {
     const localData = this.getTasksData()
