@@ -61,7 +61,7 @@ export class TableComponent implements OnDestroy {
 
   deleteTask(id:number) {
     this.taskService.deleteData(id);
-    this.tasks = this.taskService.getTasksData()
+    // this.tasks = this.taskService.getTasksData()
   }
 
   show() {

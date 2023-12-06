@@ -69,20 +69,28 @@ export class CreateWindow implements OnInit {
   // }
 
   addTask(name: string) {
-    const raw: any = localStorage.getItem('dataStorage');
-    const dataParse = JSON.parse(raw);
-    let lastIndex = dataParse?.length
-    lastIndex ??= 1
+    // const raw: any = localStorage.getItem('dataStorage');
+    // const dataParse = JSON.parse(raw);
+    // let lastIndex = dataParse?.length
+    // lastIndex ??= 1
+    const raw:any = localStorage.getItem('idLast')
+    let idNull = JSON.parse(raw)
+    idNull ??=0
+
+    const idItem = idNull + 1 
+    
+    idNull = idItem
+    localStorage.setItem('idLast', JSON.stringify(idNull))
     
 
     const sampleAdd: Task = {
-      id: lastIndex,
+      id: idItem,
       name,
       code: '1142142',
       description: 'Описание',
       status: 'В процессе',
     };
-    console.log(typeof lastIndex)
+    // console.log(typeof lastIndex)
     this.taskService.addData(sampleAdd);
     this.ref.close();
 

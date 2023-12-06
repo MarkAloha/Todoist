@@ -9,9 +9,9 @@ export class TaskService {
   data: Task[] = [
     {
       id: 0,
-      name: 'поиграть в доту',
+      name: 'поиграть',
       code: '1142142',
-      description: 'последний раз',
+      description: 'дока 2',
       status: 'Выполнено',
     },
 
@@ -61,9 +61,9 @@ export class TaskService {
   // }
 
   deleteData(id:number) {
-    const localData = this.getTasksData()
-    delete(localData[id])
-    localStorage.setItem('dataStorage', JSON.stringify(localData))
+    // const localData = this.getTasksData()
+    // delete(localData[id])
+    // localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('id', id)
   }
 
