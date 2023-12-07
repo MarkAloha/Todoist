@@ -75,10 +75,10 @@ export class CreateWindow implements OnInit {
     // lastIndex ??= 1
     const raw:any = localStorage.getItem('idLast')
     let idNull = JSON.parse(raw)
-    idNull ??=0
+    idNull ??=3
 
     const idItem = idNull + 1 
-    
+
     idNull = idItem
     localStorage.setItem('idLast', JSON.stringify(idNull))
     
