@@ -31,64 +31,54 @@ import { TableComponent } from './table.component';
 
   ],
   templateUrl: './createwindow.html'
-  // template: `
-  //   <style>
-  //     .box {
-  //       width: 100px;
-  //       height: 100px;
-  //       border: 1px solid red;      
-  //     }
-  //   </style>
-  //   <div class="box">какой-то текст</div>
-  //   <label for="addItemInput">Мне нужно</label>
-  //   <input
-  //     #newItem
-  //     (keyup.enter)="addTask(newItem.value); newItem.value = ' '"
-  //     id="addItemInput"
-  //   />
-  //   <button
-  //     (click)="addTask(newItem.value); newItem.value = ' '"
-  //     class="btn-add"
-  //   >
-  //     запланировать!
-  //   </button>    
-  // `,
+ 
 })
 export class CreateWindow implements OnInit {
   tasks!: Task[];
 
   @ViewChild('bitBox') bitBox:any
+  // @ViewChild('showButton') showButton:any
 
-  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef) {
+  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
+    public table: TableComponent) {
 
 
-    // if (typeof document !== 'undefined') {
-    //   // let box: any = document.querySelector('.box')
+    if (typeof document !== 'undefined') {
+      // let box: any = document.querySelector('.box')
       
-    //     // const div = this.bitBox.querySelector('.box')
-    //     // console.log('div', div)
+        // const div = this.bitBox.querySelector('.box')
+        // console.log('div', div)
       
-    //   document.addEventListener('click', (e)=> {
-    //     const click = e.composedPath().includes(this.bitBox)
+      document.addEventListener('click', (e)=> {
+        const click = e.composedPath().includes(this.bitBox.nativeElement) || e.composedPath().includes(this.table.showButton.nativeElement)
+        if (!click ) {
+          if (this.ref) {
+            this.ref.close();
+          }
+        }
         
-    //     // console.log(box)
-    //     console.log(click)
-    //   })
-    //   }
+        // console.log(box)
+        // console.log(this.bitBox.nativeElement          )
+        // console.log(box)
+        // console.log(this.showButton)
+        // console.log(this.bitBox)
+        console.log(click)
+      })
+      }
 
 
   }
 
-  @HostListener('document:click', ['$event'])
-	onClick(event: Event) {
-		if (!this.el.nativeElement.contains(event.target) ) {
-			// action
+  // @HostListener('document:click', ['$event'])
+	// onClick(event: Event) {
+	// 	if (!this.el.nativeElement.contains(event.target) ) {
+	// 		// action
       
-        // this.ref.close();
+  //       // this.ref.close();
       
-      console.log(event)
-		}
-	}
+  //     console.log(event)
+	// 	}
+	// }
 
 
   ngOnInit() {

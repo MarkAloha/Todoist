@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../services/task.service';
@@ -42,11 +42,14 @@ import { ItemComponent } from '../item/item.component';
 export class TableComponent implements OnDestroy {
   tasks!: Task[];
 
+  @ViewChild('showButton') showButton:any
+  
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService
   ) {
+
     
     }
   
@@ -65,7 +68,7 @@ export class TableComponent implements OnDestroy {
   deleteTask(id: number) {
     this.taskService.deleteData(id);
     this.tasks = this.taskService.getTasksData()
-
+    console.log('showButton',this.showButton)
   }
 
   changeTask() {

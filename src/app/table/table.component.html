@@ -30,9 +30,9 @@
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Задачи
-                <div class="card flex justify-content-center">
+                <div #showButton class="card flex justify-content-center">
                     <p-toast></p-toast>
-                    <p-button (click)="show()" icon="pi pi-info-circle" label="Создать"></p-button>
+                    <p-button  (click)="show()" icon="pi pi-info-circle" label="Создать"></p-button>
                     
                 </div>
             </div>
