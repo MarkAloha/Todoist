@@ -19,6 +19,7 @@ import { CreateWindow } from './createwindow';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ItemComponent } from '../item/item.component';
+import { ChangeWindow } from './changewindow';
 
 @Component({
   selector: 'app-table',
@@ -34,6 +35,7 @@ import { ItemComponent } from '../item/item.component';
     ToastModule,
     DynamicDialogModule,
     DialogModule,
+    ChangeWindow
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig],
   templateUrl: './table.component.html',
@@ -43,7 +45,8 @@ export class TableComponent implements OnDestroy {
   tasks!: Task[];
 
   @ViewChild('showButton') showButton:any
-  
+  @ViewChild('changeButton') changeButton:any
+
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
@@ -72,8 +75,8 @@ export class TableComponent implements OnDestroy {
   }
 
   changeTask() {
-    this.ref = this.dialogService.open(CreateWindow, {
-      header: 'Новая задача',
+    this.ref = this.dialogService.open(ChangeWindow, {
+      header: 'Изменить',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
