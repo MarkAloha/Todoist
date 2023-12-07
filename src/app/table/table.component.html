@@ -51,6 +51,7 @@
                 
                 <td>{{task.name}}
                     <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button>
+                    <button (click)="changeTask()" icon="pi pi-info-circle" label="Изменить">Изменить</button>
                </td>
                 <td>{{task.description}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>

@@ -1,1 +1,21 @@
-<h1>QQQQQQQQQQQQQQQQQ</h1>
+
+<style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;      
+    }
+  </style>
+  <div #bitBox class="box">какой-то текст</div>
+  <label for="addItemInput">Мне нужно</label>
+  <input
+    #newItem
+    (keyup.enter)="addTask(newItem.value); newItem.value = ' '"
+    id="addItemInput"
+  />
+  <button
+    (click)="addTask(newItem.value); newItem.value = ' '"
+    class="btn-add"
+  >
+    запланировать!
+  </button>

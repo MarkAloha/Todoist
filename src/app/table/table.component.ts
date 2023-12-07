@@ -46,22 +46,35 @@ export class TableComponent implements OnDestroy {
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService
-  ) {}
+  ) {
+    
+    }
+  
 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
-    
+
     // this.taskService.getTasksMini().then((data) => {
     //   this.tasks = data;
     // });
     // console.log(this.taskService.getTasksData())
   }
 
-  deleteTask(id:number) {
+  deleteTask(id: number) {
     this.taskService.deleteData(id);
     this.tasks = this.taskService.getTasksData()
+
+  }
+
+  changeTask() {
+    this.ref = this.dialogService.open(CreateWindow, {
+      header: 'Новая задача',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
   }
 
   show() {
@@ -70,8 +83,9 @@ export class TableComponent implements OnDestroy {
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      // maximizable: true,
     });
+
+
 
     this.ref.onClose.subscribe((task: Task) => {
       // заново получать таски
@@ -109,12 +123,12 @@ export class TableComponent implements OnDestroy {
   // }
 
   clearTask() {
-    localStorage.clear();  
+    localStorage.clear();
     this.tasks = this.taskService.getTasksData();
   }
 
   consoleLog() {
-    
+
   }
 
   getLocalStorage() {
@@ -140,4 +154,7 @@ export class TableComponent implements OnDestroy {
     //   this.tasks = data;
     // });
   }
+
+  
+
 }

@@ -70,8 +70,10 @@ export class TaskService {
     // delete(localData[index])
     localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('id', id)
-    console.log('local', localData)
-    console.log('index', index)
+    // console.log('local', localData)
+    // console.log('index', index)
+    
+
   }
 
   addData(item:Task) {
