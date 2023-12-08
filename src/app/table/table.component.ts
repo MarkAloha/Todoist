@@ -62,10 +62,6 @@ export class TableComponent implements OnDestroy {
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
 
-    // this.taskService.getTasksMini().then((data) => {
-    //   this.tasks = data;
-    // });
-    // console.log(this.taskService.getTasksData())
   }
 
   deleteTask(id: number) {
@@ -94,7 +90,7 @@ export class TableComponent implements OnDestroy {
 
 
     this.ref.onClose.subscribe((task: Task) => {
-      // заново получать таски
+      
       this.tasks = this.taskService.getTasksData();
 
       if (task) {
@@ -124,11 +120,7 @@ export class TableComponent implements OnDestroy {
     }
   }
 
-  // getLocalStorageTwo(){
-  //   this.taskService.setData()
-  // }
-
-  clearTask() {
+  clearTaskAdmin() {
     localStorage.clear();
     this.tasks = this.taskService.getTasksData();
   }
@@ -137,7 +129,7 @@ export class TableComponent implements OnDestroy {
 
   }
 
-  getLocalStorage() {
+  addTaskAdmin() {
     const data = {
       id: '1',
       name: 'поиграть в доту',

@@ -63,6 +63,7 @@ export class CreateWindow implements OnInit {
         // console.log(box)
         // console.log(this.showButton)
         // console.log(this.bitBox)
+        // console.log(this.bitBox.nativeElement)
         console.log(click)
       })
       }
