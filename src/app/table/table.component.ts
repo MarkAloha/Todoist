@@ -62,6 +62,7 @@ export class TableComponent implements OnDestroy {
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
 
+
   }
 
   deleteTask(id: number) {
@@ -86,6 +87,7 @@ export class TableComponent implements OnDestroy {
       
       this.tasks = this.taskService.getTasksData();})
     
+
 
   }
 
