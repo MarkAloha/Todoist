@@ -20,7 +20,9 @@
 </div> -->
 
 
-<p-button (click)="getLocalStorage()" icon="pi pi-info-circle" label="getLocalStorage"></p-button>
+<p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button>
+<p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
+<p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
 
 <div class="card">
@@ -28,28 +30,40 @@
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Задачи
-                <div class="card flex justify-content-center">
+                <div #showButton class="card flex justify-content-center">
                     <p-toast></p-toast>
-                    <p-button (click)="show()" icon="pi pi-info-circle" label="Создать"></p-button>
+                    <p-button (click)="showAddTask()" icon="pi pi-info-circle" label="Создать"></p-button>
+
                 </div>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>Name</th>
-                
-                <th>Status</th>
+                <th>Название</th>
+
+                <th>Описание</th>
+                <th>Статус</th>
             </tr>
+
         </ng-template>
         <ng-template pTemplate="body" let-task>
-            <tr> 
-                <td>{{task.name}}</td>
+            <tr>
+
+                <td>{{task.name}}
+                    <div>
+                        <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button>
+                    </div>
+                    <div #changeButton>
+                        <button (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle" label="Изменить">Изменить</button>
+                    </div>
+                </td>
+                <td>{{task.description}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{tasks ? tasks.length : 0 }} tasks.
+                Всего {{tasks ? tasks.length : 0 }} задачи.
             </div>
         </ng-template>
     </p-table>

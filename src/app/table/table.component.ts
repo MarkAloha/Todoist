@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../services/task.service';
@@ -19,6 +19,7 @@ import { CreateWindow } from './createwindow';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ItemComponent } from '../item/item.component';
+import { ChangeWindow } from './changewindow';
 
 @Component({
   selector: 'app-table',
@@ -34,6 +35,7 @@ import { ItemComponent } from '../item/item.component';
     ToastModule,
     DynamicDialogModule,
     DialogModule,
+    ChangeWindow
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig],
   templateUrl: './table.component.html',
@@ -42,42 +44,74 @@ import { ItemComponent } from '../item/item.component';
 export class TableComponent implements OnDestroy {
   tasks!: Task[];
 
+  @ViewChild('showButton') showButton:any
+  @ViewChild('changeButton') changeButton:any
+
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService
-  ) {}
+  ) {
+
+    
+    }
+  
 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
-    // this.taskService.getTasksMini().then((data) => {
-    //   this.tasks = data;
-    // });
-    console.log(this.taskService.getTasksData())
+
+
   }
 
-  show() {
-    this.ref = this.dialogService.open(CreateWindow, {
-      header: 'Select a Task',
+  deleteTask(id: number) {
+    this.taskService.deleteData(id);
+    this.tasks = this.taskService.getTasksData()
+    // console.log('showButton',this.showButton)
+    
+  }
+
+  showChangeTask(id:number, name:string) {
+    this.ref = this.dialogService.open(ChangeWindow, {
+      header: 'Изменить',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      // maximizable: true,
     });
+    
+    localStorage.setItem('changeId', String(id))
+    localStorage.setItem('changeName', name)
 
     this.ref.onClose.subscribe((task: Task) => {
-      // заново получать таски
+      
+      this.tasks = this.taskService.getTasksData();})
+    
+
+
+  }
+
+  showAddTask() {
+    this.ref = this.dialogService.open(CreateWindow, {
+      header: 'Новая задача',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+
+
+
+    this.ref.onClose.subscribe((task: Task) => {
+      
       this.tasks = this.taskService.getTasksData();
 
-      if (task) {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Task Selected',
-          detail: task.name,
-        });
-      }
+      // if (task) {
+      //   this.messageService.add({
+      //     severity: 'info',
+      //     summary: 'Task Selected',
+      //     detail: task.name,
+      //   });
+      // }
     });
   }
 
@@ -98,11 +132,16 @@ export class TableComponent implements OnDestroy {
     }
   }
 
-  // getLocalStorageTwo(){
-  //   this.taskService.setData()
-  // }
+  clearTaskAdmin() {
+    localStorage.clear();
+    this.tasks = this.taskService.getTasksData();
+  }
 
-  getLocalStorage() {
+  consoleLog() {
+
+  }
+
+  addTaskAdmin() {
     const data = {
       id: '1',
       name: 'поиграть в доту',
@@ -114,7 +153,10 @@ export class TableComponent implements OnDestroy {
     // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
     const raw: any = localStorage.getItem('dataStorage');
     const dataParse = JSON.parse(raw);
-    this.taskService.addData(dataParse);
+    // console.log(dataParse.lastIndexOf(Object))
+    // this.taskService.addData(dataParse);
+    this.taskService.setData()
+    this.tasks = this.taskService.getTasksData();
 
     // console.log('dataParse', dataParse);
     // console.log('data', this.taskService.getTasksData());
@@ -122,4 +164,7 @@ export class TableComponent implements OnDestroy {
     //   this.tasks = data;
     // });
   }
+
+  
+
 }

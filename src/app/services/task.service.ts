@@ -8,15 +8,15 @@ export class TaskService {
   // удалить поле
   data: Task[] = [
     {
-      id: '1',
-      name: 'поиграть в доту',
+      id: 0,
+      name: 'поиграть',
       code: '1142142',
-      description: 'последний раз',
+      description: 'дока 2',
       status: 'Выполнено',
     },
 
     {
-      id: '2',
+      id: 1,
       name: 'тренировка',
       code: '2142142',
       description: 'ноги',
@@ -24,7 +24,7 @@ export class TaskService {
     },
 
     {
-      id: '3',
+      id: 2,
       name: 'поспать',
       code: '12442',
       description: 'сон',
@@ -32,7 +32,7 @@ export class TaskService {
     },
 
     {
-      id: '4',
+      id: 3,
       name: 'поесть',
       code: '4124142',
       description: 'еду',
@@ -40,37 +40,65 @@ export class TaskService {
     },
   ];
 
-  constructor() {
-    // const dataStorage = this.data;
+  // constructor() {
+  //   // const dataStorage = this.data;
 
-    // if (typeof window !== 'undefined') {
-    //   localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-    //   const raw: any = localStorage.getItem('dataStorage');
-    //   const dataParse = JSON.parse(raw);
+  //   // if (typeof window !== 'undefined') {
+  //   //   localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+  //   //   const raw: any = localStorage.getItem('dataStorage');
+  //   //   const dataParse = JSON.parse(raw);
 
-    //   console.log(dataStorage, 'dataStorage');
-    //   console.log(dataParse, 'dataParse');
-    // }
+  //   //   console.log(dataStorage, 'dataStorage');
+  //   //   console.log(dataParse, 'dataParse');
+  //   // }
 
-    // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-    // const raw: any = localStorage.getItem('dataStorage');
-    // const dataParse = JSON.parse(raw);
+  //   // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+  //   // const raw: any = localStorage.getItem('dataStorage');
+  //   // const dataParse = JSON.parse(raw);
 
-    // console.log(dataStorage, 'dataStorage');
-    // console.log(dataParse, 'dataParse');
+  //   // console.log(dataStorage, 'dataStorage');
+  //   // console.log(dataParse, 'dataParse');
+  // }
+
+  deleteData(id:number) {
+    const localData = this.getTasksData()
+
+    // let searchName = id;
+    let index = localData.findIndex(el => el.id === id);
+
+    localData.splice(index, 1)
+    // delete(localData[index])
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
+    console.log('id', id)
+    console.log('local', localData)
+    // console.log('index', index)
+    
+
   }
 
-  // any убирать
-  addData(block: any) {
-    //в локал стораж добавлять задачу
-    this.data.unshift(block), console.log(this.data);
+  changeData(name:string, changeId:number) {    
+    const localData = this.getTasksData()
+    
+    let index = localData.findIndex(el => el.id === changeId);
 
-    // console.log('block',block)
+    let item = localData[index].name = name
+
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
+
+    // console.log(item)
+
   }
 
-  // setData() {
-  //   return localStorage.setItem('dataStorage', JSON.stringify(this.data));
-  //  }
+  addData(item:Task) {
+    const localData = this.getTasksData()
+    localData.push(item)
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
+    console.log('data', localData)
+  }
+
+  setData() {
+    return localStorage.setItem('dataStorage', JSON.stringify(this.data));
+   }
 
   // getAddTask(name: string) {
   //   return Promise.resolve(

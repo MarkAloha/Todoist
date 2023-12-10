@@ -1,1 +1,11 @@
-<h1>QQQQQQQQQQQQQQQQQ</h1>
+<div class="bitBox" #bitBox>
+
+  <label for="addItemInput">Мне нужно</label>
+
+  <input #newItem (keyup.enter)="addTask(newItem.value); newItem.value = ' '" id="addItemInput" />
+
+  <p-button (click)="addTask(newItem.value); newItem.value = ' '" class="btn-add">
+    запланировать!
+  </p-button>
+
+</div>

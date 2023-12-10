@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Task } from '../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
 
 @Component({
-  selector: 'task-list-demo',
+  selector: 'create-window',
   providers: [DialogService, MessageService, TaskService],
   standalone: true,
   imports: [
@@ -27,56 +27,97 @@ import { TableComponent } from './table.component';
     DynamicDialogModule,
     ToastModule,
     TableComponent,
+    
+
   ],
-  // templateUrl: './createwindow.html'
-  template: `
-    <label for="addItemInput">add</label>
-    <input
-      #newItem
-      (keyup.enter)="addTask(newItem.value); newItem.value = ' '"
-      id="addItemInput"
-    />
-    <button
-      (click)="addTask(newItem.value); newItem.value = ' '"
-      class="btn-add"
-    >
-      Добавить новую запись
-    </button>
-  `,
+  templateUrl: './createwindow.html'
+ 
 })
 export class CreateWindow implements OnInit {
   tasks!: Task[];
 
-  constructor(private taskService: TaskService, public ref: DynamicDialogRef) {}
+  @ViewChild('bitBox') bitBox:any
+  // @ViewChild('showButton') showButton:any
+
+  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
+    public table: TableComponent) {
+
+
+    if (typeof document !== 'undefined') {
+      // let box: any = document.querySelector('.box')
+      
+        // const div = this.bitBox.querySelector('.box')
+        // console.log('div', div)
+      
+      document.addEventListener('click', (e)=> {
+        const click = e.composedPath().includes(this.bitBox.nativeElement) || e.composedPath().includes(this.table.showButton.nativeElement)
+        || e.composedPath().includes(this.table.changeButton.nativeElement)
+        if (!click ) {
+          if (this.ref) {
+            this.ref.close();
+          }
+        }
+        
+        // console.log(box)
+        // console.log(this.bitBox.nativeElement          )
+        // console.log(box)
+        // console.log(this.showButton)
+        // console.log(this.bitBox)
+        // console.log(this.bitBox.nativeElement)
+        console.log(click)
+      })
+      }
+
+
+  }
+
+  // @HostListener('document:click', ['$event'])
+	// onClick(event: Event) {
+	// 	if (!this.el.nativeElement.contains(event.target) ) {
+	// 		// action
+      
+  //       // this.ref.close();
+      
+  //     console.log(event)
+	// 	}
+	// }
+
 
   ngOnInit() {
-    // this.taskService
-    //   .getTasksData2()
-    //   .then((tasks) => (this.tasks = tasks));
+
+    
+
+
   }
 
-  getSeverity(status: string) {
-    switch (status) {
-      case 'INSTOCK':
-        return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
-        return 'danger';
-      default:
-        return 'danger';
-    }
-  }
+
+
+
 
   addTask(name: string) {
-    const testAdd = {
-      id: '1',
+    // const raw: any = localStorage.getItem('dataStorage');
+    // const dataParse = JSON.parse(raw);
+    // let lastIndex = dataParse?.length
+    // lastIndex ??= 1
+    const raw: any = localStorage.getItem('idLast')
+    let idNull = JSON.parse(raw)
+    idNull ??= 3
+
+    const idItem = idNull + 1
+
+    idNull = idItem
+    localStorage.setItem('idLast', JSON.stringify(idNull))
+
+
+    const sampleAdd: Task = {
+      id: idItem,
       name,
       code: '1142142',
-      description: 'последний раз',
-      status: 'Выполнено',
+      description: 'Описание',
+      status: 'В процессе',
     };
-    this.taskService.addData(testAdd);
+    // console.log(typeof lastIndex)
+    this.taskService.addData(sampleAdd);
     this.ref.close();
 
     // this.taskService.getTasksData2().then((data) => {
