@@ -35,6 +35,8 @@ import { TableComponent } from './table.component';
 })
 export class ChangeWindow implements OnInit {
   tasks!: Task[];
+  nameChange = localStorage.getItem('changeName') ?? 'test'
+  changeId = Number(localStorage.getItem('changeId')) ?? 'test'
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
     public table: TableComponent) {
@@ -44,7 +46,16 @@ export class ChangeWindow implements OnInit {
 
 
   ngOnInit() {
+    this.tasks = this.taskService.getTasksData();
   }
 
+
+  changeTask(name:string) {
+    // console.log(this.nameChange)
+    // console.log(localStorage.getItem('changeName'))
+    this.taskService.changeData(name, this.changeId)
+    this.ref.close();
+
+  }
 
 }

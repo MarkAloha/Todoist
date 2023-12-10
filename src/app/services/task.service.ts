@@ -63,16 +63,29 @@ export class TaskService {
   deleteData(id:number) {
     const localData = this.getTasksData()
 
-    let searchName = id;
-    let index = localData.findIndex(el => el.id === searchName);
+    // let searchName = id;
+    let index = localData.findIndex(el => el.id === id);
 
     localData.splice(index, 1)
     // delete(localData[index])
     localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('id', id)
-    // console.log('local', localData)
+    console.log('local', localData)
     // console.log('index', index)
     
+
+  }
+
+  changeData(name:string, changeId:number) {    
+    const localData = this.getTasksData()
+    
+    let index = localData.findIndex(el => el.id === changeId);
+
+    let item = localData[index].name = name
+
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
+
+    // console.log(item)
 
   }
 

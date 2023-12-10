@@ -67,19 +67,29 @@ export class TableComponent implements OnDestroy {
   deleteTask(id: number) {
     this.taskService.deleteData(id);
     this.tasks = this.taskService.getTasksData()
-    console.log('showButton',this.showButton)
+    // console.log('showButton',this.showButton)
+    
   }
 
-  changeTask() {
+  showChangeTask(id:number, name:string) {
     this.ref = this.dialogService.open(ChangeWindow, {
       header: 'Изменить',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
+    
+    localStorage.setItem('changeId', String(id))
+    localStorage.setItem('changeName', name)
+
+    this.ref.onClose.subscribe((task: Task) => {
+      
+      this.tasks = this.taskService.getTasksData();})
+    
+
   }
 
-  show() {
+  showAddTask() {
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Новая задача',
       width: '70%',
@@ -93,13 +103,13 @@ export class TableComponent implements OnDestroy {
       
       this.tasks = this.taskService.getTasksData();
 
-      if (task) {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Task Selected',
-          detail: task.name,
-        });
-      }
+      // if (task) {
+      //   this.messageService.add({
+      //     severity: 'info',
+      //     summary: 'Task Selected',
+      //     detail: task.name,
+      //   });
+      // }
     });
   }
 

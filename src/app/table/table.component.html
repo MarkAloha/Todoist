@@ -32,17 +32,17 @@
                 Задачи
                 <div #showButton class="card flex justify-content-center">
                     <p-toast></p-toast>
-                    <p-button (click)="show()" icon="pi pi-info-circle" label="Создать"></p-button>
+                    <p-button (click)="showAddTask()" icon="pi pi-info-circle" label="Создать"></p-button>
 
                 </div>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>Name</th>
+                <th>Название</th>
 
                 <th>Описание</th>
-                <th>Status</th>
+                <th>Статус</th>
             </tr>
 
         </ng-template>
@@ -54,7 +54,7 @@
                         <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button>
                     </div>
                     <div #changeButton>
-                        <button (click)="changeTask()" icon="pi pi-info-circle" label="Изменить">Изменить</button>
+                        <button (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle" label="Изменить">Изменить</button>
                     </div>
                 </td>
                 <td>{{task.description}}</td>
