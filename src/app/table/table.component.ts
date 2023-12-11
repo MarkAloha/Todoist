@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../services/task.service';
@@ -16,7 +17,7 @@ import {
 } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { CreateWindow } from './createwindow';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ItemComponent } from '../item/item.component';
 import { ChangeWindow } from './changewindow';
@@ -35,9 +36,10 @@ import { ChangeWindow } from './changewindow';
     ToastModule,
     DynamicDialogModule,
     DialogModule,
-    ChangeWindow
+    ChangeWindow,
+    ConfirmDialogModule
   ],
-  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -50,7 +52,8 @@ export class TableComponent implements OnDestroy {
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
-    public taskService: TaskService
+    public taskService: TaskService,
+    private confirmationService: ConfirmationService
   ) {
 
     
@@ -64,6 +67,17 @@ export class TableComponent implements OnDestroy {
 
 
   }
+
+  confirm(id: number) {
+    this.confirmationService.confirm({
+        message: 'Вы уверены, что хотите продолжить?',
+        header: 'Подтверждение',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Да',
+        rejectLabel: 'Нет',
+        accept: () => {this.deleteTask(id)},
+        reject: () => {this.confirmationService.close()}
+    })};
 
   deleteTask(id: number) {
     this.taskService.deleteData(id);
@@ -137,9 +151,9 @@ export class TableComponent implements OnDestroy {
     this.tasks = this.taskService.getTasksData();
   }
 
-  consoleLog() {
-
-  }
+  // consoleLog() {
+  //   this.tasks = this.taskService.getTasksData()
+  // }
 
   addTaskAdmin() {
     const data = {

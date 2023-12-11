@@ -20,7 +20,7 @@
 </div> -->
 
 
-<p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button>
+<!-- <p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button> -->
 <p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
 <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
@@ -51,10 +51,13 @@
 
                 <td>{{task.name}}
                     <div>
-                        <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button>
+                        <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+                        <p-button (click)="confirm(task.id)" icon="pi pi-times" label="Удалить" class="p-button-danger"></p-button>
+                        
+                        <!-- <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button> -->
                     </div>
-                    <div #changeButton>
-                        <button (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle" label="Изменить">Изменить</button>
+                    <div #changeButton >
+                        <p-button  (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle" label="Изменить"></p-button>
                     </div>
                 </td>
                 <td>{{task.description}}</td>
