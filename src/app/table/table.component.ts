@@ -48,6 +48,7 @@ export class TableComponent implements OnDestroy {
 
   @ViewChild('showButton') showButton:any
   @ViewChild('changeButton') changeButton:any
+  
 
   constructor(
     public dialogService: DialogService,

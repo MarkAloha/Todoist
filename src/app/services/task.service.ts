@@ -13,6 +13,7 @@ export class TaskService {
       code: '1142142',
       description: 'дока 2',
       status: 'Выполнено',
+      category: 'дом'
     },
 
     {
@@ -21,6 +22,7 @@ export class TaskService {
       code: '2142142',
       description: 'ноги',
       status: 'В процессе',
+      category: 'работа'
     },
 
     {
@@ -29,6 +31,7 @@ export class TaskService {
       code: '12442',
       description: 'сон',
       status: 'Выполнено',
+      category: 'магазин'
     },
 
     {
@@ -37,6 +40,7 @@ export class TaskService {
       code: '4124142',
       description: 'еду',
       status: 'Выполнено',
+      category: 'магазин'
     },
   ];
 

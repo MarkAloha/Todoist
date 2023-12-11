@@ -3,6 +3,6 @@ export interface Task {
     code?: string;
     name?: string;
     description?: string;
-    rating?: string;
+    category?: string;
     status?: string;
 }
