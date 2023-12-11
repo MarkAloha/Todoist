@@ -39,7 +39,7 @@ export class ChangeWindow implements OnInit {
   changeId = Number(localStorage.getItem('changeId')) ?? 'test'
   
   @ViewChild('bitBox') bitBox:any
-
+  @ViewChild('changeButton') changeButton:any
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
     public table: TableComponent) {
@@ -55,6 +55,7 @@ export class ChangeWindow implements OnInit {
         
         document.addEventListener('click', (e)=> {
           const click = e.composedPath().includes(this.bitBox.nativeElement) 
+          // || e.composedPath().includes(this.table.showButton.nativeElement)
           || e.composedPath().includes(this.table.changeButton.nativeElement)
           if (!click ) {
             if (this.ref) {

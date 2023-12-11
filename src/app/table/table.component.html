@@ -25,11 +25,11 @@
 <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
 
-<div class="card">
-    <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
+<div #changeButton class="card">
+    <p-table  [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
-                Задачи
+                <h1>Задачи</h1>
                 <div #showButton class="card flex justify-content-center">
                     <p-toast></p-toast>
                     <p-button (click)="showAddTask()" icon="pi pi-info-circle" label="Создать"></p-button>
@@ -37,33 +37,37 @@
                 </div>
             </div>
         </ng-template>
-        <ng-template pTemplate="header">
+        <ng-template  pTemplate="header">
             <tr>
                 <th>Название</th>
-
+                <th>Категория</th>
                 <th>Описание</th>
                 <th>Статус</th>
             </tr>
 
         </ng-template>
+
         <ng-template pTemplate="body" let-task>
             <tr>
-
-                <td>{{task.name}}
-                    <div>
+                <td >{{task.name}}
+                    <div >
                         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
-                        <p-button (click)="confirm(task.id)" icon="pi pi-times" label="Удалить" class="p-button-danger"></p-button>
-                        
+                        <p-button (click)="confirm(task.id)" icon="pi pi-times" label="Удалить"
+                            class="p-button-danger"></p-button>
+
                         <!-- <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button> -->
-                    </div>
-                    <div #changeButton >
-                        <p-button  (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle" label="Изменить"></p-button>
+
+
+                        <p-button (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle"
+                            label="Изменить"></p-button>
                     </div>
                 </td>
+                <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
             </tr>
         </ng-template>
+
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
                 Всего {{tasks ? tasks.length : 0 }} задачи.

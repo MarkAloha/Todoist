@@ -1,6 +1,8 @@
 <div class="bitBox" #bitBox>
 <input value="{{nameChange}}" #changeItem (keyup.enter)="changeTask(changeItem.value); changeItem.value = ' '" id="addItemInput" />
+
 <button (click)="changeTask(changeItem.value)" label="Сохранить">Сохранить</button>
+
 <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
 <ng-template pTemplate="body" let-task>
     

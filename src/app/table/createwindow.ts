@@ -37,7 +37,7 @@ export class CreateWindow implements OnInit {
   tasks!: Task[];
 
   @ViewChild('bitBox') bitBox:any
-  // @ViewChild('showButton') showButton:any
+  @ViewChild('showButton') showButton:any
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
     public table: TableComponent) {
@@ -51,7 +51,7 @@ export class CreateWindow implements OnInit {
       
       document.addEventListener('click', (e)=> {
         const click = e.composedPath().includes(this.bitBox.nativeElement) || e.composedPath().includes(this.table.showButton.nativeElement)
-        || e.composedPath().includes(this.table.changeButton.nativeElement)
+        // || e.composedPath().includes(this.table.changeButton.nativeElement)
         if (!click ) {
           if (this.ref) {
             this.ref.close();
