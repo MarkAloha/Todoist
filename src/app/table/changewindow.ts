@@ -37,10 +37,40 @@ export class ChangeWindow implements OnInit {
   tasks!: Task[];
   nameChange = localStorage.getItem('changeName') ?? 'test'
   changeId = Number(localStorage.getItem('changeId')) ?? 'test'
+  
+  @ViewChild('bitBox') bitBox:any
+
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
     public table: TableComponent) {
 
+
+      
+
+      if (typeof document !== 'undefined') {
+        // let box: any = document.querySelector('.box')
+        
+          // const div = this.bitBox.querySelector('.box')
+          // console.log('div', div)
+        
+        document.addEventListener('click', (e)=> {
+          const click = e.composedPath().includes(this.bitBox.nativeElement) 
+          || e.composedPath().includes(this.table.changeButton.nativeElement)
+          if (!click ) {
+            if (this.ref) {
+              this.ref.close();
+            }
+          }
+          
+          // console.log(box)
+          // console.log(this.bitBox.nativeElement          )
+          // console.log(box)
+          // console.log(this.showButton)
+          // console.log(this.bitBox)
+          // console.log(this.bitBox.nativeElement)
+          console.log(click)
+        })
+        }
 
       }
 
