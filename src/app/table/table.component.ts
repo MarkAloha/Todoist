@@ -73,7 +73,7 @@ export class TableComponent implements OnDestroy {
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {
       header: 'Изменить',
-      width: '70%',
+      width: '100%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -120,6 +120,7 @@ export class TableComponent implements OnDestroy {
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Новая задача',
       width: '70%',
+      height: '100%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });

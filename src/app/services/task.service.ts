@@ -10,7 +10,7 @@ export class TaskService {
     {
       id: 0,
       name: 'поиграть',
-      code: '1142142',
+      data: '1142142',
       description: 'дока 2',
       status: 'Выполнено',
       category: 'дом'
@@ -19,7 +19,7 @@ export class TaskService {
     {
       id: 1,
       name: 'тренировка',
-      code: '2142142',
+      data: '2142142',
       description: 'ноги',
       status: 'В процессе',
       category: 'работа'
@@ -28,7 +28,7 @@ export class TaskService {
     {
       id: 2,
       name: 'поспать',
-      code: '12442',
+      data: '12442',
       description: 'сон',
       status: 'Выполнено',
       category: 'магазин'
@@ -37,7 +37,7 @@ export class TaskService {
     {
       id: 3,
       name: 'поесть',
-      code: '4124142',
+      data: '4124142',
       description: 'еду',
       status: 'Выполнено',
       category: 'магазин'

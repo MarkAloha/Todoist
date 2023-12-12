@@ -1,5 +1,8 @@
 <div class="bitBox" #bitBox>
 
+  <form [formGroup]="formGroup">
+    <p-calendar formControlName="date"></p-calendar>
+</form>
   <label for="addItemInput">Мне нужно</label>
 
   <input #newItem (keyup.enter)="addTask(newItem.value); newItem.value = ' '" id="addItemInput" />
@@ -7,5 +10,6 @@
   <p-button (click)="addTask(newItem.value); newItem.value = ' '" class="btn-add">
     запланировать!
   </p-button>
+
 
 </div>

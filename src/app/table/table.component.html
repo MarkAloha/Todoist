@@ -45,6 +45,7 @@
                 <th>Название</th>
                 <th>Категория</th>
                 <th>Описание</th>
+                <th>Дата</th>
                 <th>Статус</th>
             </tr>
 
@@ -67,6 +68,7 @@
                 </td>
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
+                <td>{{task.data}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
             </tr>
         </ng-template>

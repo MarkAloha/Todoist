@@ -12,6 +12,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
+import { CalendarModule } from 'primeng/calendar';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'create-window',
@@ -27,39 +29,43 @@ import { TableComponent } from './table.component';
     DynamicDialogModule,
     ToastModule,
     TableComponent,
-    
+    CalendarModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   templateUrl: './createwindow.html'
- 
+
 })
 export class CreateWindow implements OnInit {
   tasks!: Task[];
+  // date!: Date[] 
+  formGroup!: FormGroup;
 
-  @ViewChild('bitBox') bitBox:any
-  @ViewChild('showButton') showButton:any
+  @ViewChild('bitBox') bitBox: any
+  @ViewChild('showButton') showButton: any
 
-  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
+  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
 
     if (typeof document !== 'undefined') {
       // let box: any = document.querySelector('.box')
-      
-        // const div = this.bitBox.querySelector('.box')
-        // console.log('div', div)
-      
-      document.addEventListener('click', (e)=> {
+
+      // const div = this.bitBox.querySelector('.box')
+      // console.log('div', div)
+
+      document.addEventListener('click', (e) => {
         const click = e.composedPath().includes(this.bitBox.nativeElement) || e.composedPath().includes(this.table.showButton.nativeElement)
         // || e.composedPath().includes(this.table.changeButton.nativeElement)
-        if (!click ) {
+        if (!click) {
           if (this.ref) {
             this.ref.close();
           }
         }
 
-        
-        
+
+
         // console.log(box)
         // console.log(this.bitBox.nativeElement          )
         // console.log(box)
@@ -68,26 +74,28 @@ export class CreateWindow implements OnInit {
         // console.log(this.bitBox.nativeElement)
         console.log(click)
       })
-      }
+    }
 
 
   }
 
   // @HostListener('document:click', ['$event'])
-	// onClick(event: Event) {
-	// 	if (!this.el.nativeElement.contains(event.target) ) {
-	// 		// action
-      
+  // onClick(event: Event) {
+  // 	if (!this.el.nativeElement.contains(event.target) ) {
+  // 		// action
+
   //       // this.ref.close();
-      
+
   //     console.log(event)
-	// 	}
-	// }
+  // 	}
+  // }
 
 
   ngOnInit() {
 
-    
+    this.formGroup = new FormGroup({
+      date: new FormControl<Date | null>(null)
+  });
 
 
   }
@@ -105,8 +113,9 @@ export class CreateWindow implements OnInit {
     let idNull = JSON.parse(raw)
     idNull ??= 3
 
-    const idItem = idNull + 1
+    let dataGroup = this.formGroup.value
 
+    const idItem = idNull + 1
     idNull = idItem
     localStorage.setItem('idLast', JSON.stringify(idNull))
 
@@ -114,13 +123,15 @@ export class CreateWindow implements OnInit {
     const sampleAdd: Task = {
       id: idItem,
       name,
-      code: '1142142',
+      data: dataGroup,
       description: 'Описание',
       status: 'В процессе',
     };
-    // console.log(typeof lastIndex)
+    // console.log('formGroup', this.formGroup)
     this.taskService.addData(sampleAdd);
     this.ref.close();
+
+    console.log('dataGroup', dataGroup)
 
     // this.taskService.getTasksData2().then((data) => {
     //   this.tasks = data;
