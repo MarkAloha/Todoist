@@ -68,7 +68,7 @@
                 </td>
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
-                <td>{{task.data}}</td>
+                <td>{{task.data | date}}</td>
                 <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
             </tr>
         </ng-template>

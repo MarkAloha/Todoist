@@ -113,7 +113,7 @@ export class CreateWindow implements OnInit {
     let idNull = JSON.parse(raw)
     idNull ??= 3
 
-    let dataGroup = this.formGroup.value
+    let data = this.formGroup.value.date
 
     const idItem = idNull + 1
     idNull = idItem
@@ -123,7 +123,7 @@ export class CreateWindow implements OnInit {
     const sampleAdd: Task = {
       id: idItem,
       name,
-      data: dataGroup,
+      data,
       description: 'Описание',
       status: 'В процессе',
     };
@@ -131,7 +131,7 @@ export class CreateWindow implements OnInit {
     this.taskService.addData(sampleAdd);
     this.ref.close();
 
-    console.log('dataGroup', dataGroup)
+    console.log('dataGroup', data)
 
     // this.taskService.getTasksData2().then((data) => {
     //   this.tasks = data;
