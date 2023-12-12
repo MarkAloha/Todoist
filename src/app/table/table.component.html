@@ -69,7 +69,9 @@
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.data | date}}</td>
-                <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag></td>
+                <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag>
+                    <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+                </td>
             </tr>
         </ng-template>
 

@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
+import { CheckboxModule } from 'primeng/checkbox';
 import {
   DynamicDialogModule,
   DialogService,
@@ -28,6 +29,7 @@ import { ClassWindow } from './classwindow';
   standalone: true,
   imports: [
     CommonModule,
+    CheckboxModule,
     TableModule,
     ButtonModule,
     RippleModule,
@@ -46,6 +48,7 @@ import { ClassWindow } from './classwindow';
 })
 export class TableComponent implements OnDestroy {
   tasks!: Task[];
+  checked: boolean = false;
 
   @ViewChild('showButton') showButton:any
   @ViewChild('changeButton') changeButton:any
@@ -67,6 +70,10 @@ export class TableComponent implements OnDestroy {
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
 
+
+  }
+
+  checkedStatus() {
 
   }
 

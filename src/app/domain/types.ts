@@ -6,3 +6,7 @@ export interface Task {
     category?: string;
     status?: string;
 }
+
+export interface City {
+    name: string;
+}

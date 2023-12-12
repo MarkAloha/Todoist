@@ -10,7 +10,7 @@ export class TaskService {
     {
       id: 0,
       name: 'поиграть',
-      data: '1142142',
+      data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'дока 2',
       status: 'Выполнено',
       category: 'дом'
@@ -19,7 +19,7 @@ export class TaskService {
     {
       id: 1,
       name: 'тренировка',
-      data: '2142142',
+      data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'ноги',
       status: 'В процессе',
       category: 'работа'
@@ -28,7 +28,7 @@ export class TaskService {
     {
       id: 2,
       name: 'поспать',
-      data: '12442',
+      data: 'Wed Dec 27 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'сон',
       status: 'Выполнено',
       category: 'магазин'
@@ -37,12 +37,14 @@ export class TaskService {
     {
       id: 3,
       name: 'поесть',
-      data: '4124142',
+      data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'еду',
       status: 'Выполнено',
       category: 'магазин'
     },
   ];
+
+  
 
   // constructor() {
   //   // const dataStorage = this.data;

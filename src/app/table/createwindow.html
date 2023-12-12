@@ -1,9 +1,15 @@
 <div class="bitBox" #bitBox>
 
+  <div class="card flex justify-content-center">
+    Категория: 
+    <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Выбрать категорию" [editable]="true" optionLabel="name"></p-dropdown>
+</div>
+
   <form [formGroup]="formGroup">
+    Дата: 
     <p-calendar formControlName="date"></p-calendar>
 </form>
-  <label for="addItemInput">Мне нужно</label>
+  <label for="addItemInput">Задача: </label>
 
   <input #newItem (keyup.enter)="addTask(newItem.value); newItem.value = ' '" id="addItemInput" />
 
