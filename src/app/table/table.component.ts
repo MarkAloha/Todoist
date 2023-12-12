@@ -21,6 +21,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ItemComponent } from '../item/item.component';
 import { ChangeWindow } from './changewindow';
+import { ClassWindow } from './classwindow';
 
 @Component({
   selector: 'app-table',
@@ -67,6 +68,15 @@ export class TableComponent implements OnDestroy {
     this.tasks = this.taskService.getTasksData();
 
 
+  }
+
+  showAddClass() {
+    this.ref = this.dialogService.open(ClassWindow, {
+      header: 'Изменить',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
   }
 
   confirm(id: number) {

@@ -57,6 +57,8 @@ export class CreateWindow implements OnInit {
             this.ref.close();
           }
         }
+
+        
         
         // console.log(box)
         // console.log(this.bitBox.nativeElement          )
