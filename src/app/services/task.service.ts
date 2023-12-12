@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../domain/types';
+import { Class, Task } from '../domain/types';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +43,13 @@ export class TaskService {
       category: 'магазин'
     },
   ];
+  dataClass: Class[] = [
+    { name: 'Работа' },
+      { name: 'Дом' },
+      { name: 'Магазин' },
+      { name: 'Учёба' },
+      { name: 'Быт' },
+  ]
 
   
 
@@ -105,6 +112,9 @@ export class TaskService {
   setData() {
     return localStorage.setItem('dataStorage', JSON.stringify(this.data));
    }
+  setClass() {
+    return localStorage.setItem('dataClass', JSON.stringify(this.dataClass));
+   }
 
   // getAddTask(name: string) {
   //   return Promise.resolve(
@@ -121,6 +131,13 @@ export class TaskService {
   getTasksData(): Task[] {
     if (typeof window !== 'undefined') {
       return JSON.parse(localStorage.getItem('dataStorage') ?? '[]');
+    } else {
+      return [];
+    }
+  }
+  getClassData(): Class[] {
+    if (typeof window !== 'undefined') {
+      return JSON.parse(localStorage.getItem('dataClass') ?? '[]');
     } else {
       return [];
     }

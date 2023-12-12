@@ -189,6 +189,7 @@ export class TableComponent implements OnDestroy {
     // console.log(dataParse.lastIndexOf(Object))
     // this.taskService.addData(dataParse);
     this.taskService.setData()
+    this.taskService.setClass()
     this.tasks = this.taskService.getTasksData();
 
     // console.log('dataParse', dataParse);

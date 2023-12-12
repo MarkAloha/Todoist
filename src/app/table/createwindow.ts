@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../services/task.service';
-import { City, Task } from '../domain/types';
+import { Class, Task } from '../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -42,8 +42,8 @@ import { DropdownModule } from 'primeng/dropdown';
 export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
-  cities: City[] | undefined;
-  selectedCity!: City 
+  cities: Class[] | undefined;
+  selectedCity!: Class 
   // date!: Date[] 
 
 
@@ -84,13 +84,7 @@ export class CreateWindow implements OnInit {
     })
 
     
-    this.cities = [
-      { name: 'New York' },
-      { name: 'Rome' },
-      { name: 'London' },
-      { name: 'Istanbul' },
-      { name: 'Paris' }
-  ];
+    this.cities = this.taskService.getClassData()
 
   
   }

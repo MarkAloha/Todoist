@@ -7,6 +7,6 @@ export interface Task {
     status?: string;
 }
 
-export interface City {
+export interface Class {
     name: string;
 }
