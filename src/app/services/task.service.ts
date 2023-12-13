@@ -104,7 +104,7 @@ export class TaskService {
 
   addData(item:Task) {
     const localData = this.getTasksData()
-    localData.push(item)
+    localData.unshift(item)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('data', localData)
   }

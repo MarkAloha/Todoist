@@ -69,7 +69,7 @@ export class ChangeWindow implements OnInit {
           // console.log(this.showButton)
           // console.log(this.bitBox)
           // console.log(this.bitBox.nativeElement)
-          console.log(click)
+          // console.log(click)
         })
         }
 

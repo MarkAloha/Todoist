@@ -36,7 +36,8 @@ import { DropdownModule } from 'primeng/dropdown';
     DropdownModule
 
   ],
-  templateUrl: './createwindow.html'
+  templateUrl: './createwindow.html',
+  styleUrl: './createwindow.scss'
 
 })
 export class CreateWindow implements OnInit {
@@ -101,7 +102,7 @@ export class CreateWindow implements OnInit {
         name
       }
       this.taskService.addClass(classItem)
-      return classItem
+      return classItem.name
     } else {
       return nameSelected
     }
