@@ -8,5 +8,5 @@ export interface Task {
 }
 
 export interface Class {
-    name: string;
+    name?: string;
 }

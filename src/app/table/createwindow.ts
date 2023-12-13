@@ -43,7 +43,7 @@ export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
   cities: Class[] | undefined;
-  selectedCity!: Class 
+  selectedCity!: Class
   // date!: Date[] 
 
 
@@ -69,7 +69,7 @@ export class CreateWindow implements OnInit {
         // console.log(this.showButton)
         // console.log(this.bitBox)
         // console.log(this.bitBox.nativeElement)
-        console.log(click)
+        // console.log(click)
       })
     }
 
@@ -88,8 +88,30 @@ export class CreateWindow implements OnInit {
 
   
   }
+  
+  addClassWindow() {
+
+    let nameSelected = this.selectedCity.name
+    let name = this.selectedCity
+
+    console.log('name',name)
+
+    if(typeof nameSelected == 'undefined'){
+      const classItem:any = {
+        name
+      }
+      this.taskService.addClass(classItem)
+      return classItem
+    } else {
+      return nameSelected
+    }
+
+    
+    
+  }
 
   addTask(name: string) {
+    const classSelected = this.addClassWindow()
     // const raw: any = localStorage.getItem('dataStorage');
     // const dataParse = JSON.parse(raw);
     // let lastIndex = dataParse?.length
@@ -112,7 +134,7 @@ export class CreateWindow implements OnInit {
       name,
       data,
       description: 'Описание',
-      category: this.selectedCity.name,
+      category: classSelected,
       status: 'В процессе',
     };
     // console.log('formGroup', this.formGroup)

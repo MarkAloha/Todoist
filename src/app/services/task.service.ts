@@ -44,7 +44,7 @@ export class TaskService {
     },
   ];
   dataClass: Class[] = [
-    { name: 'Работа' },
+      { name: 'Работа' },
       { name: 'Дом' },
       { name: 'Магазин' },
       { name: 'Учёба' },
@@ -107,6 +107,12 @@ export class TaskService {
     localData.push(item)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('data', localData)
+  }
+  addClass(item:Class) {
+    const localData = this.getClassData()
+    localData.push(item)
+    localStorage.setItem('dataClass', JSON.stringify(localData))
+    console.log('dataClass', localData)
   }
 
   setData() {
