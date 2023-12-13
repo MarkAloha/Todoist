@@ -127,7 +127,7 @@ export class TableComponent implements OnDestroy {
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Новая задача',
       width: '70%',
-      height: '70%',
+      height: '100%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });

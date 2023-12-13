@@ -27,29 +27,34 @@ import { TableComponent } from './table.component';
     DynamicDialogModule,
     ToastModule,
     TableComponent,
-    
+
 
   ],
   templateUrl: './classwindow.html'
- 
+
 })
 export class ClassWindow implements OnInit {
   tasks!: Task[];
-  
 
-  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
+
+  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
-      }
+  }
 
 
   ngOnInit() {
     // this.tasks = this.taskService.getTasksData();
   }
 
-  addClass() {
-          
+  addClass(name: any) {
+
+    const classItem: any = {
+      name
+    }
+    this.taskService.addClass(classItem)
+    this.ref.close();
   }
- 
+
 
 }

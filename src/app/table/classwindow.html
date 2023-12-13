@@ -1,5 +1,5 @@
 
 
-<input  (keyup.enter)="addClass()" id="addItemInput" />
+<input #newItem (keyup.enter)="addClass(newItem.value)" id="addItemInput" />
 
-<button (click)="addClass()" label="Сохранить">Сохранить</button>
+<button (click)="addClass(newItem.value)" label="Сохранить">Сохранить</button>
