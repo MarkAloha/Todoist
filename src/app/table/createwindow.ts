@@ -105,6 +105,8 @@ export class CreateWindow implements OnInit {
     localStorage.setItem('idLast', JSON.stringify(idNull))
 
 
+    // const classLocalData = 
+
     const sampleAdd: Task = {
       id: idItem,
       name,
@@ -117,7 +119,7 @@ export class CreateWindow implements OnInit {
     this.taskService.addData(sampleAdd);
     this.ref.close();
 
-    console.log('selectedCity', this.selectedCity)
+    console.log('selectedCity', this.selectedCity.name)
 
     // this.taskService.getTasksData2().then((data) => {
     //   this.tasks = data;
