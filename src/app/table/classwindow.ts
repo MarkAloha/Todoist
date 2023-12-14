@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { TaskService } from '../services/task.service';
-import { Task } from '../domain/types';
+import { Class, Task } from '../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -35,24 +35,22 @@ import { TableComponent } from './table.component';
 })
 export class ClassWindow implements OnInit {
   tasks!: Task[];
+  categories: Class[]
 
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
-
+      this.categories = []
   }
 
 
   ngOnInit() {
     // this.tasks = this.taskService.getTasksData();
+    this.categories = this.taskService.getClassData()
   }
 
-  addClass(name: any) {
-
-    const classItem: any = {
-      name
-    }
-    this.taskService.addClass(classItem)
+  addClass(name: any) {   
+    this.taskService.addClass(name)
     this.ref.close();
   }
 

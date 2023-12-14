@@ -44,7 +44,7 @@ export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
   cities: Class[] | undefined;
-  selectedCity!: Class
+  selectedClass!: Class | string ;
   // date!: Date[] 
 
 
@@ -88,37 +88,17 @@ export class CreateWindow implements OnInit {
     this.cities = this.taskService.getClassData()
 
   
-  }
-  
-  addClassWindow() {
+  }  
 
-    let nameSelected = this.selectedCity.name
-    let name = this.selectedCity
-
-    console.log('name',name)
-
-    if(typeof nameSelected == 'undefined'){
-      const classItem:any = {
-        name
-      }
-      this.taskService.addClass(classItem)
-      return classItem.name
-    } else {
-      return nameSelected
-    }
-
-    
-    
-  }
 
   addTask(name: string) {
-    const classSelected = this.addClassWindow()
+    // const classSelected = this.addClassWindow()
     // const raw: any = localStorage.getItem('dataStorage');
     // const dataParse = JSON.parse(raw);
     // let lastIndex = dataParse?.length
     // lastIndex ??= 1
-    const idLast: any = localStorage.getItem('idLast')
-    let idNull = JSON.parse(idLast)
+    const raw: any = localStorage.getItem('idLast')
+    let idNull = JSON.parse(raw)
     idNull ??= 3
 
     let data = this.formGroup.value.date
@@ -135,14 +115,14 @@ export class CreateWindow implements OnInit {
       name,
       data,
       description: 'Описание',
-      category: classSelected,
+      category: this.taskService.checkCreateOrChangeClass(this.selectedClass),
       status: 'В процессе',
     };
     // console.log('formGroup', this.formGroup)
     this.taskService.addData(sampleAdd);
     this.ref.close();
 
-    console.log('selectedCity', this.selectedCity.name)
+    console.log('selectedClass', this.selectedClass)
 
     // this.taskService.getTasksData2().then((data) => {
     //   this.tasks = data;

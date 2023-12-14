@@ -3,3 +3,13 @@
 <input #newItem (keyup.enter)="addClass(newItem.value)" id="addItemInput" />
 
 <button (click)="addClass(newItem.value)" label="Сохранить">Сохранить</button>
+
+<table>
+    <tr *ngFor="let c of categories ">
+    <td>{{c.name}}</td>
+    <button>удалить</button>
+    <button>изменить</button>
+</tr>
+    </table>
+
+<!-- {{categories.name}} -->

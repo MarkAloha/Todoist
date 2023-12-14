@@ -8,5 +8,6 @@ export interface Task {
 }
 
 export interface Class {
+    id?: number;
     name?: string;
 }

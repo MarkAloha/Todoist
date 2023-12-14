@@ -102,14 +102,42 @@ export class TaskService {
 
   }
 
+  checkCreateOrChangeClass(selectedClass:string | Class) {
+    if(typeof selectedClass == 'object'){
+
+      const classItem:Class = selectedClass
+
+      return classItem.name
+
+    } else {      
+
+      this.addClass(selectedClass)
+
+      return selectedClass
+    }    
+  }
+
   addData(item:Task) {
     const localData = this.getTasksData()
     localData.unshift(item)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('data', localData)
   }
-  addClass(item:Class) {
+
+  addClass(name:string) {
     const localData = this.getClassData()
+
+    const idLast: any = localStorage.getItem('idLastClass')
+    let idNull = JSON.parse(idLast)
+    idNull ??= 0
+    const id = idNull + 1
+    idNull = id
+    localStorage.setItem('idLastClass', JSON.stringify(idNull))
+
+    const item = {
+      name,
+      id,
+    }
     localData.push(item)
     localStorage.setItem('dataClass', JSON.stringify(localData))
     console.log('dataClass', localData)
