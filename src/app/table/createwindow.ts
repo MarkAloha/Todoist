@@ -117,8 +117,8 @@ export class CreateWindow implements OnInit {
     // const dataParse = JSON.parse(raw);
     // let lastIndex = dataParse?.length
     // lastIndex ??= 1
-    const raw: any = localStorage.getItem('idLast')
-    let idNull = JSON.parse(raw)
+    const idLast: any = localStorage.getItem('idLast')
+    let idNull = JSON.parse(idLast)
     idNull ??= 3
 
     let data = this.formGroup.value.date
