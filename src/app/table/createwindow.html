@@ -2,7 +2,7 @@
 
   <div class="card flex justify-content-center">
     Категория: 
-    <p-dropdown [options]="cities" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true" optionLabel="name"></p-dropdown>
+    <p-dropdown [options]="ClassItem" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true" optionLabel="name"></p-dropdown>
 </div>
 
   <form [formGroup]="formGroup">

@@ -43,7 +43,7 @@ import { DropdownModule } from 'primeng/dropdown';
 export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
-  cities: Class[] | undefined;
+  ClassItem: Class[] | undefined;
   selectedClass!: Class | string ;
   // date!: Date[] 
 
@@ -54,6 +54,7 @@ export class CreateWindow implements OnInit {
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
+      this.taskService.checkClickCreateWindow(this.bitBox, this.table, this.ref)
 
     if (typeof document !== 'undefined') {    
       document.addEventListener('click', (e) => {
@@ -64,79 +65,25 @@ export class CreateWindow implements OnInit {
             this.ref.close();
           }
         }
-        // console.log(box)
-        // console.log(this.bitBox.nativeElement)
-        // console.log(box)
-        // console.log(this.showButton)
-        // console.log(this.bitBox)
-        // console.log(this.bitBox.nativeElement)
-        // console.log(click)
       })
     }
 
 
   }
 
-  ngOnInit() {
-    
+  ngOnInit() {    
 
     this.formGroup = new FormGroup({
       date: new FormControl<Date | null>(null)
-    })
-
-    
-    this.cities = this.taskService.getClassData()
-
-  
+    })    
+    this.ClassItem = this.taskService.getClassData()  
   }  
 
 
   addTask(name: string) {
-    // const classSelected = this.addClassWindow()
-    // const raw: any = localStorage.getItem('dataStorage');
-    // const dataParse = JSON.parse(raw);
-    // let lastIndex = dataParse?.length
-    // lastIndex ??= 1
-    const raw: any = localStorage.getItem('idLast')
-    let idNull = JSON.parse(raw)
-    idNull ??= 3
 
-    let data = this.formGroup.value.date
-
-    const idItem = idNull + 1
-    idNull = idItem
-    localStorage.setItem('idLast', JSON.stringify(idNull))
-
-
-    // const classLocalData = 
-
-    const sampleAdd: Task = {
-      id: idItem,
-      name,
-      data,
-      description: 'Описание',
-      category: this.taskService.checkCreateOrChangeClass(this.selectedClass),
-      status: 'В процессе',
-    };
-    // console.log('formGroup', this.formGroup)
-    this.taskService.addData(sampleAdd);
+    this.taskService.addData(this.selectedClass, name, this.formGroup.value.date);
     this.ref.close();
 
-    console.log('selectedClass', this.selectedClass)
-
-    // this.taskService.getTasksData2().then((data) => {
-    //   this.tasks = data;
-    // });
-
-    // console.log('tasks', this.tasks)
-    // console.log('data', this.taskService.getTasksData())
   }
-
-  // addItem(description: string) {
-  //   this.allItems.unshift({
-  //     id:1,
-  //     description,
-  //     done: false,
-  //   });
-  // }
 }

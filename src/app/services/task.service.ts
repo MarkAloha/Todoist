@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Class, Task } from '../domain/types';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -51,28 +52,6 @@ export class TaskService {
       { name: 'Быт' },
   ]
 
-  
-
-  // constructor() {
-  //   // const dataStorage = this.data;
-
-  //   // if (typeof window !== 'undefined') {
-  //   //   localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-  //   //   const raw: any = localStorage.getItem('dataStorage');
-  //   //   const dataParse = JSON.parse(raw);
-
-  //   //   console.log(dataStorage, 'dataStorage');
-  //   //   console.log(dataParse, 'dataParse');
-  //   // }
-
-  //   // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-  //   // const raw: any = localStorage.getItem('dataStorage');
-  //   // const dataParse = JSON.parse(raw);
-
-  //   // console.log(dataStorage, 'dataStorage');
-  //   // console.log(dataParse, 'dataParse');
-  // }
-
   deleteData(id:number) {
     const localData = this.getTasksData()
 
@@ -117,9 +96,32 @@ export class TaskService {
     }    
   }
 
-  addData(item:Task) {
+  createIdItem () {
+    let idLast: any = localStorage.getItem('idLast')
+    let idNull = JSON.parse(idLast)
+    idNull ??= 3
+    const idItem = idNull + 1
+    idLast = idItem
+    localStorage.setItem('idLast', JSON.stringify(idLast))
+    return idItem
+  }
+
+  addData(selectedClass:string | Class, name: string, data: string) {
     const localData = this.getTasksData()
-    localData.unshift(item)
+
+
+    const sampleAdd: Task = {
+      id: this.createIdItem(),
+      name,
+      data,
+      description: 'Описание',
+      category: this.checkCreateOrChangeClass(selectedClass),
+      status: 'В процессе',
+    };
+
+
+
+    localData.unshift(sampleAdd)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
     console.log('data', localData)
   }
@@ -150,18 +152,6 @@ export class TaskService {
     return localStorage.setItem('dataClass', JSON.stringify(this.dataClass));
    }
 
-  // getAddTask(name: string) {
-  //   return Promise.resolve(
-  //     this.data.unshift({
-  //       id: '1',
-  //       name,
-  //       code: '1142142',
-  //       description: '1',
-  //       status: 'В процессе',
-  //     })
-  //   );
-  // }
-
   getTasksData(): Task[] {
     if (typeof window !== 'undefined') {
       return JSON.parse(localStorage.getItem('dataStorage') ?? '[]');
@@ -177,8 +167,18 @@ export class TaskService {
     }
   }
 
-  // addClassCreateWindow() {
-  //   if (typeof this.selectedCity.name)
-  // }
+  checkClickCreateWindow(bitBox:any, table:any, ref:any) {
+    if (typeof document !== 'undefined') {    
+      document.addEventListener('click', (e) => {
+        const click = e.composedPath().includes(bitBox.nativeElement) || e.composedPath().includes(table.showButton.nativeElement)
+        // || e.composedPath().includes(this.table.changeButton.nativeElement)
+        if (!click) {
+          if (ref) {
+            ref.close();
+          }
+        }
+      })
+    }
+  }
 
 }
