@@ -1,11 +1,11 @@
 <p>Авторизация</p>
 логин
-<input #loginInput type="Логин">
+<input #loginInput (keyup.enter)="addUser(loginInput.value,passwordInput.value); loginInput.value = ' '; passwordInput.value = ' ' "  type="Логин">
 <div>
 пароль
-<input #passwordInput type="Пароль">
+<input #passwordInput (keyup.enter)="addUser(loginInput.value,passwordInput.value); passwordInput.value = ' '; loginInput.value = ' ' " type="Пароль">
 </div>
 <div>
-<button (click)="addUser(loginInput.value,passwordInput.value)">Зарегистрироваться</button>
+<button (click)="addUser(loginInput.value,passwordInput.value); loginInput.value = ' '; passwordInput.value = ' '">Зарегистрироваться</button>
 <button>Войти</button>
 </div>
