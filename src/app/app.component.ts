@@ -2,7 +2,6 @@ import { Component,Injectable } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
-import { ItemComponent } from './item/item.component';
 import { TableModule } from 'primeng/table'
 import { Item } from './item';
 import { TableComponent } from './table/table.component';
@@ -19,7 +18,6 @@ import { AuthorizationComponent } from './authorization/authorization.component'
     RouterOutlet, 
     NgFor, 
     FormsModule, 
-    ItemComponent, 
     TableModule, 
     TableComponent,
     AuthorizationComponent],

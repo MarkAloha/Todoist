@@ -20,7 +20,6 @@ import { ToastModule } from 'primeng/toast';
 import { CreateWindow } from './createwindow';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-import { ItemComponent } from '../item/item.component';
 import { ChangeWindow } from './changewindow';
 import { ClassWindow } from './classwindow';
 
@@ -40,7 +39,7 @@ import { ClassWindow } from './classwindow';
     DynamicDialogModule,
     DialogModule,
     ChangeWindow,
-    ConfirmDialogModule
+    ConfirmDialogModule,
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService],
   templateUrl: './table.component.html',

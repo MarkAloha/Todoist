@@ -1,22 +1,17 @@
-<div>
-    <input [id]="item.description" type="checkbox" (change)="item.done = !item.done" [checked]="item.done" />
-    <label [for]="item.description">{{item.description}}</label>
 
+
+<div>    
+    <label [for]="class.name">{{class.name}}</label>
     <div *ngIf="!editable">
         <button class="btn" (click)="editable = !editable">Изменить</button>
-        <button class="btn" (click)="remove.emit()">Удалить</button>
+        <button class="btn" (click)="deleteClassWindow(class.id)">Удалить</button>
     </div>
-
     <div *ngIf="editable">
-        <input placeholder="edit item" [value]="item.description" #editedItem
-            (keyup.enter)="saveItem(editedItem.value)">
-
-
-
+        <input placeholder="edit item" [value]="class.name" #editedItem
+        (keyup.enter)="changeClassWindow(class.id, editedItem.value )">
         <div>
             <button (click)="editable = !editable">Отмена</button>
-            <button (click)="saveItem(editedItem.value)">Сохранить</button>
+            <button (click)="changeClassWindow(class.id, editedItem.value)">Сохранить</button>
         </div>
     </div>
-
 </div>

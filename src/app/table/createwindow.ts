@@ -40,11 +40,12 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrl: './createwindow.scss'
 
 })
+
 export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
   ClassItem: Class[] | undefined;
-  selectedClass!: Class | string ;
+  selectedClass!: Class | string;
   // date!: Date[] 
 
 
@@ -54,30 +55,19 @@ export class CreateWindow implements OnInit {
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
+    document.addEventListener('click', (e) => {
       this.taskService.checkClickCreateWindow(this.bitBox, this.table, this.ref)
-
-    if (typeof document !== 'undefined') {    
-      document.addEventListener('click', (e) => {
-        const click = e.composedPath().includes(this.bitBox.nativeElement) || e.composedPath().includes(this.table.showButton.nativeElement)
-        // || e.composedPath().includes(this.table.changeButton.nativeElement)
-        if (!click) {
-          if (this.ref) {
-            this.ref.close();
-          }
-        }
-      })
-    }
-
-
+    })
   }
 
-  ngOnInit() {    
+  ngOnInit() {
 
     this.formGroup = new FormGroup({
       date: new FormControl<Date | null>(null)
-    })    
-    this.ClassItem = this.taskService.getClassData()  
-  }  
+    })
+    this.ClassItem = this.taskService.getClassData()
+
+  }
 
 
   addTask(name: string) {

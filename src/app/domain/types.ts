@@ -8,6 +8,13 @@ export interface Task {
 }
 
 export interface Class {
-    id?: number;
-    name?: string;
+    id: number;
+    name: string;
+    done?: any
+}
+
+export interface Item {
+    description: string;
+    done: boolean;
+
 }

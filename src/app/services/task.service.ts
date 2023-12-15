@@ -45,27 +45,44 @@ export class TaskService {
     },
   ];
   dataClass: Class[] = [
-      { name: 'Работа' },
-      { name: 'Дом' },
-      { name: 'Магазин' },
-      { name: 'Учёба' },
-      { name: 'Быт' },
+      {id: 1, name: 'Работа' },
+      {id: 2, name: 'Дом' },
+      {id: 3, name: 'Магазин' },
+      {id: 4, name: 'Учёба' },
+      {id: 5, name: 'Быт' },
   ]
+
+  
+
+  deleteClass(id:number) {
+    const localData = this.getClassData()
+
+    let index = localData.findIndex(el => el.id === id)
+    localData.splice(index, 1)
+    localStorage.setItem('dataClass', JSON.stringify(localData))
+    console.log('localClass', localData) 
+
+  }
 
   deleteData(id:number) {
     const localData = this.getTasksData()
 
-    // let searchName = id;
     let index = localData.findIndex(el => el.id === id);
 
     localData.splice(index, 1)
-    // delete(localData[index])
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-    console.log('id', id)
-    console.log('local', localData)
-    // console.log('index', index)
-    
+    console.log('local', localData) 
 
+  }
+
+  changeClass(id: number, name: string) {
+    const localData = this.getClassData()
+
+    let index = localData.findIndex(el => el.id === id)
+    let item = localData[index].name = name
+
+    localStorage.setItem('dataClass', JSON.stringify(localData))
+    console.log(localData)
   }
 
   changeData(name:string, changeId:number) {    
@@ -131,7 +148,7 @@ export class TaskService {
 
     const idLast: any = localStorage.getItem('idLastClass')
     let idNull = JSON.parse(idLast)
-    idNull ??= 0
+    idNull ??= 5
     const id = idNull + 1
     idNull = id
     localStorage.setItem('idLastClass', JSON.stringify(idNull))

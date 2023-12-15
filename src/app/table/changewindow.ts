@@ -27,63 +27,50 @@ import { TableComponent } from './table.component';
     DynamicDialogModule,
     ToastModule,
     TableComponent,
-    
 
   ],
   templateUrl: './changewindow.html'
- 
+
 })
 export class ChangeWindow implements OnInit {
   tasks!: Task[];
   nameChange = localStorage.getItem('changeName') ?? 'test'
   changeId = Number(localStorage.getItem('changeId')) ?? 'test'
-  
-  @ViewChild('bitBox') bitBox:any
-  @ViewChild('changeButton') changeButton:any
 
-  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef, 
+  @ViewChild('bitBox') bitBox: any
+  @ViewChild('changeButton') changeButton: any
+
+  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
+    if (typeof document !== 'undefined') {
+      // let box: any = document.querySelector('.box')
 
-      
+      // const div = this.bitBox.querySelector('.box')
+      // console.log('div', div)
 
-      if (typeof document !== 'undefined') {
-        // let box: any = document.querySelector('.box')
-        
-          // const div = this.bitBox.querySelector('.box')
-          // console.log('div', div)
-        
-        document.addEventListener('click', (e)=> {
-          const click = e.composedPath().includes(this.bitBox.nativeElement) 
+      document.addEventListener('click', (e) => {
+        const click = e.composedPath().includes(this.bitBox.nativeElement)
           // || e.composedPath().includes(this.table.showButton.nativeElement)
           || e.composedPath().includes(this.table.changeButton.nativeElement)
-          if (!click ) {
-            if (this.ref) {
-              this.ref.close();
-            }
+        if (!click) {
+          if (this.ref) {
+            this.ref.close();
           }
-          
-          // console.log(box)
-          // console.log(this.bitBox.nativeElement          )
-          // console.log(box)
-          // console.log(this.showButton)
-          // console.log(this.bitBox)
-          // console.log(this.bitBox.nativeElement)
-          // console.log(click)
-        })
         }
 
-      }
+      })
+    }
 
+  }
 
   ngOnInit() {
     this.tasks = this.taskService.getTasksData();
   }
 
 
-  changeTask(name:string) {
-    // console.log(this.nameChange)
-    // console.log(localStorage.getItem('changeName'))
+  changeTask(name: string) {
+
     this.taskService.changeData(name, this.changeId)
     this.ref.close();
 

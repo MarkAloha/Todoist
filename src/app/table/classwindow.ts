@@ -12,6 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
+import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'class-window',
@@ -27,7 +28,7 @@ import { TableComponent } from './table.component';
     DynamicDialogModule,
     ToastModule,
     TableComponent,
-
+    ItemComponent,
 
   ],
   templateUrl: './classwindow.html'
@@ -35,7 +36,8 @@ import { TableComponent } from './table.component';
 })
 export class ClassWindow implements OnInit {
   tasks!: Task[];
-  categories: Class[]
+  categories: Class[];
+  class!: Class[]
 
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
@@ -43,13 +45,17 @@ export class ClassWindow implements OnInit {
       this.categories = []
   }
 
+  change = true
+
 
   ngOnInit() {
     // this.tasks = this.taskService.getTasksData();
     this.categories = this.taskService.getClassData()
   }
 
-  addClass(name: any) {   
+  
+
+  addClass(name: string) {   
     this.taskService.addClass(name)
     this.ref.close();
   }

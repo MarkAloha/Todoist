@@ -1,26 +1,44 @@
+import { ClassWindow } from './../table/classwindow';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Item } from '../item';
-
+// import { AppComponent } from '../app.component';
+import { Item } from "../item"
+import { Class } from '../domain/types';
+import { TaskService } from '../services/task.service';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 @Component({
-  selector: 'app-item',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './item.component.html',
-  styleUrl: './item.component.scss',
+    selector: 'app-item',
+    standalone: true,
+    imports: [CommonModule,
+              ClassWindow],
+    providers: [TaskService],
+    templateUrl: './item.component.html',
+    styleUrl: './item.component.scss'
 })
 export class ItemComponent {
+    // item: any = ''
+    editable = false;
+    @Input() class!: Class;
+    @Output() remove = new EventEmitter<Item>();
 
-  editable = false;
+    constructor(private taskService: TaskService, public ref: DynamicDialogRef,) {
+          
+      }
 
-  @Input() item!: Item;
-  @Output() remove = new EventEmitter<Item>();
+    changeClassWindow(id: number, name: string) {
+        this.taskService.changeClass(id, name)
+        this.editable = false
+        this.ref.close();
+    }
 
-  saveItem(description: string) {
-    if (!description) return;
-    this.editable = false;
-    this.item.description = description;
+    deleteClassWindow(id: number) {
+        this.taskService.deleteClass(id)
+        this.ref.close();
+    }
+
+    addClass(name: string) {
+        this.taskService.addClass(name)
+        this.ref.close();
+    }
+
 }
-}
-
-
