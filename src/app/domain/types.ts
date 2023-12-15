@@ -13,8 +13,9 @@ export interface Class {
     done?: any
 }
 
-export interface Item {
-    description: string;
-    done: boolean;
+export interface User {
+    login: string;
+    password: string;
+    id?: number
 
 }

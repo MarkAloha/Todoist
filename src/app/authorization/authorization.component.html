@@ -1,4 +1,11 @@
 <p>Авторизация</p>
-
-<button>Зарегистрироваться</button>
+логин
+<input #loginInput type="Логин">
+<div>
+пароль
+<input #passwordInput type="Пароль">
+</div>
+<div>
+<button (click)="addUser(loginInput.value,passwordInput.value)">Зарегистрироваться</button>
 <button>Войти</button>
+</div>
