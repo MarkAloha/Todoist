@@ -7,7 +7,7 @@
         <button class="btn" (click)="deleteClassWindow(class.id)">Удалить</button>
     </div>
     <div *ngIf="editable">
-        <input placeholder="edit item" [value]="class.name" #editedItem
+        <input  [value]="class.name" #editedItem
         (keyup.enter)="changeClassWindow(class.id, editedItem.value )">
         <div>
             <button (click)="editable = !editable">Отмена</button>

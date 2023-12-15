@@ -22,11 +22,11 @@
         </ng-template>
         <ng-template  pTemplate="header">
             <tr>
-                <th>Название</th>
-                <th>Категория</th>
-                <th>Описание</th>
-                <th>Дата</th>
-                <th>Статус</th>
+                <th pSortableColumn="name">Название<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="category">Категория<p-sortIcon field="category"></p-sortIcon></th>
+                <th pSortableColumn="description">Описание<p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="data">Дата<p-sortIcon field="data"></p-sortIcon></th>
+                <th pSortableColumn="status">Статус<p-sortIcon field="status"></p-sortIcon></th>
             </tr>
 
         </ng-template>

@@ -79,10 +79,9 @@ export class TaskService {
     const localData = this.getClassData()
 
     let index = localData.findIndex(el => el.id === id)
-    let item = localData[index].name = name
+    localData[index].name = name
 
     localStorage.setItem('dataClass', JSON.stringify(localData))
-    console.log(localData)
   }
 
   changeData(name:string, changeId:number) {    
