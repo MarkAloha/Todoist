@@ -8,7 +8,7 @@ import { AuthorizationComponent } from "./authorization/authorization.component"
 
 
 const routes: Routes = [
-    {path: '', component: TableComponent},
+    {path: '', component: TableComponent, pathMatch: 'full'},
     {path: 'auth', component: AuthorizationComponent}
 
 ]

@@ -1,9 +1,19 @@
+<div class="admin">
 
+    <h3> Панель администратора </h3>
 
 <!-- <p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button> -->
 <p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
 <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
+
+<a href="auth">Авторизация</a>
+
+<!-- <p-button  icon="pi pi-info-circle" label="Авторизация">  </p-button>
+ -->
+
+
+</div>
 
 <div #changeButton class="card">
     <p-table  [value]="tasks" [tableStyle]="{'min-width': '60rem'}">

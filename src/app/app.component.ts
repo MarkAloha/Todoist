@@ -1,12 +1,12 @@
 import { Component,Injectable } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { TableModule } from 'primeng/table'
-import { Item } from './item';
 import { TableComponent } from './table/table.component';
 import { TaskService } from './services/task.service';
 import { AuthorizationComponent } from './authorization/authorization.component';
+import { routes } from './app.routes';
 
 
 
@@ -20,7 +20,9 @@ import { AuthorizationComponent } from './authorization/authorization.component'
     FormsModule, 
     TableModule, 
     TableComponent,
-    AuthorizationComponent],
+    AuthorizationComponent,
+    RouterModule,
+     ],
   // providers: [ ]
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
