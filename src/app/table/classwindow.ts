@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
 import { ItemComponent } from '../item/item.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'class-window',
@@ -29,7 +30,7 @@ import { ItemComponent } from '../item/item.component';
     ToastModule,
     TableComponent,
     ItemComponent,
-
+    InputTextModule,
   ],
   templateUrl: './classwindow.html'
 
