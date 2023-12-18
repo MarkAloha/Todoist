@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Class, Task } from '../domain/types';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class TaskService {
   // удалить поле
   data: Task[] = [

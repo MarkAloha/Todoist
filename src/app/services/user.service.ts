@@ -23,7 +23,7 @@ export class UserService {
 
         const newUser = {
             id: this.createUserId(),
-            login,
+            email: login,
             password
         }
 
