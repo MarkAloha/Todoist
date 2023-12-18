@@ -22,6 +22,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ChangeWindow } from './changewindow';
 import { ClassWindow } from './classwindow';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -40,6 +41,7 @@ import { ClassWindow } from './classwindow';
     DialogModule,
     ChangeWindow,
     ConfirmDialogModule,
+    RouterModule,
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService],
   templateUrl: './table.component.html',

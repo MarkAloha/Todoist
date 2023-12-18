@@ -22,6 +22,7 @@ import { routes } from './app.routes';
     TableComponent,
     AuthorizationComponent,
     RouterModule,
+    RouterModule,
      ],
   // providers: [ ]
   templateUrl: './app.component.html',
