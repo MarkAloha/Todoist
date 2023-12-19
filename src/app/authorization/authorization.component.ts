@@ -2,13 +2,13 @@ import { Component, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { RouterModule } from '@angular/router';
+import { RouterModule,  RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
   standalone: true,
-  providers: [UserService,DynamicDialogConfig, DynamicDialogRef],
-  imports: [CommonModule, RouterModule,],
+  providers: [UserService,DynamicDialogConfig, DynamicDialogRef, RouterModule,],
+  imports: [CommonModule, RouterModule, RouterLink, RouterOutlet ],
   templateUrl: './authorization.component.html',
   styleUrl: './authorization.component.scss'
 })
