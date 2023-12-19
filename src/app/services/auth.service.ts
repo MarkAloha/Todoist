@@ -1,6 +1,7 @@
+import { routes } from './../../../../Angular-project/src/app/app.routes';
 import { Injectable } from '@angular/core';
 import { User } from '../domain/types';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
@@ -9,20 +10,30 @@ import { Observable, of, throwError } from 'rxjs';
 
 export class AuthService {
 
-    // constructor(private router: Router) {
+    
+    constructor(private router: Router) {
 
-    // }
+    }
+
+    
 
     setToken(token: string) {
         localStorage.setItem('token', token)
     }
+   
 
     getToken() {
-        return localStorage.getItem('token')
+        if (typeof window !== 'undefined') {
+        return (localStorage.getItem('token') ?? null);
+        } else {
+            return null
+        }
     }
 
     isLoggedIn() {
+        console.log('222',this.getToken())
         return this.getToken() !== null
+
     }
 
     login(userInfo: User): Observable<string | boolean> {

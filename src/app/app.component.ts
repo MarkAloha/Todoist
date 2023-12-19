@@ -1,19 +1,18 @@
 import { Component,Injectable } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet, Router } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { TableModule } from 'primeng/table'
 import { TableComponent } from './table/table.component';
 import { TaskService } from './services/task.service';
 import { AuthorizationComponent } from './authorization/authorization.component';
-import { routes } from './app.routes';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  providers: [TaskService],
+  providers: [TaskService, Router],
   imports: [CommonModule, 
     RouterOutlet, 
     NgFor, 
@@ -32,7 +31,8 @@ import { routes } from './app.routes';
 export class AppComponent {
 
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router,
   ) {}
 
 

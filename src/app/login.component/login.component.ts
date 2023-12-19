@@ -2,9 +2,7 @@ import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
-import { TaskService } from '../services/task.service';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login.component',
@@ -17,7 +15,7 @@ import { TaskService } from '../services/task.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponentComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup
 
@@ -28,6 +26,12 @@ export class LoginComponentComponent implements OnInit {
 
   }
 
+  submitLogin() {
+    this.authService.login(this.loginForm.value).subscribe({
+      next: () => this.router.navigate (['/auth']),
+      error: (err) => alert(err.message)
+    })
+  }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -38,10 +42,6 @@ export class LoginComponentComponent implements OnInit {
     })
   }
 
-  submitLogin() {
-    // this.authService.login(this.loginForm.value).subscribe({
-    //   next: () => this.router.navigate (['admin'])
-    // })
-  }
+  
 
 }

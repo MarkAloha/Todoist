@@ -1,13 +1,3 @@
-<p>Авторизация</p>
-логин
-<input #loginInput (keyup.enter)="addUser(loginInput.value,passwordInput.value); loginInput.value = ''; passwordInput.value = '' "  type="text">
-<div>
-пароль
-<input #passwordInput (keyup.enter)="addUser(loginInput.value,passwordInput.value); passwordInput.value = ''; loginInput.value = '' " type="password">
-</div>
-<div>
-<button (click)="addUser(loginInput.value,passwordInput.value); loginInput.value = ' '; passwordInput.value = ''">Зарегистрироваться</button>
-<button>Войти</button>
-</div>
+<h1> Закрытая страница </h1>
 
-<a [routerLink]="['/']">Назад</a>
+<a [routerLink]="['/']">Главная страница</a>
