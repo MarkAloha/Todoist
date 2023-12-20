@@ -43,4 +43,8 @@ export class AuthService {
         }
         return throwError(() => new Error('Failed Login'))
     }
+
+    logout(){
+        localStorage.removeItem('token')
+    }
 }

@@ -22,7 +22,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ChangeWindow } from './changewindow';
 import { ClassWindow } from './classwindow';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router} from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-table',
@@ -42,8 +43,9 @@ import { RouterModule } from '@angular/router';
     ChangeWindow,
     ConfirmDialogModule,
     RouterModule,
+    HeaderComponent
   ],
-  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -56,6 +58,7 @@ export class TableComponent implements OnDestroy {
   
 
   constructor(
+    private router: Router,
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService,
@@ -171,9 +174,9 @@ export class TableComponent implements OnDestroy {
     this.tasks = this.taskService.getTasksData();
   }
 
-  // consoleLog() {
-  //   this.tasks = this.taskService.getTasksData()
-  // }
+  consoleLog() {
+    console.log('console')
+  }
 
   addTaskAdmin() {
     const data = {

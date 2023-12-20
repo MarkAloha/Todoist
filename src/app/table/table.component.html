@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="admin">
 
     <h3> Панель администратора </h3>
@@ -7,7 +9,7 @@
 <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
 <div>
-<a [routerLink]="['/auth']" >Закрытая страница</a>
+<a  (click)="consoleLog()" routerLink="/auth" >Закрытая страница</a>
 <p>
 <a [routerLink]="['/login']" >Авторизация</a>
 </div>
