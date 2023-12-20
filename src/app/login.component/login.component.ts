@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit {
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
       )])
     })
+
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/'])
+    }
   }
 
   
