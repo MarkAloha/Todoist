@@ -7,7 +7,7 @@ import { User } from '../domain/types';
 
 export class UserService {
 
-    createUserId () {
+    createUserId() {
         let idLast: any = localStorage.getItem('idLastUser')
         let idNull = JSON.parse(idLast)
         idNull ??= 3
@@ -15,22 +15,24 @@ export class UserService {
         idLast = idItem
         localStorage.setItem('idLastUser', JSON.stringify(idLast))
         return idItem
-      }
+    }
 
-    addUser(login:string, password:string) {
+    addUser(login: string, password: string) {
 
-        const localData = this.getUserData()
+        const userDataLocal = this.getUserData()
+        const find = userDataLocal.find((element) => element.email === login)
 
-        const newUser = {
-            id: this.createUserId(),
-            email: login,
-            password
+        if (login !== find?.email) {
+            const newUser = {
+                id: this.createUserId(),
+                email: login,
+                password
+            }
+
+            userDataLocal.unshift(newUser)
+            localStorage.setItem('userDataStorage', JSON.stringify(userDataLocal))
         }
-
-        localData.unshift(newUser)
-        localStorage.setItem('userDataStorage', JSON.stringify(localData))
-
-        console.log('userData', localData)
+        console.log('userData', userDataLocal)
     }
 
     getUserData(): User[] {

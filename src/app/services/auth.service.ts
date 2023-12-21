@@ -38,8 +38,8 @@ export class AuthService {
     }
 
     login(userInfo: User): Observable<string | boolean> {
-       const UserData = this.userService.getUserData()
-       const find = UserData.find((element)=> element.email ===  userInfo.email)
+       const userDataLocal = this.userService.getUserData()
+       const find = userDataLocal.find((element)=> element.email ===  userInfo.email)
 
         console.log('find',find)
 
@@ -51,7 +51,7 @@ export class AuthService {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
             return of(true)
         }
-        return throwError(() => new Error('Failed Login'))
+        return throwError(() => new Error('Неправильно набран логин или пароль'))
     }
 
     logout(){
