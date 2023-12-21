@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { routes } from './../../../../Angular-project/src/app/app.routes';
 import { Injectable } from '@angular/core';
 import { User } from '../domain/types';
@@ -11,7 +12,7 @@ import { Observable, of, throwError } from 'rxjs';
 export class AuthService {
 
     
-    constructor(private router: Router) {
+    constructor(private router: Router, private userService: UserService) {
 
     }
 
@@ -37,7 +38,12 @@ export class AuthService {
     }
 
     login(userInfo: User): Observable<string | boolean> {
-        if (userInfo.email === 'admin@gmail.com' && userInfo.password === 'admin123') {
+       const UserData = this.userService.getUserData()
+       const find = UserData.find((element)=> element.email ===  userInfo.email)
+
+        console.log('find',find)
+
+        if (userInfo.email === find?.email && userInfo.password === find?.password) {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
             return of(true)
         }

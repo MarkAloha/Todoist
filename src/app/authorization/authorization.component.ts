@@ -31,7 +31,9 @@ export class AuthorizationComponent {
 
   }
 
-  addUser(login:string, password:string) {
+  addUser() {
+    const login = this.loginForm.value.email
+    const password = this.loginForm.value.password
       this.userService.addUser(login, password)
   }
 
