@@ -5,6 +5,7 @@ export interface Task {
     description?: string;
     category?: string;
     status?: string;
+    userId: number;
 }
 
 export interface Class {
@@ -16,6 +17,6 @@ export interface Class {
 export interface User {
     email: string;
     password: string;
-    id?: number
+    id: number
 
 }

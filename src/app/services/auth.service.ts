@@ -11,42 +11,53 @@ import { Observable, of, throwError } from 'rxjs';
 
 export class AuthService {
 
-    
-    constructor(private router: Router, private userService: UserService) {
 
+    constructor(private AuthService: Router, private userService: UserService) {
     }
 
-    
+    setPersonalId(id: number) {
+        localStorage.setItem('activeUser', JSON.stringify(id))
+        console.log('activeUser', localStorage.getItem('activeUser'))
+    }
+
+    getPersonaId() {
+        if (typeof window !== 'undefined') {            
+            return ((localStorage.getItem('activeUser')) ?? null);
+        } else {
+            return null
+        }
+    }
 
     setToken(token: string) {
         localStorage.setItem('token', token)
     }
-   
+
 
     getToken() {
         if (typeof window !== 'undefined') {
-        return (localStorage.getItem('token') ?? null);
+            return (localStorage.getItem('token') ?? null);
         } else {
             return null
         }
     }
 
     isLoggedIn() {
-        console.log('222',this.getToken())
         return this.getToken() !== null
 
     }
 
     login(userInfo: User): Observable<string | boolean> {
-       const userDataLocal = this.userService.getUserData()
-       const find = userDataLocal.find((element)=> element.email ===  userInfo.email)
-
-        console.log('find',find)
+        const userDataLocal = this.userService.getUserData()
+        const find = userDataLocal.find((element) => element.email === userInfo.email)
+        // Получаем массив со всеми пользователями и ищем совпадения с введеным эмаилом
+        console.log('find', find)
 
         if (userInfo.email === find?.email && userInfo.password === find?.password) {
-            this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
+            this.setToken('davwacrtbdrtdmryftbuyytuadwawd');
+            this.setPersonalId(find.id)
             return of(true)
         }
+        // Сравниваем введеный логин с найденым\не найденым логином из массива
         if (userInfo.email === "admin@gmail.com" && userInfo.password === "admin123") {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
             return of(true)
@@ -54,7 +65,7 @@ export class AuthService {
         return throwError(() => new Error('Неправильно набран логин или пароль'))
     }
 
-    logout(){
+    logout() {
         localStorage.removeItem('token')
     }
 }

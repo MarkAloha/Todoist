@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Class, Task } from '../domain/types';
 
@@ -14,7 +15,8 @@ export class TaskService {
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'дока 2',
       status: 'Выполнено',
-      category: 'дом'
+      category: 'дом',
+      userId: 3
     },
 
     {
@@ -23,7 +25,8 @@ export class TaskService {
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'ноги',
       status: 'В процессе',
-      category: 'работа'
+      category: 'работа',
+      userId: 3
     },
 
     {
@@ -32,7 +35,8 @@ export class TaskService {
       data: 'Wed Dec 27 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'сон',
       status: 'Выполнено',
-      category: 'магазин'
+      category: 'магазин',
+      userId: 3
     },
 
     {
@@ -41,7 +45,8 @@ export class TaskService {
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'еду',
       status: 'Выполнено',
-      category: 'магазин'
+      category: 'магазин',
+      userId: 3
     },
   ];
   dataClass: Class[] = [
@@ -52,6 +57,10 @@ export class TaskService {
       {id: 5, name: 'Быт' },
   ]
 
+
+  constructor(private authService: AuthService) {
+
+  }
   
 
   deleteClass(id:number) {
@@ -124,7 +133,7 @@ export class TaskService {
 
   addData(selectedClass:string | Class, name: string, data: string) {
     const localData = this.getTasksData()
-
+    const userId = JSON.parse(this.authService.getPersonaId()?? '1')
 
     const sampleAdd: Task = {
       id: this.createIdItem(),
@@ -133,6 +142,7 @@ export class TaskService {
       description: 'Описание',
       category: this.checkCreateOrChangeClass(selectedClass),
       status: 'В процессе',
+      userId
     };
 
 
