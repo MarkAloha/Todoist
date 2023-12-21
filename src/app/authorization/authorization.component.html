@@ -1,4 +1,21 @@
-<h1> Закрытая страница </h1>
-
-<!-- <a routerLink="/"> Главная страница </a> -->
 <a [routerLink]="['/']"> Главная страница </a>
+
+<h2 >Добро пожаловать</h2>
+              <p class="text-white-50 mb-5">Введите логин и пароль</p>
+  
+              <form [formGroup]="loginForm" (ngSubmit)="addUser('1','1')">     
+
+                <div >
+                  <input #login formControlName="email" type="email" id="typeEmailX" />
+                  <label for="typeEmailX">Почта</label>
+                  <p *ngIf="this.loginForm.get('email')?.invalid && this.loginForm.get('email')?.touched"><small >Требуется ввести email</small></p>
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <input #pass formControlName="password" type="password" id="typePasswordX" />
+                  <label class="form-label" for="typePasswordX">Пароль</label>
+                  <p *ngIf="this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched"><small >Требуется пароль (Минимум 8 символов и 1 цифра)</small></p>
+                </div>
+                <button [routerLink]="['/login']" [disabled]="loginForm.invalid" type="submit">Создать</button>
+
+              </form>

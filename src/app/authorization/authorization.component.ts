@@ -1,20 +1,33 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { RouterModule,  RouterLink, RouterOutlet } from '@angular/router';
+import { RouterModule,  RouterLink, RouterOutlet, Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-authorization',
   standalone: true,
-  providers: [UserService,DynamicDialogConfig, DynamicDialogRef, RouterModule,],
-  imports: [CommonModule, RouterModule, RouterLink, RouterOutlet ],
+  providers: [
+    UserService,
+    DynamicDialogConfig, 
+    DynamicDialogRef, 
+    RouterModule, 
+    Router],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    RouterLink, 
+    RouterOutlet, 
+    ReactiveFormsModule],
   templateUrl: './authorization.component.html',
   styleUrl: './authorization.component.scss'
 })
 export class AuthorizationComponent {
 
-  constructor(private userService: UserService, public ref: DynamicDialogRef, private el: ElementRef, ){
+  loginForm!: FormGroup
+
+  constructor(private userService: UserService, public ref: DynamicDialogRef, private el: ElementRef, private router: Router, ){
 
   }
 
@@ -22,4 +35,13 @@ export class AuthorizationComponent {
       this.userService.addUser(login, password)
   }
 
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      'email': new FormControl('', [Validators.required, Validators.email]),
+      'password': new FormControl('', [Validators.required, Validators.pattern(
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+      )])
+    })
+
+}
 }

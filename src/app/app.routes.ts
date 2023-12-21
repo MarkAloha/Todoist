@@ -7,10 +7,11 @@ import { LoginComponent } from "./login.component/login.component";
 import { authGuard } from "./guards/auth.guard";
 
 export const routes: Routes = [
-    {path: '', component: TableComponent, pathMatch: 'full', canActivate: [authGuard] },
-    {path: 'auth', component: AuthorizationComponent, },
-    {path: 'login', component: LoginComponent},
-    {path: '**', component: NotFoundComponent},
+    { path: '', component: TableComponent, pathMatch: 'full', canActivate: [authGuard] },
+    { path: 'auth', component: AuthorizationComponent, },
+    { path: 'login', component: LoginComponent },
+    { path: 'registration', component: AuthorizationComponent },
+    { path: '**', component: NotFoundComponent },
 
 
 ]
