@@ -47,6 +47,10 @@ export class AuthService {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
             return of(true)
         }
+        if (userInfo.email === "admin@gmail.com" && userInfo.password === "admin123") {
+            this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
+            return of(true)
+        }
         return throwError(() => new Error('Failed Login'))
     }
 
