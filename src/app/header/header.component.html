@@ -1,17 +1,16 @@
-<header >
-    <div >
-      <nav class="navbar">
-          
-            <!-- <a
+<header>
+  <div>
+    <nav class="navbar">
+
+      <!-- <a
               routerLinkActive="active"
               class="text-info text-decoration-none ms-3 p-1"
               routerLink="/">Home</a
             > -->
-          
-         
-          <p-button label="Выйти" type="button"  (click)="logout()">
-            
-          </p-button>
-      </nav>
+        <div class="login">
+      {{loginActiveUser}}
     </div>
-  </header>
+      <p-button label="Выйти" type="button" (click)="logout()"></p-button>
+    </nav>
+  </div>
+</header>

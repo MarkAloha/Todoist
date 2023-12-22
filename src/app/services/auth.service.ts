@@ -15,8 +15,17 @@ export class AuthService {
     constructor(private AuthService: Router, private userService: UserService) {
     }
 
-    setPersonalId(id: number) {
+    getLoginActiveUser() {
+        if (typeof window !== 'undefined') {            
+            return ((localStorage.getItem('activeUserLogin')) ?? null);
+        } else {
+            return null
+        }
+    }
+
+    setPersonalId(id: number, login:string) {
         localStorage.setItem('activeUser', JSON.stringify(id))
+        localStorage.setItem('activeUserLogin', login)
         console.log('activeUser', localStorage.getItem('activeUser'))
     }
 
@@ -54,7 +63,7 @@ export class AuthService {
 
         if (userInfo.email === find?.email && userInfo.password === find?.password) {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd');
-            this.setPersonalId(find.id)
+            this.setPersonalId(find.id, find.email)
             return of(true)
         }
         // Сравниваем введеный логин с найденым\не найденым логином из массива

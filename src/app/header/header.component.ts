@@ -16,14 +16,23 @@ import { ButtonModule } from 'primeng/button';
 })
 export class HeaderComponent {
 
+  loginActiveUser!: string | null
+
   constructor(
     private authService: AuthService,
     private router: Router) {
 
+
+
+  }
+
+  ngOnInit() {
+    this.loginActiveUser = this.authService.getLoginActiveUser()
+    console.log( this.loginActiveUser)
   }
 
   logout() {
     this.authService.logout(),
-    this.router.navigate(['/login'])
+      this.router.navigate(['/login'])
   }
 }
