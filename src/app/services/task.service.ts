@@ -16,7 +16,7 @@ export class TaskService {
       description: 'дока 2',
       status: 'Выполнено',
       category: 'дом',
-      userId: 3
+      userId: 1
     },
 
     {
@@ -26,7 +26,7 @@ export class TaskService {
       description: 'ноги',
       status: 'В процессе',
       category: 'работа',
-      userId: 3
+      userId: 1
     },
 
     {
@@ -36,7 +36,7 @@ export class TaskService {
       description: 'сон',
       status: 'Выполнено',
       category: 'магазин',
-      userId: 3
+      userId: 1
     },
 
     {
@@ -46,7 +46,7 @@ export class TaskService {
       description: 'еду',
       status: 'Выполнено',
       category: 'магазин',
-      userId: 3
+      userId: 1
     },
   ];
   dataClass: Class[] = [

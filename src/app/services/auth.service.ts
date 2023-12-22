@@ -1,5 +1,4 @@
 import { UserService } from './user.service';
-import { routes } from './../../../../Angular-project/src/app/app.routes';
 import { Injectable } from '@angular/core';
 import { User } from '../domain/types';
 import { Router } from '@angular/router';
@@ -69,6 +68,7 @@ export class AuthService {
         // Сравниваем введеный логин с найденым\не найденым логином из массива
         if (userInfo.email === "admin@gmail.com" && userInfo.password === "admin123") {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd')
+            this.setPersonalId(1, 'admin@gmail.com')
             return of(true)
         }
         return throwError(() => new Error('Неправильно набран логин или пароль'))
