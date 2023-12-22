@@ -72,8 +72,7 @@ export class TableComponent implements OnDestroy {
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
-    this.tasks = this.taskService.getTasksData();
-
+    this.tasks = this.taskService.getTasksDataUser();
 
   }
 
@@ -103,7 +102,7 @@ export class TableComponent implements OnDestroy {
 
   deleteTask(id: number) {
     this.taskService.deleteData(id);
-    this.tasks = this.taskService.getTasksData()
+    this.tasks = this.taskService.getTasksDataUser()
     // console.log('showButton',this.showButton)
     
   }
@@ -121,7 +120,7 @@ export class TableComponent implements OnDestroy {
 
     this.ref.onClose.subscribe((task: Task) => {
       
-      this.tasks = this.taskService.getTasksData();})
+      this.tasks = this.taskService.getTasksDataUser();})
     
 
 
@@ -140,7 +139,7 @@ export class TableComponent implements OnDestroy {
 
     this.ref.onClose.subscribe((task: Task) => {
       
-      this.tasks = this.taskService.getTasksData();
+      this.tasks = this.taskService.getTasksDataUser();
 
       // if (task) {
       //   this.messageService.add({
@@ -171,7 +170,7 @@ export class TableComponent implements OnDestroy {
 
   clearTaskAdmin() {
     localStorage.clear();
-    this.tasks = this.taskService.getTasksData();
+    this.tasks = this.taskService.getTasksDataUser();
   }
 
   consoleLog() {
@@ -194,7 +193,7 @@ export class TableComponent implements OnDestroy {
     // this.taskService.addData(dataParse);
     this.taskService.setData()
     this.taskService.setClass()
-    this.tasks = this.taskService.getTasksData();
+    this.tasks = this.taskService.getTasksDataUser();
 
     // console.log('dataParse', dataParse);
     // console.log('data', this.taskService.getTasksData());

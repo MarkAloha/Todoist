@@ -50,7 +50,6 @@ export class ClassWindow implements OnInit {
 
 
   ngOnInit() {
-    // this.tasks = this.taskService.getTasksData();
     this.categories = this.taskService.getClassData()
   }
 

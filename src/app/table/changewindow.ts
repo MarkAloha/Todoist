@@ -65,7 +65,7 @@ export class ChangeWindow implements OnInit {
   }
 
   ngOnInit() {
-    this.tasks = this.taskService.getTasksData();
+    this.tasks = this.taskService.getTasksDataUser();
   }
 
 

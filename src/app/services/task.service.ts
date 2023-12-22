@@ -134,13 +134,15 @@ export class TaskService {
   addData(selectedClass:string | Class, name: string, data: string) {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId()?? '1')
+    const category = this.checkCreateOrChangeClass(selectedClass)
+    const id = this.createIdItem()
 
     const sampleAdd: Task = {
-      id: this.createIdItem(),
+      id,
       name,
       data,
       description: 'Описание',
-      category: this.checkCreateOrChangeClass(selectedClass),
+      category,
       status: 'В процессе',
       userId
     };
@@ -177,6 +179,12 @@ export class TaskService {
   setClass() {
     return localStorage.setItem('dataClass', JSON.stringify(this.dataClass));
    }
+
+  getTasksDataUser() {
+   const localData = this.getTasksData()
+   const localDataUser = localData.filter(el => el.userId === JSON.parse(this.authService.getPersonaId()?? '0') )
+   return localDataUser
+  }
 
   getTasksData(): Task[] {
     if (typeof window !== 'undefined') {
