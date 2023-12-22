@@ -131,7 +131,7 @@ export class TaskService {
     return idItem
   }
 
-  addData(selectedClass:string | Class, name: string, data: string) {
+  addData(selectedClass:string | Class, name: string, data: string, description: string) {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId()?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)
@@ -141,7 +141,7 @@ export class TaskService {
       id,
       name,
       data,
-      description: 'Описание',
+      description,
       category,
       status: 'В процессе',
       userId

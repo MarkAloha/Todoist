@@ -70,9 +70,9 @@ export class CreateWindow implements OnInit {
   }
 
 
-  addTask(name: string) {
+  addTask(name: string, description: string) {
 
-    this.taskService.addData(this.selectedClass, name, this.formGroup.value.date);
+    this.taskService.addData(this.selectedClass, name, this.formGroup.value.date, description);
     this.ref.close();
 
   }

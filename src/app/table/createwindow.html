@@ -1,19 +1,23 @@
 <div class="bitBox" #bitBox>
 
   <div class="card flex justify-content-center">
-    Категория: 
-    <p-dropdown [options]="ClassItem" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true" optionLabel="name"></p-dropdown>
-</div>
+    Категория:
+    <p-dropdown [options]="ClassItem" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true"
+      optionLabel="name"></p-dropdown>
+  </div>
 
   <form [formGroup]="formGroup">
-    Дата: 
+    Дата:
     <p-calendar formControlName="date"></p-calendar>
-</form>
+  </form>
   <label for="addItemInput">Задача: </label>
 
-  <input #newItem (keyup.enter)="addTask(newItem.value); newItem.value = ' '" id="addItemInput" />
-
-  <p-button (click)="addTask(newItem.value); newItem.value = ' '" class="btn-add">
+  <input #newItem (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+  <div>
+    Описание:
+    <input #newItemDescription (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+  </div>
+  <p-button (click)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
     запланировать!
   </p-button>
 
