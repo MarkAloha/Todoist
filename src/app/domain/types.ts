@@ -11,7 +11,8 @@ export interface Task {
 export interface Class {
     id: number;
     name: string;
-    done?: any
+    done?: any;
+    userId: number
 }
 
 export interface User {

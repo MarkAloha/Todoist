@@ -65,7 +65,7 @@ export class CreateWindow implements OnInit {
     this.formGroup = new FormGroup({
       date: new FormControl<Date | null>(null)
     })
-    this.ClassItem = this.taskService.getClassData()
+    this.ClassItem = this.taskService.getClassDataUser()
 
   }
 

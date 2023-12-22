@@ -50,11 +50,11 @@ export class TaskService {
     },
   ];
   dataClass: Class[] = [
-      {id: 1, name: 'Работа' },
-      {id: 2, name: 'Дом' },
-      {id: 3, name: 'Магазин' },
-      {id: 4, name: 'Учёба' },
-      {id: 5, name: 'Быт' },
+      {id: 1, name: 'Работа', userId: 1 },
+      {id: 2, name: 'Дом', userId: 1 },
+      {id: 3, name: 'Магазин', userId: 1 },
+      {id: 4, name: 'Учёба', userId: 1 },
+      {id: 5, name: 'Быт', userId: 1 },
   ]
 
 
@@ -156,6 +156,7 @@ export class TaskService {
 
   addClass(name:string) {
     const localData = this.getClassData()
+    const userId = JSON.parse(this.authService.getPersonaId()?? '1')
 
     const idLast: any = localStorage.getItem('idLastClass')
     let idNull = JSON.parse(idLast)
@@ -167,6 +168,7 @@ export class TaskService {
     const item = {
       name,
       id,
+      userId
     }
     localData.push(item)
     localStorage.setItem('dataClass', JSON.stringify(localData))
@@ -193,6 +195,13 @@ export class TaskService {
       return [];
     }
   }
+
+  getClassDataUser() {
+    const localData = this.getClassData()
+    const localDataUser = localData.filter(el => el.userId === JSON.parse(this.authService.getPersonaId()?? '0') )
+    return localDataUser
+  }
+
   getClassData(): Class[] {
     if (typeof window !== 'undefined') {
       return JSON.parse(localStorage.getItem('dataClass') ?? '[]');
