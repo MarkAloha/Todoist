@@ -24,6 +24,7 @@ import { ChangeWindow } from './changewindow';
 import { ClassWindow } from './classwindow';
 import { RouterModule, Router} from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-table',
@@ -43,7 +44,8 @@ import { HeaderComponent } from '../header/header.component';
     ChangeWindow,
     ConfirmDialogModule,
     RouterModule,
-    HeaderComponent
+    HeaderComponent,
+    InputTextModule
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router],
   templateUrl: './table.component.html',
@@ -52,6 +54,7 @@ import { HeaderComponent } from '../header/header.component';
 export class TableComponent implements OnDestroy {
   tasks!: Task[];
   checked: boolean = false;
+  searchButton: boolean = false
 
   @ViewChild('showButton') showButton:any
   @ViewChild('changeButton') changeButton:any
@@ -76,9 +79,9 @@ export class TableComponent implements OnDestroy {
 
   }
 
-  checkedStatus() {
+  // checkedStatus() {
 
-  }
+  // }
 
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {

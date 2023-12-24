@@ -2,17 +2,17 @@
 
     <h3> Панель администратора </h3>
 
-<!-- <p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button> -->
-<p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
-<p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
+    <!-- <p-button (click)="consoleLog()" icon="pi pi-info-circle" label="Кнопка"></p-button> -->
+    <p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
+    <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
-<div>
-<a  (click)="consoleLog()" routerLink="/auth" >Закрытая страница</a>
-<p>
-<a [routerLink]="['/login']" >Авторизация</a>
-</div>
+    <div>
+        <a (click)="consoleLog()" routerLink="/auth">Закрытая страница</a>
+        <p>
+            <a [routerLink]="['/login']">Авторизация</a>
+    </div>
 
-<!-- <p-button  icon="pi pi-info-circle" label="Авторизация">  </p-button>
+    <!-- <p-button  icon="pi pi-info-circle" label="Авторизация">  </p-button>
  -->
 
 
@@ -21,21 +21,47 @@
 <app-header></app-header>
 
 <div #changeButton class="card">
-    <p-table  [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
+    <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 <h1>Задачи</h1>
-                <div #showButton class="card flex justify-content-center">
-                    <p-toast></p-toast>
-                    <p-button (click)="showAddTask()" icon="pi pi-info-circle" label="Создать"></p-button>
-                    <p-button (click)="showAddClass()" icon="pi pi-info-circle" label="Категории"></p-button>
-                    
+
+                <div #showButton class="card">
+                    <!-- <p-toast></p-toast> -->
+
+                    <p-button class="item" (click)="showAddTask()" icon="pi pi-info-circle" label="Создать"></p-button>
+
+
+                    <p-button class="item" (click)="showAddClass()" icon="pi pi-info-circle"
+                        label="Категории"></p-button>
+
+                    <p-button (click)="searchButton = !searchButton" icon="pi pi-info-circle" label="Поиск"></p-button>
+                    <div class="search" *ngIf="searchButton">
+                        <div class="serchItem">
+                            Название
+                            <input pInputText class="p-inputtext-sm" type="text">
+                        </div>
+                        <div class="serchItem">
+                            Описание
+                            <input pInputText class="p-inputtext-sm" type="text">
+                        </div >
+                        <div class="serchItem">
+                            Категория
+                            <input pInputText class="p-inputtext-sm" type="text">
+                        </div>
+                        <div class="serchItem">
+                            Дата
+                            <input pInputText class="p-inputtext-sm" type="text">
+                        </div>
+
+                    </div>
+
 
                 </div>
-                
+
             </div>
         </ng-template>
-        <ng-template  pTemplate="header">
+        <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="name">Название<p-sortIcon field="name"></p-sortIcon></th>
                 <th pSortableColumn="category">Категория<p-sortIcon field="category"></p-sortIcon></th>
@@ -48,8 +74,8 @@
 
         <ng-template pTemplate="body" let-task>
             <tr>
-                <td >{{task.name}}
-                    <div >
+                <td>{{task.name}}
+                    <div>
                         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
                         <p-button (click)="confirm(task.id)" icon="pi pi-times" label="Удалить"
                             class="p-button-danger"></p-button>
@@ -77,4 +103,3 @@
         </ng-template>
     </p-table>
 </div>
-

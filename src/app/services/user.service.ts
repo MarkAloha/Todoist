@@ -8,7 +8,7 @@ import { User } from '../domain/types';
 export class UserService {
 
     createUserId() {
-        let idLast: any = localStorage.getItem('idLastUser')
+        let idLast: string = (localStorage.getItem('idLastUser')?? '1')
         let idNull = JSON.parse(idLast)
         idNull ??= 3
         const idItem = idNull + 1
