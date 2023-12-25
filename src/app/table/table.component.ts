@@ -86,8 +86,20 @@ export class TableComponent implements OnDestroy {
 
   // }
 
+  clearSearch() {
+    this.tasks = this.taskService.getTasksDataUser();
+  }
+
+  categorySearch(value:any) {
+    this.tasks = this.searchService.categorySearch(value)
+  }
+
   nameSearch(value:any) {
     this.tasks = this.searchService.nameSearch(value)
+  }
+
+  descriptionSearch(value:any) {
+    this.tasks = this.searchService.descriptionSearch(value)
   }
 
   showAddClass() {

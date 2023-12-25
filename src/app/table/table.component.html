@@ -37,23 +37,40 @@
 
                     <p-button (click)="searchButton = !searchButton" icon="pi pi-info-circle" label="Поиск"></p-button>
                     <div class="search" *ngIf="searchButton">
+
                         <div class="serchItem">
                             Название
-                            <input [(ngModel)]="searchStr" pInputText class="p-inputtext-sm" type="text">
-                            <button (click)="nameSearch(searchStr)">play</button>
+                            <input (keyup.enter)="nameSearch(searchName.value); searchName.value=''" #searchName
+                                pInputText class="p-inputtext-sm" type="text">
+
+                            <button (click)="nameSearch(searchName.value); searchName.value=''
+                            ">Искать</button>
+
                         </div>
-                        <div class="serchItem">
-                            Описание
-                            <input pInputText class="p-inputtext-sm" type="text">
-                        </div >
+
                         <div class="serchItem">
                             Категория
-                            <input pInputText class="p-inputtext-sm" type="text">
+                            <input (keyup.enter)="categorySearch(searchCategory.value); searchCategory.value=''"
+                                #searchCategory pInputText class="p-inputtext-sm" type="text">
+                            <button (click)="nameSearch(searchCategory.value); searchCategory.value=''">Искать</button>
                         </div>
+
+                        <div class="serchItem">
+                            Описание
+                            <input
+                                (keyup.enter)="descriptionSearch(searchDescription.value); searchDescription.value=''"
+                                #searchDescription pInputText class="p-inputtext-sm" type="text">
+                            <button
+                                (click)="descriptionSearch(searchDescription.value); searchDescription.value=''">Искать</button>
+                        </div>
+
                         <div class="serchItem">
                             Дата
                             <input pInputText class="p-inputtext-sm" type="text">
+                            <button (click)="nameSearch(searchStr.value)">Искать</button>
                         </div>
+
+                        <button (click)="clearSearch()">Очистить</button>
 
                     </div>
 

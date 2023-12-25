@@ -22,6 +22,27 @@ export class SearchService {
         return newLocalData ?? []
 
     }
+    descriptionSearch(value:any) {
+        const localData = this.taskService.getTasksDataUser()
+        const newLocalData = localData.filter(item => item.description?.includes(value))
+        console.log(newLocalData)
+        return newLocalData ?? []
+
+    }
+    categorySearch (value:any) {
+        const localData = this.taskService.getTasksDataUser()
+        const newLocalData = localData.filter(item => item.category?.includes(value))
+        console.log(newLocalData)
+        return newLocalData ?? []
+
+    }
+    dataSearch (value:any) {
+        const localData = this.taskService.getTasksDataUser()
+        const newLocalData = localData.filter(item => item.name?.includes(value))
+        console.log(newLocalData)
+        return newLocalData ?? []
+
+    }
 
 
 
