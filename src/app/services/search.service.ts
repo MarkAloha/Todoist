@@ -15,28 +15,28 @@ export class SearchService {
     constructor(private AuthService: Router, private userService: UserService, private taskService: TaskService) {
     }
 
-    nameSearch (value:any) {
+    nameSearch (value:string) {
         const localData = this.taskService.getTasksDataUser()
         const newLocalData = localData.filter(item => item.name?.includes(value))
         console.log(newLocalData)
         return newLocalData ?? []
 
     }
-    descriptionSearch(value:any) {
+    descriptionSearch(value:string) {
         const localData = this.taskService.getTasksDataUser()
         const newLocalData = localData.filter(item => item.description?.includes(value))
         console.log(newLocalData)
         return newLocalData ?? []
 
     }
-    categorySearch (value:any) {
+    categorySearch (value:string) {
         const localData = this.taskService.getTasksDataUser()
         const newLocalData = localData.filter(item => item.category?.includes(value))
         console.log(newLocalData)
         return newLocalData ?? []
 
     }
-    dataSearch (value:any) {
+    dataSearch (value:string) {
         const localData = this.taskService.getTasksDataUser()
         const newLocalData = localData.filter(item => item.name?.includes(value))
         console.log(newLocalData)

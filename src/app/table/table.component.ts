@@ -23,7 +23,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ChangeWindow } from './changewindow';
 import { ClassWindow } from './classwindow';
-import { RouterModule, Router} from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -48,7 +48,7 @@ import { InputTextModule } from 'primeng/inputtext';
     HeaderComponent,
     InputTextModule,
   ],
-  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, SearchService ],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, SearchService],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -58,9 +58,9 @@ export class TableComponent implements OnDestroy {
   searchButton: boolean = false;
   searchStr: any = ''
 
-  @ViewChild('showButton') showButton:any
-  @ViewChild('changeButton') changeButton:any
-  
+  @ViewChild('showButton') showButton: any
+  @ViewChild('changeButton') changeButton: any
+
 
   constructor(
     private router: Router,
@@ -71,9 +71,9 @@ export class TableComponent implements OnDestroy {
     private confirmationService: ConfirmationService
   ) {
 
-    
-    }
-  
+
+  }
+
 
   ref: DynamicDialogRef | undefined;
 
@@ -82,23 +82,19 @@ export class TableComponent implements OnDestroy {
 
   }
 
-  // checkedStatus() {
-
-  // }
-
   clearSearch() {
     this.tasks = this.taskService.getTasksDataUser();
   }
 
-  categorySearch(value:any) {
+  categorySearch(value: string) {
     this.tasks = this.searchService.categorySearch(value)
   }
 
-  nameSearch(value:any) {
+  nameSearch(value: string) {
     this.tasks = this.searchService.nameSearch(value)
   }
 
-  descriptionSearch(value:any) {
+  descriptionSearch(value: string) {
     this.tasks = this.searchService.descriptionSearch(value)
   }
 
@@ -113,37 +109,39 @@ export class TableComponent implements OnDestroy {
 
   confirm(id: number) {
     this.confirmationService.confirm({
-        message: 'Вы уверены, что хотите продолжить?',
-        header: 'Подтверждение',
-        icon: 'pi pi-exclamation-triangle',
-        acceptLabel: 'Да',
-        rejectLabel: 'Нет',
-        accept: () => {this.deleteTask(id)},
-        reject: () => {this.confirmationService.close()}
-    })};
+      message: 'Вы уверены, что хотите продолжить?',
+      header: 'Подтверждение',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Да',
+      rejectLabel: 'Нет',
+      accept: () => { this.deleteTask(id) },
+      reject: () => { this.confirmationService.close() }
+    })
+  };
 
   deleteTask(id: number) {
     this.taskService.deleteData(id);
     this.tasks = this.taskService.getTasksDataUser()
     // console.log('showButton',this.showButton)
-    
+
   }
 
-  showChangeTask(id:number, name:string) {
+  showChangeTask(id: number, name: string) {
     this.ref = this.dialogService.open(ChangeWindow, {
       header: 'Изменить',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-    
+
     localStorage.setItem('changeId', String(id))
     localStorage.setItem('changeName', name)
 
     this.ref.onClose.subscribe((task: Task) => {
-      
-      this.tasks = this.taskService.getTasksDataUser();})
-    
+
+      this.tasks = this.taskService.getTasksDataUser();
+    })
+
 
 
   }
@@ -160,7 +158,7 @@ export class TableComponent implements OnDestroy {
 
 
     this.ref.onClose.subscribe((task: Task) => {
-      
+
       this.tasks = this.taskService.getTasksDataUser();
 
       // if (task) {
@@ -200,19 +198,7 @@ export class TableComponent implements OnDestroy {
   }
 
   addTaskAdmin() {
-    const data = {
-      id: '1',
-      name: 'поиграть в доту',
-      code: '1142142',
-      description: 'последний раз',
-      status: 'Выполнено',
-    };
-    const dataStorage = {};
-    // localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-    const raw: any = localStorage.getItem('dataStorage');
-    const dataParse = JSON.parse(raw);
-    // console.log(dataParse.lastIndexOf(Object))
-    // this.taskService.addData(dataParse);
+   
     this.taskService.setData()
     this.taskService.setClass()
     this.tasks = this.taskService.getTasksDataUser();
@@ -224,6 +210,6 @@ export class TableComponent implements OnDestroy {
     // });
   }
 
-  
+
 
 }

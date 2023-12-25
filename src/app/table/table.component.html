@@ -35,7 +35,7 @@
                     <p-button class="item" (click)="showAddClass()" icon="pi pi-info-circle"
                         label="Категории"></p-button>
 
-                    <p-button (click)="searchButton = !searchButton" icon="pi pi-info-circle" label="Поиск"></p-button>
+                    <p-button (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle" label="Поиск"></p-button>
                     <div class="search" *ngIf="searchButton">
 
                         <div class="serchItem">
