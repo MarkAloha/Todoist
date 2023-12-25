@@ -1,3 +1,4 @@
+import { SearchService } from './../services/search.service';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormsModule } from '@angular/forms';
@@ -45,16 +46,17 @@ import { InputTextModule } from 'primeng/inputtext';
     ConfirmDialogModule,
     RouterModule,
     HeaderComponent,
-    InputTextModule
+    InputTextModule,
   ],
-  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, SearchService ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
 export class TableComponent implements OnDestroy {
   tasks!: Task[];
   checked: boolean = false;
-  searchButton: boolean = false
+  searchButton: boolean = false;
+  searchStr: any = ''
 
   @ViewChild('showButton') showButton:any
   @ViewChild('changeButton') changeButton:any
@@ -65,6 +67,7 @@ export class TableComponent implements OnDestroy {
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService,
+    public searchService: SearchService,
     private confirmationService: ConfirmationService
   ) {
 
@@ -82,6 +85,10 @@ export class TableComponent implements OnDestroy {
   // checkedStatus() {
 
   // }
+
+  nameSearch(value:any) {
+    this.tasks = this.searchService.nameSearch(value)
+  }
 
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {

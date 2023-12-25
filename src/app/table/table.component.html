@@ -39,7 +39,8 @@
                     <div class="search" *ngIf="searchButton">
                         <div class="serchItem">
                             Название
-                            <input pInputText class="p-inputtext-sm" type="text">
+                            <input [(ngModel)]="searchStr" pInputText class="p-inputtext-sm" type="text">
+                            <button (click)="nameSearch(searchStr)">play</button>
                         </div>
                         <div class="serchItem">
                             Описание
