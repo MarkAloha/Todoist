@@ -1,4 +1,4 @@
-import { ClassWindow } from './../table/classwindow';
+import { ClassWindow } from '../table/classwindow.component/classwindow';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';

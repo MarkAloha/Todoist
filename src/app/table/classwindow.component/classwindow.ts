@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { TaskService } from '../services/task.service';
-import { Class, Task } from '../domain/types';
+import { TaskService } from '../../services/task.service';
+import { Class, Task } from '../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -11,8 +11,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table.component';
-import { ItemComponent } from '../item/item.component';
+import { TableComponent } from '../table.component';
+import { ItemComponent } from '../../item/item.component';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({

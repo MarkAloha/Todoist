@@ -11,7 +11,7 @@ import { Observable, of, throwError } from 'rxjs';
 export class AuthService {
 
 
-    constructor(private AuthService: Router, private userService: UserService) {
+    constructor(private router: Router, private userService: UserService) {
     }
 
     getLoginActiveUser() {
