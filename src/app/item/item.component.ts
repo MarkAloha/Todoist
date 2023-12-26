@@ -23,17 +23,17 @@ import { ButtonModule } from 'primeng/button';
 })
 export class ItemComponent {
     // item: any = ''
-    editable:any = signal(false);
+    editable: WritableSignal<boolean> = signal(false);
     @Input() class!: Class;
     @Output() remove = new EventEmitter<Item>();
 
     constructor(private taskService: TaskService, public ref: DynamicDialogRef,) {
-          
-      }
+       
+        
+      }  
 
     changeClassWindow(id: number, name: string) {
         this.taskService.changeClass(id, name)
-        // this.editable.set(false)
         this.ref.close();
     }
 
