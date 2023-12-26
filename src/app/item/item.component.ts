@@ -1,5 +1,5 @@
 import { ClassWindow } from '../table/classwindow.component/classwindow';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { Item } from "../item"
@@ -23,7 +23,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class ItemComponent {
     // item: any = ''
-    editable = false;
+    editable:any = signal(false);
     @Input() class!: Class;
     @Output() remove = new EventEmitter<Item>();
 
@@ -33,7 +33,7 @@ export class ItemComponent {
 
     changeClassWindow(id: number, name: string) {
         this.taskService.changeClass(id, name)
-        this.editable = false
+        // this.editable.set(false)
         this.ref.close();
     }
 

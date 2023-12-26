@@ -1,17 +1,19 @@
-
-
-<div>    
-    <label [for]="class.name">{{class.name}}</label>
+<div>
     <div *ngIf="!editable">
-        <p-button size="small" class="btn" (click)="editable = !editable">Изменить</p-button>
+        <label [for]="class.name">{{class.name}}</label>
+        
+
+        <p-button size="small" class="btn" (click)="this.editable.set(true)">Изменить</p-button>
         <p-button size="small" class="btn" (click)="deleteClassWindow(class.id)">Удалить</p-button>
     </div>
-    <div  *ngIf="editable">
+    
+    <div *ngIf="editable">
         <input type="text" pInputText [value]="class.name" #editedItem
-        (keyup.enter)="changeClassWindow(class.id, editedItem.value )">
+            (keyup.enter)="changeClassWindow(class.id, editedItem.value )">
         <div>
-            <p-button size="small" (click)="editable = !editable">Отмена</p-button>
+            <p-button size="small" (click)="this.editable.set(false)">Отмена</p-button>
             <p-button size="small" (click)="changeClassWindow(class.id, editedItem.value)">Сохранить</p-button>
+             <p-button size="small" class="btn" (click)="this.editable.set(true)">Изменить</p-button>
         </div>
     </div>
 </div>
