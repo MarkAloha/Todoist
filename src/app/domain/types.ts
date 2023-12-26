@@ -1,6 +1,8 @@
+import { FormControl } from "@angular/forms";
+
 export interface Task {
     id?: number;
-    data?: string;
+    data?: any;
     name?: string;
     description?: string;
     category?: string;
@@ -20,4 +22,10 @@ export interface User {
     password: string;
     id: number
 
+}
+
+export interface LoginForm {
+
+    email: FormControl;
+    password: FormControl;
 }

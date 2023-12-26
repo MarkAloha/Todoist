@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RouterModule, RouterLink, RouterOutlet, Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginForm } from '../domain/types';
 
 @Component({
   selector: 'app-authorization',
@@ -28,9 +29,11 @@ export class AuthorizationComponent {
   loginForm: FormGroup
 
   constructor(private userService: UserService, public ref: DynamicDialogRef) {
-    this.loginForm = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required, Validators.pattern(
+
+    this.loginForm = new FormGroup<LoginForm>({
+
+      email: new FormControl('null', [Validators.required, Validators.email]),
+      password: new FormControl('null', [Validators.required, Validators.pattern(
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
       )])
     })
