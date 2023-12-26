@@ -34,8 +34,8 @@ import { TableComponent } from '../table.component';
 })
 export class ChangeWindow implements OnInit {
   tasks!: Task[];
-  nameChange = localStorage.getItem('changeName') ?? 'test'
-  changeId = Number(localStorage.getItem('changeId')) ?? 'test'
+  nameChange = localStorage.getItem('changeName') ?? null
+  changeId = Number(localStorage.getItem('changeId')) ?? null
 
   @ViewChild('bitBox') bitBox: any
   @ViewChild('changeButton') changeButton: any

@@ -80,7 +80,7 @@ export class TableComponent implements OnDestroy {
   ngOnInit() {
     this.tasks = this.taskService.getTasksDataUser();
 
-  }
+  }  
 
   clearSearch() {
     this.tasks = this.taskService.getTasksDataUser();
@@ -146,9 +146,24 @@ export class TableComponent implements OnDestroy {
 
   }
 
-  showAddTask() {
+  showAddTask(id:number) {
+
+    const createTask = {
+      id: -1,
+      name: '',
+      description: '',
+      userId: -1
+  }
+    localStorage.setItem('createTask', JSON.stringify(createTask))
+
+    if (id > -1){
+    this.taskService.changeTask(id)
+    }
+    // localStorage.setItem('changeId', String(id))
+    // localStorage.setItem('changeName', name)
+
     this.ref = this.dialogService.open(CreateWindow, {
-      header: 'Новая задача',
+      header: 'Задача',
       width: '70%',
       height: '100%',
       contentStyle: { overflow: 'auto' },
@@ -158,16 +173,8 @@ export class TableComponent implements OnDestroy {
 
 
     this.ref.onClose.subscribe((task: Task) => {
-
       this.tasks = this.taskService.getTasksDataUser();
-
-      // if (task) {
-      //   this.messageService.add({
-      //     severity: 'info',
-      //     summary: 'Task Selected',
-      //     detail: task.name,
-      //   });
-      // }
+      localStorage.removeItem('changeTask')
     });
   }
 

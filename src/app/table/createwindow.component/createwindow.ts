@@ -46,7 +46,10 @@ export class CreateWindow implements OnInit {
   formGroup!: FormGroup;
   ClassItem: Class[] | undefined;
   selectedClass!: Class | string;
-  // date!: Date[] 
+  nameChange = localStorage.getItem('changeName') ?? null
+  changeId = Number(localStorage.getItem('changeId')) ?? null  
+  changeTask: Task = JSON.parse(localStorage.getItem('changeTask')?? localStorage.getItem('createTask') ?? 'localChangeNull')
+  
 
 
   @ViewChild('bitBox') bitBox: any
@@ -72,6 +75,7 @@ export class CreateWindow implements OnInit {
 
   addTask(name: string, description: string) {
 
+    
     this.taskService.addData(this.selectedClass, name, this.formGroup.value.date, description);
     this.ref.close();
 

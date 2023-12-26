@@ -63,6 +63,12 @@ export class TaskService {
   }
   
 
+  changeTask(id:number) {
+    const localData = this.getTasksDataUser()
+    const changeTask = localData.find(el => el.id === id)
+    localStorage.setItem('changeTask', JSON.stringify(changeTask))
+  }
+
   deleteClass(id:number) {
     const localData = this.getClassData()
 

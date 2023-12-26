@@ -29,13 +29,14 @@
                 <div #showButton class="card">
                     <!-- <p-toast></p-toast> -->
 
-                    <p-button class="item" (click)="showAddTask()" icon="pi pi-info-circle" label="Создать"></p-button>
+                    <p-button class="item" (click)="showAddTask(-1)" icon="pi pi-info-circle" label="Создать"></p-button>
 
 
                     <p-button class="item" (click)="showAddClass()" icon="pi pi-info-circle"
                         label="Категории"></p-button>
 
-                    <p-button (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle" label="Поиск"></p-button>
+                    <p-button (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle"
+                        label="Поиск"></p-button>
                     <div class="search" *ngIf="searchButton">
 
                         <div class="serchItem">
@@ -101,7 +102,7 @@
                         <!-- <button (click)="deleteTask(task.id)" icon="pi pi-info-circle" label="Удалить">Удалить</button> -->
 
 
-                        <p-button (click)="showChangeTask(task.id, task.name)" icon="pi pi-info-circle"
+                        <p-button (click)="showAddTask(task.id)" icon="pi pi-info-circle"
                             label="Изменить"></p-button>
                     </div>
                 </td>

@@ -12,10 +12,10 @@
   </form>
   <label for="addItemInput">Задача: </label>
 
-  <input #newItem (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+  <input value="{{changeTask.name}}" #newItem (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
   <div>
     Описание:
-    <input #newItemDescription (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+    <input value="{{changeTask.description}}" #newItemDescription (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
   </div>
   <p-button (click)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
     запланировать!
