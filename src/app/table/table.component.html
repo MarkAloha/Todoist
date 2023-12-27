@@ -37,6 +37,8 @@
 
                     <p-button (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle"
                         label="Поиск"></p-button>
+
+                        <form [formGroup]="formGroup">
                     <div class="search" *ngIf="searchButton">
 
                         <div class="serchItem">
@@ -67,14 +69,14 @@
 
                         <div class="serchItem">
                             Дата
-                            <input pInputText class="p-inputtext-sm" type="text">
-                            <button (click)="nameSearch(searchStr.value)">Искать</button>
+                            <p-calendar formControlName="date"></p-calendar>                           
+                            <button (click)="dataSearch()">Искать</button>
                         </div>
 
                         <button (click)="clearSearch()">Очистить</button>
 
                     </div>
-
+                </form>
 
                 </div>
 

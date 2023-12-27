@@ -1,7 +1,7 @@
 import { SearchService } from './../services/search.service';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../services/task.service';
 import { Task } from '../domain/types';
@@ -26,6 +26,7 @@ import { ClassWindow } from './classwindow.component/classwindow';
 import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-table',
@@ -47,6 +48,8 @@ import { InputTextModule } from 'primeng/inputtext';
     RouterModule,
     HeaderComponent,
     InputTextModule,
+    ReactiveFormsModule,
+    CalendarModule
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, SearchService],
   templateUrl: './table.component.html',
@@ -56,7 +59,8 @@ export class TableComponent implements OnDestroy {
   tasks!: Task[];
   checked: boolean = false;
   searchButton: boolean = false;
-  searchStr: any = ''
+  searchStr: any = '';
+  formGroup!: any
 
   @ViewChild('showButton') showButton: any
   @ViewChild('changeButton') changeButton: any
@@ -79,7 +83,9 @@ export class TableComponent implements OnDestroy {
 
   ngOnInit() {
     this.tasks = this.taskService.getTasksDataUser();
-
+    this.formGroup = new FormGroup({
+      date: new FormControl<Date | null>(null)
+    })
   }  
 
   clearSearch() {
@@ -96,6 +102,9 @@ export class TableComponent implements OnDestroy {
 
   descriptionSearch(value: string) {
     this.tasks = this.searchService.descriptionSearch(value)
+  }
+  dataSearch() {
+    this.tasks = this.searchService.dataSearch(this.formGroup.value.date)
   }
 
   showAddClass() {
