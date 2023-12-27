@@ -77,6 +77,7 @@ export class CreateWindow implements OnInit {
 
     
     this.taskService.addData(this.selectedClass, name, this.formGroup.value.date, description);
+    // console.log(typeof(this.formGroup.value.date))
     this.ref.close();
 
   }

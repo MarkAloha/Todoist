@@ -5,7 +5,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { TableModule } from 'primeng/table'
 import { TableComponent } from './table/table.component';
 import { TaskService } from './services/task.service';
-import { AuthorizationComponent } from './authorization/authorization.component';
+import { RegistrationComponent } from './registration.component/registration.component';
 
 
 
@@ -19,7 +19,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
     FormsModule, 
     TableModule, 
     TableComponent,
-    AuthorizationComponent,
+    RegistrationComponent,
     RouterModule,
     RouterModule,
      ],

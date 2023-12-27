@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TableComponent } from "./table/table.component";
-import { AuthorizationComponent } from "./authorization/authorization.component";
+import { AuthorizationComponent } from "./registration.component/registration.component";
 
 // http://localhost:4200/ -> Home
 // http://localhost:4200/auth -> Auth

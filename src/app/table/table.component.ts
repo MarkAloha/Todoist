@@ -1,5 +1,4 @@
-import { SearchService } from './../services/search.service';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -51,7 +50,7 @@ import { CalendarModule } from 'primeng/calendar';
     ReactiveFormsModule,
     CalendarModule
   ],
-  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, SearchService],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router,],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -65,19 +64,12 @@ export class TableComponent implements OnDestroy {
   @ViewChild('showButton') showButton: any
   @ViewChild('changeButton') changeButton: any
 
-
   constructor(
-    private router: Router,
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService,
-    public searchService: SearchService,
     private confirmationService: ConfirmationService
-  ) {
-
-
-  }
-
+  ) {  }
 
   ref: DynamicDialogRef | undefined;
 
@@ -95,21 +87,6 @@ export class TableComponent implements OnDestroy {
   clearSearch() {
     this.tasks = this.taskService.getTasksDataUser();
   }
-
-  // categorySearch(value: string) {
-  //   this.tasks = this.searchService.categorySearch(value)
-  // }
-
-  // nameSearch(value: string) {
-  //   this.tasks = this.searchService.nameSearch(value)
-  // }
-
-  // descriptionSearch(value: string) {
-  //   this.tasks = this.searchService.descriptionSearch(value)
-  // }
-  // dataSearch() {
-  //   this.tasks = this.searchService.dataSearch(this.formGroup.value.date)
-  // }
 
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {
@@ -135,8 +112,6 @@ export class TableComponent implements OnDestroy {
   deleteTask(id: number) {
     this.taskService.deleteData(id);
     this.tasks = this.taskService.getTasksDataUser()
-    // console.log('showButton',this.showButton)
-
   }
 
   showChangeTask(id: number, name: string) {
@@ -151,12 +126,8 @@ export class TableComponent implements OnDestroy {
     localStorage.setItem('changeName', name)
 
     this.ref.onClose.subscribe((task: Task) => {
-
       this.tasks = this.taskService.getTasksDataUser();
     })
-
-
-
   }
 
   showAddTask(id:number) {
@@ -213,21 +184,10 @@ export class TableComponent implements OnDestroy {
     this.tasks = this.taskService.getTasksDataUser();
   }
 
-  consoleLog() {
-    console.log('console')
-  }
-
-  addTaskAdmin() {
-   
+  addTaskAdmin() {   
     this.taskService.setData()
     this.taskService.setClass()
     this.tasks = this.taskService.getTasksDataUser();
-
-    // console.log('dataParse', dataParse);
-    // console.log('data', this.taskService.getTasksData());
-    // this.taskService.getTasksMini().then((data) => {
-    //   this.tasks = data;
-    // });
   }
 
 
