@@ -15,6 +15,23 @@ export class SearchService {
     constructor(private AuthService: Router, private userService: UserService, private taskService: TaskService) {
     }
 
+    multiSeatch (value:string, key:string){
+        const localData = this.taskService.getTasksDataUser()
+        if (key === 'nameSearch'){
+            const newLocalData = localData.filter(item => item.name?.includes(value))
+            return newLocalData
+        }
+        if (key === 'descriptionSearch') {
+            const newLocalData = localData.filter(item => item.name?.includes(value))
+            return newLocalData
+        }
+        if (key === 'categorySearch') {
+            const newLocalData = localData.filter(item => item.name?.includes(value))
+            return newLocalData
+        }
+        else return []
+    }
+
     nameSearch (value:string) {
         const localData = this.taskService.getTasksDataUser()
         const newLocalData = localData.filter(item => item.name?.includes(value))
@@ -36,10 +53,10 @@ export class SearchService {
         return newLocalData ?? []
 
     }
-    dataSearch (value:string) {
+    dataSearch (value:any) {
         const localData = this.taskService.getTasksDataUser()
-        const newLocalData = localData.filter(item => item.name?.includes(value))
-        console.log(newLocalData)
+        const newLocalData = localData.filter(item => new Date(item.data).getTime()<new Date(value).getTime())
+        console.log(localData)
         return newLocalData ?? []
 
     }

@@ -50,43 +50,66 @@ export class TaskService {
     },
   ];
   dataClass: Class[] = [
-      {id: 1, name: 'Работа', userId: 1 },
-      {id: 2, name: 'Дом', userId: 1 },
-      {id: 3, name: 'Магазин', userId: 1 },
-      {id: 4, name: 'Учёба', userId: 1 },
-      {id: 5, name: 'Быт', userId: 1 },
+    { id: 1, name: 'Работа', userId: 1 },
+    { id: 2, name: 'Дом', userId: 1 },
+    { id: 3, name: 'Магазин', userId: 1 },
+    { id: 4, name: 'Учёба', userId: 1 },
+    { id: 5, name: 'Быт', userId: 1 },
   ]
 
 
   constructor(private authService: AuthService) {
 
   }
-  
 
-  changeTask(id:number) {
+  multiSearch(value: string, key: string) {
+    const localData = this.getTasksDataUser()
+    if (key === 'nameSearch') {
+      const newLocalData = localData.filter(item => item.name?.includes(value))
+      console.log(newLocalData)
+      console.log(value)
+      console.log(key)
+      return newLocalData
+    }
+    if (key === 'descriptionSearch') {
+      const newLocalData = localData.filter(item => item.description?.includes(value))
+      return newLocalData
+    }
+    if (key === 'categorySearch') {
+      const newLocalData = localData.filter(item => item.category?.includes(value))
+      return newLocalData
+    }
+    if (key === 'dataSearch') {
+      const newLocalData = localData.filter(item => new Date(item.data).getTime() < new Date(value).getTime())
+      return newLocalData
+    }
+    else return []
+  }
+
+  changeTask(id: number) {
     const localData = this.getTasksDataUser()
     const changeTask = localData.find(el => el.id === id)
     localStorage.setItem('changeTask', JSON.stringify(changeTask))
   }
 
-  deleteClass(id:number) {
+  deleteClass(id: number) {
     const localData = this.getClassData()
 
     let index = localData.findIndex(el => el.id === id)
     localData.splice(index, 1)
     localStorage.setItem('dataClass', JSON.stringify(localData))
-    console.log('localClass', localData) 
+    console.log('localClass', localData)
 
   }
 
-  deleteData(id:number) {
+  deleteData(id: number) {
     const localData = this.getTasksData()
 
     let index = localData.findIndex(el => el.id === id);
 
     localData.splice(index, 1)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-    console.log('local', localData) 
+    console.log('local', localData)
 
   }
 
@@ -99,9 +122,9 @@ export class TaskService {
     localStorage.setItem('dataClass', JSON.stringify(localData))
   }
 
-  changeData(name:string, changeId:number) {    
+  changeData(name: string, changeId: number) {
     const localData = this.getTasksData()
-    
+
     let index = localData.findIndex(el => el.id === changeId);
 
     let item = localData[index].name = name
@@ -112,22 +135,22 @@ export class TaskService {
 
   }
 
-  checkCreateOrChangeClass(selectedClass:string | Class) {
-    if(typeof selectedClass == 'object'){
+  checkCreateOrChangeClass(selectedClass: string | Class) {
+    if (typeof selectedClass == 'object') {
 
-      const classItem:Class = selectedClass
+      const classItem: Class = selectedClass
 
       return classItem.name
 
-    } else {      
+    } else {
 
       this.addClass(selectedClass)
 
       return selectedClass
-    }    
+    }
   }
 
-  createIdItem () {
+  createIdItem() {
     let idLast: any = localStorage.getItem('idLast')
     let idNull = JSON.parse(idLast)
     idNull ??= 3
@@ -137,9 +160,9 @@ export class TaskService {
     return idItem
   }
 
-  addData(selectedClass:string | Class, name: string, data: string, description: string) {
+  addData(selectedClass: string | Class, name: string, data: string, description: string) {
     const localData = this.getTasksData()
-    const userId = JSON.parse(this.authService.getPersonaId()?? '1')
+    const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)
     const id = this.createIdItem()
 
@@ -160,9 +183,9 @@ export class TaskService {
     console.log('data', localData)
   }
 
-  addClass(name:string) {
+  addClass(name: string) {
     const localData = this.getClassData()
-    const userId = JSON.parse(this.authService.getPersonaId()?? '1')
+    const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
 
     const idLast: any = localStorage.getItem('idLastClass')
     let idNull = JSON.parse(idLast)
@@ -183,15 +206,15 @@ export class TaskService {
 
   setData() {
     return localStorage.setItem('dataStorage', JSON.stringify(this.data));
-   }
+  }
   setClass() {
     return localStorage.setItem('dataClass', JSON.stringify(this.dataClass));
-   }
+  }
 
   getTasksDataUser() {
-   const localData = this.getTasksData()
-   const localDataUser = localData.filter(el => el.userId === JSON.parse(this.authService.getPersonaId()?? '0') )
-   return localDataUser
+    const localData = this.getTasksData()
+    const localDataUser = localData.filter(el => el.userId === JSON.parse(this.authService.getPersonaId() ?? '0'))
+    return localDataUser
   }
 
   getTasksData(): Task[] {
@@ -204,7 +227,7 @@ export class TaskService {
 
   getClassDataUser() {
     const localData = this.getClassData()
-    const localDataUser = localData.filter(el => el.userId === JSON.parse(this.authService.getPersonaId()?? '0') )
+    const localDataUser = localData.filter(el => el.userId === JSON.parse(this.authService.getPersonaId() ?? '0'))
     return localDataUser
   }
 
@@ -216,8 +239,8 @@ export class TaskService {
     }
   }
 
-  checkClickCreateWindow(bitBox:any, table:any, ref:any) {
-    if (typeof document !== 'undefined') {    
+  checkClickCreateWindow(bitBox: any, table: any, ref: any) {
+    if (typeof document !== 'undefined') {
       document.addEventListener('click', (e) => {
         const click = e.composedPath().includes(bitBox.nativeElement) || e.composedPath().includes(table.showButton.nativeElement)
         // || e.composedPath().includes(this.table.changeButton.nativeElement)

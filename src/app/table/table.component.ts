@@ -88,24 +88,28 @@ export class TableComponent implements OnDestroy {
     })
   }  
 
+  multiSearch(value:string, key:string) {
+    this.tasks = this.taskService.multiSearch(value,key)
+  }
+
   clearSearch() {
     this.tasks = this.taskService.getTasksDataUser();
   }
 
-  categorySearch(value: string) {
-    this.tasks = this.searchService.categorySearch(value)
-  }
+  // categorySearch(value: string) {
+  //   this.tasks = this.searchService.categorySearch(value)
+  // }
 
-  nameSearch(value: string) {
-    this.tasks = this.searchService.nameSearch(value)
-  }
+  // nameSearch(value: string) {
+  //   this.tasks = this.searchService.nameSearch(value)
+  // }
 
-  descriptionSearch(value: string) {
-    this.tasks = this.searchService.descriptionSearch(value)
-  }
-  dataSearch() {
-    this.tasks = this.searchService.dataSearch(this.formGroup.value.date)
-  }
+  // descriptionSearch(value: string) {
+  //   this.tasks = this.searchService.descriptionSearch(value)
+  // }
+  // dataSearch() {
+  //   this.tasks = this.searchService.dataSearch(this.formGroup.value.date)
+  // }
 
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {
