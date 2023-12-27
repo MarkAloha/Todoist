@@ -21,10 +21,10 @@ import { LoginForm } from '../domain/types';
     RouterLink,
     RouterOutlet,
     ReactiveFormsModule],
-  templateUrl: './authorization.component.html',
-  styleUrl: './authorization.component.scss'
+  templateUrl: './registration.component.html',
+  styleUrl: './registration.component.scss'
 })
-export class AuthorizationComponent {
+export class RegistrationComponent {
 
   loginForm: FormGroup
 
@@ -32,8 +32,8 @@ export class AuthorizationComponent {
 
     this.loginForm = new FormGroup<LoginForm>({
 
-      email: new FormControl('null', [Validators.required, Validators.email]),
-      password: new FormControl('null', [Validators.required, Validators.pattern(
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.pattern(
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
       )])
     })
