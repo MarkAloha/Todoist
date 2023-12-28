@@ -1,25 +1,31 @@
 <div class="bitBox" #bitBox>
 
-  <div class="card flex justify-content-center">
-    Категория:
-    <p-dropdown [options]="ClassItem" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true"
-      optionLabel="name"></p-dropdown>
-  </div>
-
   <form [formGroup]="formGroup">
-    Дата:
-    <p-calendar formControlName="date"></p-calendar>
+
+    <div class="card flex justify-content-center">
+
+      Категория:
+      <p-dropdown [options]="ClassItem" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true"
+        optionLabel="name"></p-dropdown>
+    </div>
+    <div>
+      Дата:
+      <p-calendar [(ngModel)]="defaultDate" dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
+    </div>
+    <label for="addItemInput">Задача: </label>
+
+    <input value="{{changeTask.name}}" #newItem
+      (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+    <div>
+
+      Описание:
+      <input value="{{changeTask.description}}" #newItemDescription
+        (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+    </div>
+    <p-button (click)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
+      запланировать!
+    </p-button>
+
   </form>
-  <label for="addItemInput">Задача: </label>
-
-  <input value="{{changeTask.name}}" #newItem (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
-  <div>
-    Описание:
-    <input value="{{changeTask.description}}" #newItemDescription (keyup.enter)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
-  </div>
-  <p-button (click)="addTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
-    запланировать!
-  </p-button>
-
 
 </div>

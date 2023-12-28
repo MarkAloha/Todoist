@@ -16,6 +16,6 @@
                   <label class="form-label" for="typePasswordX">Пароль</label>
                   <p *ngIf="this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched"><small >Требуется пароль (Минимум 8 символов и 1 цифра)</small></p>
                 </div>
-                <button  [disabled]="loginForm.invalid" type="submit">Создать</button>
+                <button [disabled]="loginForm.invalid" type="submit">Создать</button>
 
               </form>

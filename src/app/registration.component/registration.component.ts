@@ -28,7 +28,10 @@ export class RegistrationComponent {
 
   loginForm: FormGroup
 
-  constructor(private userService: UserService, public ref: DynamicDialogRef) {
+  constructor(
+    private userService: UserService, 
+    public ref: DynamicDialogRef,
+    private router: Router,) {
 
     this.loginForm = new FormGroup<LoginForm>({
 
@@ -43,6 +46,7 @@ export class RegistrationComponent {
     const login = this.loginForm.value.email
     const password = this.loginForm.value.password
     this.userService.addUser(login, password)
+    this.router.navigate(['/login'])
   }
 
 }

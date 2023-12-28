@@ -160,7 +160,7 @@ export class TaskService {
     return idItem
   }
 
-  addData(selectedClass: string | Class, name: string, data: string, description: string) {
+  addData(selectedClass: string | Class , name: string, data: string, description: string) {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)

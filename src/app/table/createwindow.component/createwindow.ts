@@ -44,12 +44,15 @@ import { DropdownModule } from 'primeng/dropdown';
 export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
+  changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull')
   ClassItem: Class[] | undefined;
-  selectedClass!: Class | string;
+  selectedClass: Class | string = this.changeTask.category ?? 'null';
   nameChange = localStorage.getItem('changeName') ?? null
-  changeId = Number(localStorage.getItem('changeId')) ?? null  
-  changeTask: Task = JSON.parse(localStorage.getItem('changeTask')?? localStorage.getItem('createTask') ?? 'localChangeNull')
-  
+  changeId = Number(localStorage.getItem('changeId')) ?? null
+
+
+  defaultDate: Date = new Date(this.changeTask.data)
+
 
 
   @ViewChild('bitBox') bitBox: any
@@ -64,7 +67,6 @@ export class CreateWindow implements OnInit {
   }
 
   ngOnInit() {
-
     this.formGroup = new FormGroup({
       date: new FormControl<Date | null>(null)
     })
@@ -75,7 +77,9 @@ export class CreateWindow implements OnInit {
 
   addTask(name: string, description: string) {
 
-    
+    console.log(this.formGroup)
+
+    console.log(this.changeTask.data)
     this.taskService.addData(this.selectedClass, name, this.formGroup.value.date, description);
     // console.log(typeof(this.formGroup.value.date))
     this.ref.close();

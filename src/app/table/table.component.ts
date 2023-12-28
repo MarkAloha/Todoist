@@ -114,21 +114,21 @@ export class TableComponent implements OnDestroy {
     this.tasks = this.taskService.getTasksDataUser()
   }
 
-  showChangeTask(id: number, name: string) {
-    this.ref = this.dialogService.open(ChangeWindow, {
-      header: 'Изменить',
-      width: '70%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-    });
+  // showChangeTask(id: number, name: string) {
+  //   this.ref = this.dialogService.open(ChangeWindow, {
+  //     header: 'Изменить',
+  //     width: '70%',
+  //     contentStyle: { overflow: 'auto' },
+  //     baseZIndex: 10000,
+  //   });
 
-    localStorage.setItem('changeId', String(id))
-    localStorage.setItem('changeName', name)
+  //   localStorage.setItem('changeId', String(id))
+  //   localStorage.setItem('changeName', name)
 
-    this.ref.onClose.subscribe((task: Task) => {
-      this.tasks = this.taskService.getTasksDataUser();
-    })
-  }
+  //   this.ref.onClose.subscribe((task: Task) => {
+  //     this.tasks = this.taskService.getTasksDataUser();
+  //   })
+  // }
 
   showAddTask(id:number) {
 
