@@ -99,6 +99,7 @@ export class TaskService {
 
     if (id === -1) {
 
+      let currentDate = new Date()
 
     const classChangeCreate = {
       id: -1,
@@ -110,7 +111,8 @@ export class TaskService {
       id: -1,
       name: '',
       description: '',
-      userId: -1
+      userId: -1,
+      data: currentDate
   }
     localStorage.setItem('createTask', JSON.stringify(createTask))
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
