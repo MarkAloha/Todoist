@@ -5,8 +5,8 @@
     <div class="card flex justify-content-center">
 
       Категория:
-      <p-dropdown [options]="ClassItem" [(ngModel)]="selectedClass" placeholder="Выбрать категорию" [editable]="true"
-        optionLabel="name"></p-dropdown>
+      <p-dropdown formControlName="defaultClass" [(ngModel)]="defaultClass" [options]="ClassItem"  placeholder="Выбрать категорию" [editable]="true"
+       optionLabel="name" ></p-dropdown>
     </div>
     <div>
       Дата:

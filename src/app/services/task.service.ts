@@ -86,10 +86,51 @@ export class TaskService {
     else return []
   }
 
-  changeTask(id: number) {
+  // createWindowChangeClass (category: string | undefined) {
+  //   const localData = this.getClassDataUser()
+  //   let index = localData.findIndex(el => el.name === category )
+  //   const classChange = localData[index]
+  //   localStorage.setItem('classChange', JSON.stringify(classChange))
+  // }
+
+  changeCreateTask(id: number) {
+
+    // мы получаем id задачи(id всегда >= 0), но при нажатие кнопки создать, а не изменить мы получаем id -1
+
+    if (id === -1) {
+
+
+    const classChangeCreate = {
+      id: -1,
+    name: '',
+    userId: -1
+    }
+
+    const createTask = {
+      id: -1,
+      name: '',
+      description: '',
+      userId: -1
+  }
+    localStorage.setItem('createTask', JSON.stringify(createTask))
+    localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
+    
+  }
+
+  else {
+    // Получаем объект задачи которую изменяем
+    const localClassData = this.getClassDataUser()
     const localData = this.getTasksDataUser()
-    const changeTask = localData.find(el => el.id === id)
-    localStorage.setItem('changeTask', JSON.stringify(changeTask))
+    const localChangeTask = localData.find(el => el.id == id)
+    localStorage.setItem('changeTask', JSON.stringify(localChangeTask))
+
+    // Получаем объект категорий 
+    const indexClass = localClassData.findIndex(el => el.name.toLowerCase() === localChangeTask?.category?.toLowerCase())   
+    const classChangeCreate = localClassData[indexClass]
+    localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
+    console.log('localClassData',localClassData)
+  }
+
   }
 
   deleteClass(id: number) {

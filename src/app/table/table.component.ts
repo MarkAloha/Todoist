@@ -131,20 +131,16 @@ export class TableComponent implements OnDestroy {
   // }
 
   showAddTask(id:number) {
-
-    const createTask = {
-      id: -1,
-      name: '',
-      description: '',
-      userId: -1
-  }
-    localStorage.setItem('createTask', JSON.stringify(createTask))
-
-    if (id > -1){
-    this.taskService.changeTask(id)
-    }
+    // const classChangeCreate = {
+    //   id: -1,
+    // name: '',
+    // userId: -1
+    // }
+    // localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
     // localStorage.setItem('changeId', String(id))
     // localStorage.setItem('changeName', name)
+
+    this.taskService.changeCreateTask(id)
 
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Задача',

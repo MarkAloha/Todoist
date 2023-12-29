@@ -46,11 +46,13 @@ export class CreateWindow implements OnInit {
   formGroup!: FormGroup;
   changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull')
   ClassItem: Class[] | undefined;
-  selectedClass: Class | string = this.changeTask.category ?? 'null';
-  nameChange = localStorage.getItem('changeName') ?? null
-  changeId = Number(localStorage.getItem('changeId')) ?? null
+  nameChange = localStorage.getItem('changeName') ?? 'null'
+  changeId = Number(localStorage.getItem('changeId')) ?? 'null'
 
-
+  // defaultClass: Class = {id: 1,
+  //   name: "string",
+  //   userId: 1}
+  defaultClass: Class = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
   defaultDate: Date = new Date(this.changeTask.data)
 
 
@@ -68,21 +70,15 @@ export class CreateWindow implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      date: new FormControl<Date | null>(null)
+      date: new FormControl<Date | null>(null),
+      defaultClass: new FormControl<Class | null>(null)
     })
     this.ClassItem = this.taskService.getClassDataUser()
-
   }
 
 
   addTask(name: string, description: string) {
-
-    console.log(this.formGroup)
-
-    console.log(this.changeTask.data)
-    this.taskService.addData(this.selectedClass, name, this.formGroup.value.date, description);
-    // console.log(typeof(this.formGroup.value.date))
+    this.taskService.addData(this.defaultClass, name, this.formGroup.value.date, description);
     this.ref.close();
-
   }
 }
