@@ -6,7 +6,7 @@ export interface Task {
     name?: string;
     description?: string;
     category?: string;
-    status?: string;
+    status: boolean;
     userId: number;
 }
 

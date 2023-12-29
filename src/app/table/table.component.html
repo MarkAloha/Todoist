@@ -3,8 +3,8 @@
 <app-header></app-header>
 
 <div #changeButton class="card">
-    <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
-        <ng-template pTemplate="caption">
+    <p-table [value]="tasks"  [tableStyle]="{'min-width': '60rem'}">
+        <ng-template pTemplate="caption" >
             <div class="flex align-items-center justify-content-between">
                 <h1>Задачи</h1>
 
@@ -12,7 +12,6 @@
 
                     <p-button class="item" (click)="showAddTask(-1)" icon="pi pi-info-circle"
                         label="Создать"></p-button>
-
 
                     <p-button class="item" (click)="showAddClass()" icon="pi pi-info-circle"
                         label="Категории"></p-button>
@@ -74,7 +73,7 @@
 
         </ng-template>
 
-        <ng-template pTemplate="body" let-task>
+        <ng-template pTemplate="body" let-task let-rowIndex="rowIndex">
             <tr>
                 <td>{{task.name}}
                     <div>
@@ -87,8 +86,8 @@
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.data | date}}</td>
-                <td><p-tag [value]="task.status" [severity]="getSeverity(task.status)"></p-tag>
-                    <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+                <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'" [severity]="getSeverity(task.status)"></p-tag>
+                    <p-checkbox [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId="binary"></p-checkbox>
                 </td>
             </tr>
         </ng-template>

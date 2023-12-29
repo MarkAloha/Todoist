@@ -14,7 +14,7 @@ export class TaskService {
       name: 'поиграть',
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'дока 2',
-      status: 'Выполнено',
+      status: true,
       category: 'дом',
       userId: 1
     },
@@ -24,7 +24,7 @@ export class TaskService {
       name: 'тренировка',
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'ноги',
-      status: 'В процессе',
+      status: false,
       category: 'работа',
       userId: 1
     },
@@ -34,7 +34,7 @@ export class TaskService {
       name: 'поспать',
       data: 'Wed Dec 27 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'сон',
-      status: 'Выполнено',
+      status: true,
       category: 'магазин',
       userId: 1
     },
@@ -44,7 +44,7 @@ export class TaskService {
       name: 'поесть',
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'еду',
-      status: 'Выполнено',
+      status: false,
       category: 'магазин',
       userId: 1
     },
@@ -215,7 +215,7 @@ export class TaskService {
       data,
       description,
       category,
-      status: 'В процессе',
+      status: false,
       userId
     };
 

@@ -164,11 +164,11 @@ export class TableComponent implements OnDestroy {
     }
   }
 
-  getSeverity(status: string) {
+  getSeverity(status: boolean) {
     switch (status) {
-      case 'Выполнено':
+      case true:
         return 'success';
-      case 'В процессе':
+      case false:
         return 'warning';
       default:
         return 'warning';
