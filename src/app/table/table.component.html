@@ -85,9 +85,9 @@
                 </td>
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
-                <td>{{task.data | date: 'd/M/yy'}}</td>
+                <td>{{task.data | date: 'd/M/yyyy'}}</td>
                 <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'" [severity]="getSeverity(task.status)"></p-tag>
-                    <p-checkbox [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId="binary"></p-checkbox>
+                    <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId="binary"></p-checkbox>
                 </td>
             </tr>
         </ng-template>

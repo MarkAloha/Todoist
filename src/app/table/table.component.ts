@@ -1,5 +1,5 @@
 import { TranslateService, TranslateStore } from '@ngx-translate/core';
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -59,11 +59,11 @@ import '@angular/common/locales/global/ru'
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
-export class TableComponent implements OnDestroy {
+export class TableComponent implements OnInit,OnDestroy {
   tasks!: Task[];
   checked: boolean = false;
   searchButton: boolean = false;
-  searchStr: any = '';
+  // searchStr: any = '';
   formGroup!: any;
   ru:any;
   
@@ -97,7 +97,7 @@ export class TableComponent implements OnDestroy {
       clear: 'Очистить'
   }
 
-  this.primengConfig.setTranslation(this.ru)
+    this.primengConfig.setTranslation(this.ru)
 
     this.ru = {
       closeText: 'Закрыть',
@@ -131,6 +131,10 @@ export class TableComponent implements OnDestroy {
       date: new FormControl<Date | null>(null)
     })
   }  
+
+  checkboxStatusChange(status:boolean, id: number) {
+    this.taskService.checkboxStatusChange(status, id)
+  }
 
   multiSearch(value:string, key:string) {
     this.tasks = this.taskService.multiSearch(value,key)

@@ -93,6 +93,15 @@ export class TaskService {
   //   localStorage.setItem('classChange', JSON.stringify(classChange))
   // }
 
+  checkboxStatusChange (status: boolean, id: number) {
+    const localData = this.getTasksData()
+    const index = localData.findIndex(el => el.id === id)
+    localData[index].status = !status
+    localStorage.setItem('dataStorage', JSON.stringify(localData))
+    console.log(localData)
+    console.log(status)
+  }
+
   changeCreateTask(id: number) {
 
     // мы получаем id задачи(id всегда >= 0), но при нажатие кнопки создать, а не изменить мы получаем id -1
