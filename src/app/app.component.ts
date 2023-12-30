@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule, RouterOutlet, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,6 @@ import { TaskService } from './services/task.service';
 import { RegistrationComponent } from './registration.component/registration.component';
 import { PrimeNGConfig } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import '@angular/common/locales/global/ru'
 
 
 
@@ -25,7 +24,7 @@ import '@angular/common/locales/global/ru'
     TableComponent,
     RegistrationComponent,
     RouterModule,
-    RouterModule,    
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -38,12 +37,11 @@ export class AppComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private router: Router,
-    private config: PrimeNGConfig,
-  ) {  }
+    
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {      
+   
   }
-
-
 
 }

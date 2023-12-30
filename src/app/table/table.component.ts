@@ -1,3 +1,4 @@
+import { TranslateService, TranslateStore } from '@ngx-translate/core';
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +19,7 @@ import {
 } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { CreateWindow } from './createwindow.component/createwindow';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ChangeWindow } from './changewindow.component/changewindow';
 import { ClassWindow } from './classwindow.component/classwindow';
@@ -26,6 +27,10 @@ import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
+import '@angular/common/locales/global/ru'
+
+
+
 
 @Component({
   selector: 'app-table',
@@ -50,7 +55,7 @@ import { CalendarModule } from 'primeng/calendar';
     ReactiveFormsModule,
     CalendarModule
   ],
-  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router,],
+  providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, PrimeNGConfig,],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -59,8 +64,9 @@ export class TableComponent implements OnDestroy {
   checked: boolean = false;
   searchButton: boolean = false;
   searchStr: any = '';
-  formGroup!: any
-  ru:any
+  formGroup!: any;
+  ru:any;
+  
 
   @ViewChild('showButton') showButton: any
   @ViewChild('changeButton') changeButton: any
@@ -69,12 +75,30 @@ export class TableComponent implements OnDestroy {
     public dialogService: DialogService,
     public messageService: MessageService,
     public taskService: TaskService,
-    private confirmationService: ConfirmationService
-  ) {  }
+    private confirmationService: ConfirmationService,
+    private primengConfig: PrimeNGConfig,
+  ) { 
+
+   }
 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
+
+
+    this.ru = {
+      firstDayOfWeek: 1,
+      dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+      dayNamesShort: ['Воск','Пон' , 'Вт' , 'Ср' , 'Четв' , 'Пят' , 'Суб'],
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      monthNames: ['Январь', 'Февраль' , 'Март' , 'Апрель' , 'Май' , 'Июнь' , 'Июль' , 'Август' , 'Сентябрь','Октябрь','Ноябрь','Декабрь' ],
+      monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],
+      today: 'Сегодня',
+      clear: 'Очистить'
+  }
+
+  this.primengConfig.setTranslation(this.ru)
+
     this.ru = {
       closeText: 'Закрыть',
       prevText: 'Назад',
@@ -217,3 +241,5 @@ export class TableComponent implements OnDestroy {
 
 
 }
+
+

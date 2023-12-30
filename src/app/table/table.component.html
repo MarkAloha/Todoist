@@ -51,7 +51,7 @@
 
                             <div class="serchItem">
                                 Дата
-                                <p-calendar formControlName="date"></p-calendar>
+                                <p-calendar  [locale]="ru" formControlName="date"></p-calendar>
                                 <button (click)="multiSearch(this.formGroup.value.date, 'dataSearch')">Искать</button>
                             </div>
 
@@ -85,7 +85,7 @@
                 </td>
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
-                <td>{{task.data | date: 'MMM d yyyy': '+3': 'ru'}}</td>
+                <td>{{task.data | date: 'd/M/yy'}}</td>
                 <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'" [severity]="getSeverity(task.status)"></p-tag>
                     <p-checkbox [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId="binary"></p-checkbox>
                 </td>
