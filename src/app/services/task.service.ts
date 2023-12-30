@@ -80,7 +80,7 @@ export class TaskService {
       return newLocalData
     }
     if (key === 'dataSearch') {
-      const newLocalData = localData.filter(item => new Date(item.data).getTime() < new Date(value).getTime())
+      const newLocalData = localData.filter(item => new Date(item.data).getTime() <= new Date(value).getTime())
       return newLocalData
     }
     else return []
