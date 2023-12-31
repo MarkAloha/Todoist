@@ -140,7 +140,7 @@ export class TaskService {
     localStorage.setItem('changeTask', JSON.stringify(localChangeTask))
 
     // Получаем объект категорий 
-    const indexClass = localClassData.findIndex(el => el.name.toLowerCase() === localChangeTask?.category?.toLowerCase())   
+    const indexClass = localClassData.findIndex(el => el.name.toLowerCase() === localChangeTask?.category?.toLowerCase()?? '')   
     const classChangeCreate = localClassData[indexClass]
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
