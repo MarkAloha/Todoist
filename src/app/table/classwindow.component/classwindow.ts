@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit,  ElementRef,  } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Class, Task } from '../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -57,7 +57,8 @@ export class ClassWindow implements OnInit {
 
   addClass(name: string) {   
     this.taskService.addClass(name)
-    this.ref.close();
+    this.categories = this.taskService.getClassDataUser()
+    // this.ref.close();
   }
 
 

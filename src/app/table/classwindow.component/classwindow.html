@@ -1,7 +1,7 @@
 Новая категория
-<input Новая категория #newItem pInputText (keyup.enter)="addClass(newItem.value)" id="addItemInput" />
+<input Новая категория #newItem pInputText (keyup.enter)="addClass(newItem.value); newItem.value=''" id="addItemInput" />
 
-<p-button size="small" (click)="addClass(newItem.value)" label="Сохранить"></p-button>
+<p-button size="small" (click)="addClass(newItem.value); newItem.value=''" label="Сохранить"></p-button>
 
 <table>
 

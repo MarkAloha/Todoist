@@ -38,7 +38,7 @@ export class ItemComponent {
     }
 
     deleteClassWindow(id: number) {
-        this.taskService.deleteClass(id)
+        this.taskService.deleteClass(id)        
         this.ref.close();
     }
 
