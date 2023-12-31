@@ -109,6 +109,7 @@ export class TaskService {
     if (id === -1) {
 
       let currentDate = new Date()
+      const openCreateOrChangeWindow = 'openCreateWindow'
 
     const classChangeCreate = {
       id: -1,
@@ -123,12 +124,15 @@ export class TaskService {
       userId: -1,
       data: currentDate
   }
+    localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('createTask', JSON.stringify(createTask))
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
     
   }
 
   else {
+    const openCreateOrChangeWindow = 'openChangeWindow'
+
     // Получаем объект задачи которую изменяем
     const localClassData = this.getClassDataUser()
     const localData = this.getTasksDataUser()
@@ -138,8 +142,8 @@ export class TaskService {
     // Получаем объект категорий 
     const indexClass = localClassData.findIndex(el => el.name.toLowerCase() === localChangeTask?.category?.toLowerCase())   
     const classChangeCreate = localClassData[indexClass]
+    localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
-    console.log('localClassData',localClassData)
   }
 
   }
@@ -174,16 +178,23 @@ export class TaskService {
     localStorage.setItem('dataClass', JSON.stringify(localData))
   }
 
-  changeData(name: string, changeId: number) {
-    const localData = this.getTasksData()
+  changeData(selectedClass: string , name: string, data: string, description: string) {
+    let localData: Task[] = this.getTasksData()
+    const changeTask = JSON.parse(localStorage.getItem('changeTask') ?? '{}')
+    let index = localData.findIndex(el => el.id === changeTask.id);
 
-    let index = localData.findIndex(el => el.id === changeId);
+    if ( selectedClass === 'string') { 
 
-    let item = localData[index].name = name
+    }
+
+    localData[index].category = selectedClass
+    localData[index].name = name
+    localData[index].data = data
+    localData[index].description = description
 
     localStorage.setItem('dataStorage', JSON.stringify(localData))
 
-    // console.log(item)
+    console.log(index)
 
   }
 
@@ -210,6 +221,20 @@ export class TaskService {
     idLast = idItem
     localStorage.setItem('idLast', JSON.stringify(idLast))
     return idItem
+  }
+
+  
+  addOrChangeTask(selectedClass: string  , name: string, data: string, description: string) {
+    const openCreateOrChangeWindow = localStorage.getItem('openCreateOrChangeWindow')
+    if (openCreateOrChangeWindow === 'openCreateWindow') {
+      this.addData(selectedClass, name, data, description)
+      localStorage.removeItem('openCreateOrChangeWindow')
+    }
+    if (openCreateOrChangeWindow === 'openChangeWindow') {
+      this.changeData(selectedClass, name, data, description)
+      localStorage.removeItem('openCreateOrChangeWindow')
+    }
+    else return
   }
 
   addData(selectedClass: string | Class , name: string, data: string, description: string) {

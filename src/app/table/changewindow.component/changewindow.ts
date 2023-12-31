@@ -71,7 +71,7 @@ export class ChangeWindow implements OnInit {
 
   changeTask(name: string) {
 
-    this.taskService.changeData(name, this.changeId)
+    // this.taskService.changeData(name, this.changeId)
     this.ref.close();
 
   }

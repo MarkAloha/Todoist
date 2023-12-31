@@ -77,8 +77,10 @@ export class CreateWindow implements OnInit {
   }
 
 
-  addTask(name: string, description: string) {
-    this.taskService.addData(this.defaultClass, name, this.formGroup.value.date, description);
+  addOrChangeTask(name: string, description: string) {
+    this.taskService.addOrChangeTask(this.defaultClass.name, name, this.formGroup.value.date, description);
+    // localStorage.removeItem('openCreateOrChangeWindow');
+    // localStorage.removeItem('openCreateWindow');
     this.ref.close();
   }
 }
