@@ -141,7 +141,7 @@ export class TaskService {
 
     // Получаем объект категорий 
     const indexClass = localClassData.findIndex(el => el.name.toLowerCase() === localChangeTask?.category?.toLowerCase()?? '')   
-    const classChangeCreate = localClassData[indexClass]
+    const classChangeCreate = localClassData[indexClass] ?? 'Категория не найдена'
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
   }
