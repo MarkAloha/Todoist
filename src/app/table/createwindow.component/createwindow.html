@@ -5,21 +5,21 @@
     <div class="card flex justify-content-center">
 
       Категория:
-      <p-dropdown formControlName="defaultClass" [(ngModel)]="defaultClass" [options]="ClassItem"  placeholder="Выбрать категорию" [editable]="true"
-       optionLabel="name" ></p-dropdown>
+      <p-dropdown formControlName="inputClass"  [options]="ClassItem"  
+      placeholder="Выбрать категорию" [editable]="true" optionLabel="name" ></p-dropdown>
     </div>
     <div>
       Дата:
-      <p-calendar [(ngModel)]="defaultDate" dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
+      <p-calendar   dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
     </div>
     <label for="addItemInput">Задача: </label>
 
-    <input value="{{changeTask.name}}" #newItem
+    <input formControlName="nameTask"  #newItem
       (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
     <div>
 
       Описание:
-      <input value="{{changeTask.description}}" #newItemDescription
+      <input formControlName="description"  #newItemDescription
         (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
     </div>
     <p-button (click)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">

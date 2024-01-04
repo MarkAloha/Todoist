@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../domain/types';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -9,13 +9,15 @@ import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table.component';
+import { RouterModule, Router } from '@angular/router';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'change-window',
-  providers: [DialogService, MessageService, TaskService],
+  providers: [TaskService, DynamicDialogRef, Router, DynamicDialogConfig, RouterModule],
   standalone: true,
   imports: [
     CommonModule,
@@ -26,54 +28,34 @@ import { TableComponent } from '../table.component';
     TagModule,
     DynamicDialogModule,
     ToastModule,
-    TableComponent,
+    DropdownModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   templateUrl: './changewindow.html'
 
 })
 export class ChangeWindow implements OnInit {
+
   tasks!: Task[];
-  nameChange = localStorage.getItem('changeName') ?? null
-  changeId = Number(localStorage.getItem('changeId')) ?? null
+  cities: any= [{ name: 'New York', code: 'NY' },
+  { name: 'Rome', code: 'RM' },
+  { name: 'London', code: 'LDN' },
+  { name: 'Istanbul', code: 'IST' },
+  { name: 'Paris', code: 'PRS' }]
+  selectedCity!: any
+  formGroup!: FormGroup;
 
-  @ViewChild('bitBox') bitBox: any
-  @ViewChild('changeButton') changeButton: any
-
-  constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
-    public table: TableComponent) {
-
-    if (typeof document !== 'undefined') {
-      // let box: any = document.querySelector('.box')
-
-      // const div = this.bitBox.querySelector('.box')
-      // console.log('div', div)
-
-      document.addEventListener('click', (e) => {
-        const click = e.composedPath().includes(this.bitBox.nativeElement)
-          // || e.composedPath().includes(this.table.showButton.nativeElement)
-          || e.composedPath().includes(this.table.changeButton.nativeElement)
-        if (!click) {
-          if (this.ref) {
-            this.ref.close();
-          }
-        }
-
-      })
-    }
+  constructor(private taskService: TaskService, private router: Router,) {    
 
   }
 
   ngOnInit() {
-    this.tasks = this.taskService.getTasksDataUser();
+    this.formGroup = new FormGroup({
+      inputClass: new FormControl<string>(''),
+    })
   }
 
-
-  changeTask(name: string) {
-
-    // this.taskService.changeData(name, this.changeId)
-    this.ref.close();
-
-  }
 
 }

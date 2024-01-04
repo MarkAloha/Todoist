@@ -51,7 +51,7 @@
 
                             <div class="serchItem">
                                 Дата
-                                <p-calendar  [locale]="ru" formControlName="date"></p-calendar>
+                                <p-calendar   formControlName="date"></p-calendar>
                                 <button (click)="multiSearch(this.formGroup.value.date, 'dataSearch')">Искать</button>
                             </div>
 
@@ -87,7 +87,7 @@
                 <td>{{task.description}}</td>
                 <td>{{task.data | date: 'd/M/yyyy'}}</td>
                 <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'" [severity]="getSeverity(task.status)"></p-tag>
-                    <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId="binary"></p-checkbox>
+                    <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId={{task.id}}></p-checkbox>
                 </td>
             </tr>
         </ng-template>
@@ -111,5 +111,6 @@
         <a  routerLink="/auth">Закрытая страница</a>
         <p>
             <a [routerLink]="['/login']">Авторизация</a>
+            <a [routerLink]="['/ChangeWindow']">Change</a>
     </div>
 </div>

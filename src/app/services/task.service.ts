@@ -80,7 +80,7 @@ export class TaskService {
       return newLocalData
     }
     if (key === 'dataSearch') {
-      const newLocalData = localData.filter(item => new Date(item.data).getTime() <= new Date(value).getTime())
+      const newLocalData = localData.filter(item => new Date(item.data??'data task undefined').getTime() <= new Date(value).getTime())
       return newLocalData
     }
     else return []
@@ -104,7 +104,7 @@ export class TaskService {
 
   changeCreateTask(id: number) {
 
-    // мы получаем id задачи(id всегда >= 0), но при нажатие кнопки создать, а не изменить мы получаем id -1
+    // при использовании кнопки "создать задачу" получаем ID -1, при "изменить задачу" получаем ID задачи (=<0)
 
     if (id === -1) {
 
@@ -135,12 +135,12 @@ export class TaskService {
 
     // Получаем объект задачи которую изменяем
     const localClassData = this.getClassDataUser()
-    const localData = this.getTasksDataUser()
-    const localChangeTask = localData.find(el => el.id == id)
+    const localDataTasks = this.getTasksDataUser()
+    const localChangeTask = localDataTasks.find(el => el.id == id)
     localStorage.setItem('changeTask', JSON.stringify(localChangeTask))
 
     // Получаем объект категорий 
-    const indexClass = localClassData.findIndex(el => el.name.toLowerCase() === localChangeTask?.category?.toLowerCase()?? '')   
+    const indexClass = localClassData.findIndex(el => el?.name?.toLowerCase() === localChangeTask?.category?.toLowerCase()?? '')   
     const classChangeCreate = localClassData[indexClass] ?? 'Категория не найдена'
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
@@ -181,11 +181,9 @@ export class TaskService {
   changeData(selectedClass: string , name: string, data: string, description: string) {
     let localData: Task[] = this.getTasksData()
     const changeTask = JSON.parse(localStorage.getItem('changeTask') ?? '{}')
-    let index = localData.findIndex(el => el.id === changeTask.id);
+    let index =  changeTask.id;
 
-    if ( selectedClass === 'string') { 
-
-    }
+   
 
     localData[index].category = selectedClass
     localData[index].name = name
@@ -213,14 +211,25 @@ export class TaskService {
     }
   }
 
+  setLanguage() {
+    const ru = {
+      firstDayOfWeek: 1,
+      dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+      dayNamesShort: ['Воск','Пон' , 'Вт' , 'Ср' , 'Четв' , 'Пят' , 'Суб'],
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      monthNames: ['Январь', 'Февраль' , 'Март' , 'Апрель' , 'Май' , 'Июнь' , 'Июль' , 'Август' , 'Сентябрь','Октябрь','Ноябрь','Декабрь' ],
+      monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],
+      today: 'Сегодня',
+      clear: 'Очистить'
+  }
+  return ru
+  }
+
   createIdItem() {
-    let idLast: any = localStorage.getItem('idLast')
-    let idNull = JSON.parse(idLast)
-    idNull ??= 3
-    const idItem = idNull + 1
-    idLast = idItem
-    localStorage.setItem('idLast', JSON.stringify(idLast))
-    return idItem
+    let idLast: number = JSON.parse(localStorage.getItem('idLast') ?? '3')
+    const id = idLast + 1
+    localStorage.setItem('idLast', JSON.stringify(id))
+    return id
   }
 
   
@@ -241,6 +250,7 @@ export class TaskService {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)
+    console.log(selectedClass)
     const id = this.createIdItem()
 
     const sampleAdd: Task = {
@@ -261,24 +271,25 @@ export class TaskService {
   }
 
   addClass(name: string) {
-    const localData = this.getClassData()
+    const localDataClass = this.getClassData()
+
+    // получаем ID активного пользователя
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
 
-    const idLast: any = localStorage.getItem('idLastClass')
-    let idNull = JSON.parse(idLast)
-    idNull ??= 5
-    const id = idNull + 1
-    idNull = id
-    localStorage.setItem('idLastClass', JSON.stringify(idNull))
+
+    // Получаем последний ID или устанавливаем, прибавляем +1 записываем в localStorage
+    const idLast: number = JSON.parse(localStorage.getItem('idLastClass')?? '5') 
+    const id = idLast + 1
+    localStorage.setItem('idLastClass', JSON.stringify(id))
 
     const item = {
       name,
       id,
       userId
     }
-    localData.push(item)
-    localStorage.setItem('dataClass', JSON.stringify(localData))
-    console.log('dataClass', localData)
+    localDataClass.push(item)
+    localStorage.setItem('dataClass', JSON.stringify(localDataClass))
+    console.log('dataClass', localDataClass)
   }
 
   setData() {

@@ -22,7 +22,7 @@ import { ButtonModule } from 'primeng/button';
     styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-    // item: any = ''
+    
     editable: WritableSignal<boolean> = signal(false);
     @Input() class!: Class;
     @Output() remove = new EventEmitter<Item>();

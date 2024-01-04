@@ -1,3 +1,4 @@
+import { CreateChangeForm } from './../../domain/types';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Class, Task } from '../../domain/types';
@@ -44,16 +45,16 @@ import { DropdownModule } from 'primeng/dropdown';
 export class CreateWindow implements OnInit {
   tasks!: Task[];
   formGroup!: FormGroup;
-  changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull')
-  ClassItem: Class[] | undefined;
+  changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull') 
+  ClassItem: Class[] = [] ;
+
   nameChange = localStorage.getItem('changeName') ?? 'null'
   changeId = Number(localStorage.getItem('changeId')) ?? 'null'
 
-  // defaultClass: Class = {id: 1,
-  //   name: "string",
-  //   userId: 1}
-  defaultClass: Class = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
+
+  defaultClass: string = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
   defaultDate: Date = new Date(this.changeTask.data)
+
 
 
 
@@ -70,17 +71,22 @@ export class CreateWindow implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      date: new FormControl<Date | null>(null),
-      defaultClass: new FormControl<Class | null>(null)
+      date: new FormControl<Date>(this.defaultDate),
+      inputClass: new FormControl<string>(this.defaultClass),
+      nameTask: new FormControl<string>(this.changeTask.name),
+      description: new FormControl<any>(this.changeTask.description)
     })
-    this.ClassItem = this.taskService.getClassDataUser()
+    this.ClassItem = this.taskService.getClassDataUser() 
   }
 
 
   addOrChangeTask(name: string, description: string) {
-    this.taskService.addOrChangeTask(this.defaultClass.name, name, this.formGroup.value.date, description);
-    // localStorage.removeItem('openCreateOrChangeWindow');
-    // localStorage.removeItem('openCreateWindow');
+    this.taskService.addOrChangeTask(
+      this.formGroup?.value.inputClass.name??this.formGroup?.value.inputClass, 
+      name, this.formGroup.value.date, description);
+    console.log('formGroup',this.formGroup)
+    console.log('ClassItem',this.ClassItem)
+    console.log('defaultClass',this.defaultClass)
     this.ref.close();
   }
 }

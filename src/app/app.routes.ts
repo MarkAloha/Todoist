@@ -5,10 +5,12 @@ import { RegistrationComponent } from "./registration.component/registration.com
 import { NotFoundComponent } from "./not-found.component/not-found.component";
 import { LoginComponent } from "./login.component/login.component";
 import { authGuard } from "./guards/auth.guard";
+import { ChangeWindow } from "./table/changewindow.component/changewindow";
 
 export const routes: Routes = [
     { path: '', component: TableComponent, pathMatch: 'full', canActivate: [authGuard] },
     { path: 'login', component: LoginComponent },
+    { path: 'ChangeWindow', component: ChangeWindow },
     { path: 'registration', component: RegistrationComponent },
     { path: '**', component: NotFoundComponent },
 
