@@ -5,3 +5,5 @@
 Установка
 
 npm install @ngx-translate/core --save
+
+npm install primeicons
