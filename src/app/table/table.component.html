@@ -1,10 +1,8 @@
-
-
 <app-header></app-header>
 
 <div #changeButton class="card">
-    <p-table [value]="tasks"  [tableStyle]="{'min-width': '60rem'}">
-        <ng-template pTemplate="caption" >
+    <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
+        <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 <h1>Задачи</h1>
 
@@ -24,34 +22,28 @@
 
                             <div class="serchItem">
                                 Название
-                                <input 
-                                   
-                                    #searchName pInputText class="p-inputtext-sm" type="text">
+                                <input #searchName pInputText class="p-inputtext-sm" type="text">
                                 <button (click)="multiSearch(searchName.value, 'nameSearch'); searchName.value=''
                             ">Искать</button>
                             </div>
 
                             <div class="serchItem">
                                 Категория
-                                <input
-                                    
-                                    #searchCategory pInputText class="p-inputtext-sm" type="text">
+                                <input #searchCategory pInputText class="p-inputtext-sm" type="text">
                                 <button
                                     (click)="multiSearch(searchCategory.value, 'categorySearch'); searchCategory.value=''">Искать</button>
                             </div>
 
                             <div class="serchItem">
                                 Описание
-                                <input
-                                    
-                                    #searchDescription pInputText class="p-inputtext-sm" type="text">
+                                <input #searchDescription pInputText class="p-inputtext-sm" type="text">
                                 <button
                                     (click)="multiSearch(searchDescription.value, 'descriptionSearch'); searchDescription.value=''">Искать</button>
                             </div>
 
                             <div class="serchItem">
                                 Дата
-                                <p-calendar   formControlName="date"></p-calendar>
+                                <p-calendar formControlName="date"></p-calendar>
                                 <button (click)="multiSearch(this.formGroup.value.date, 'dataSearch')">Искать</button>
                             </div>
 
@@ -75,19 +67,23 @@
 
         <ng-template pTemplate="body" let-task let-rowIndex="rowIndex">
             <tr>
-                <td>{{task.name}}
+                <td class="nameTd">
+
+                    <div class="taskNameTd">{{task.name}}</div>
                     <div>
                         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
-                        <p-button (click)="confirm(task.id)" icon="pi pi-times" label="Удалить"
-                            class="p-button-danger"></p-button>
-                        <p-button (click)="showAddTask(task.id)" icon="pi pi-info-circle" label="Изменить"></p-button>
+                        <i (click)="confirm(task.id)" style="color:red" class="pi pi-times"></i>
+                        <i (click)="showAddTask(task.id)" style="color: rgb(0, 217, 255)" class="pi pi-pencil"></i>
                     </div>
+
                 </td>
                 <td>{{task.category}}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.data | date: 'd/M/yyyy'}}</td>
-                <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'" [severity]="getSeverity(task.status)"></p-tag>
-                    <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status" name="task{{rowIndex}}" [binary]="true" inputId={{task.id}}></p-checkbox>
+                <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'"
+                        [severity]="getSeverity(task.status)"></p-tag>
+                    <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status"
+                        name="task{{rowIndex}}" [binary]="true" inputId={{task.id}}></p-checkbox>
                 </td>
             </tr>
         </ng-template>
@@ -108,7 +104,7 @@
     <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
     <div>
-        <a  routerLink="/auth">Закрытая страница</a>
+        <a routerLink="/auth">Закрытая страница</a>
         <p>
             <a [routerLink]="['/login']">Авторизация</a>
             <a [routerLink]="['/ChangeWindow']">Change</a>
