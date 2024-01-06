@@ -108,7 +108,6 @@ export class TaskService {
 
     if (id === -1) {
 
-      let currentDate = new Date()
       const openCreateOrChangeWindow = 'openCreateWindow'
 
     const classChangeCreate = {
@@ -122,7 +121,7 @@ export class TaskService {
       name: '',
       description: '',
       userId: -1,
-      data: currentDate
+      data: new Date()
   }
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('createTask', JSON.stringify(createTask))
@@ -181,8 +180,8 @@ export class TaskService {
   changeData(selectedClass: string , name: string, data: string, description: string) {
     let localData: Task[] = this.getTasksData()
     const changeTask = JSON.parse(localStorage.getItem('changeTask') ?? '{}')
-    let index =  changeTask.id;
-
+    let index =  localData.findIndex(el => el.id === changeTask.id);
+    
    
 
     localData[index].category = selectedClass
