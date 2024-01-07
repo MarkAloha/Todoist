@@ -76,8 +76,8 @@ export class CreateWindow implements OnInit {
       date: new FormControl<Date>(this.defaultDate),
       inputClass: new FormControl<string>(this.defaultClass),
       nameTask: new FormControl<string>(this.changeTask.name),
-      description: new FormControl<any>(this.changeTask.description),
-      priority: new FormControl<any>(this.changeTask.priority)
+      description: new FormControl<string | undefined>(this.changeTask.description),
+      priority: new FormControl<number>(this.changeTask.priority)
     })
     this.ClassItem = this.taskService.getClassDataUser() 
   }

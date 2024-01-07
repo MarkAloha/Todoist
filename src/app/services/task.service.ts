@@ -17,7 +17,7 @@ export class TaskService {
       status: true,
       category: 'дом',
       userId: 1,
-      priority: '1'
+      priority: 1
     },
 
     {
@@ -28,7 +28,7 @@ export class TaskService {
       status: false,
       category: 'работа',
       userId: 1,
-      priority: '23'
+      priority: 23
     },
 
     {
@@ -39,7 +39,7 @@ export class TaskService {
       status: true,
       category: 'магазин',
       userId: 1,
-      priority: '46'
+      priority: 47
     },
 
     {
@@ -50,7 +50,7 @@ export class TaskService {
       status: false,
       category: 'магазин',
       userId: 1,
-      priority: '7'
+      priority: 6
     },
   ];
   dataClass: Class[] = [
@@ -236,7 +236,7 @@ export class TaskService {
   }
 
   
-  addOrChangeTask(selectedClass: string  , name: string, data: string, description: string, priority: string) {
+  addOrChangeTask(selectedClass: string  , name: string, data: string, description: string, priority: number) {
     const openCreateOrChangeWindow = localStorage.getItem('openCreateOrChangeWindow')
     if (openCreateOrChangeWindow === 'openCreateWindow') {
       this.addData(selectedClass, name, data, description, priority)
@@ -249,7 +249,7 @@ export class TaskService {
     else return
   }
 
-  addData(selectedClass: string | Class , name: string, data: string, description: string, priority: string) {
+  addData(selectedClass: string | Class , name: string, data: string, description: string, priority: number) {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)

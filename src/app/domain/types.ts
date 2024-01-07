@@ -8,7 +8,7 @@ export interface Task {
     category: string;
     status: boolean;
     userId: number;
-    priority: string;
+    priority: number;
 }
 
 export interface Class {

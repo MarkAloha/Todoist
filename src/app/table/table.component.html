@@ -60,6 +60,7 @@
                 <th pSortableColumn="category">Категория<p-sortIcon field="category"></p-sortIcon></th>
                 <th pSortableColumn="description">Описание<p-sortIcon field="description"></p-sortIcon></th>
                 <th pSortableColumn="data">Дата<p-sortIcon field="data"></p-sortIcon></th>
+                <th pSortableColumn="priority">Приоритет<p-sortIcon field="price"></p-sortIcon></th>
                 <th pSortableColumn="status">Статус<p-sortIcon field="status"></p-sortIcon></th>
             </tr>
 
@@ -80,6 +81,7 @@
                 <td class="tableColum">{{task.category}}</td>
                 <td class="tableColum">{{task.description}}</td>
                 <td class="tableColum">{{task.data | date: 'd/M/yyyy'}}</td>
+                <td class="tableColum">{{task.priority}}</td>
                 <td class="tableColum"><p-tag [value]="task.status? 'Выполнено' : 'В процессе'"
                         [severity]="getSeverity(task.status)"></p-tag>
                     <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status"
@@ -101,12 +103,9 @@
     <h3> Панель администратора </h3>
 
     <p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
-    <p-button (click)="clearTaskAdmin()" icon="pi pi-info-circle" label="Очистить"></p-button>
 
     <div>
-        <a routerLink="/auth">Закрытая страница</a>
         <p>
-            <a [routerLink]="['/login']">Авторизация</a>
-            <a [routerLink]="['/ChangeWindow']">Change</a>
+            <a [routerLink]="['/ChangeWindow']">Тестовая страница</a>
     </div>
 </div>

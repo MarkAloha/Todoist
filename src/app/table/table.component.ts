@@ -131,31 +131,7 @@ export class TableComponent implements OnInit,OnDestroy {
     this.tasks = this.taskService.getTasksDataUser()
   }
 
-  // showChangeTask(id: number, name: string) {
-  //   this.ref = this.dialogService.open(ChangeWindow, {
-  //     header: 'Изменить',
-  //     width: '70%',
-  //     contentStyle: { overflow: 'auto' },
-  //     baseZIndex: 10000,
-  //   });
-
-  //   localStorage.setItem('changeId', String(id))
-  //   localStorage.setItem('changeName', name)
-
-  //   this.ref.onClose.subscribe((task: Task) => {
-  //     this.tasks = this.taskService.getTasksDataUser();
-  //   })
-  // }
-
   showAddTask(id:number) {
-    // const classChangeCreate = {
-    //   id: -1,
-    // name: '',
-    // userId: -1
-    // }
-    // localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
-    // localStorage.setItem('changeId', String(id))
-    // localStorage.setItem('changeName', name)
 
     this.taskService.changeCreateTask(id)
 
@@ -192,19 +168,12 @@ export class TableComponent implements OnInit,OnDestroy {
     }
   }
 
-  clearTaskAdmin() {
+  addTaskAdmin() {  
     localStorage.clear();
-    this.tasks = this.taskService.getTasksDataUser();
-  }
-
-  addTaskAdmin() {   
     this.taskService.setData()
     this.taskService.setClass()
     this.tasks = this.taskService.getTasksDataUser();
   }
-
-
-
 }
 
 
