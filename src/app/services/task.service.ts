@@ -181,7 +181,7 @@ export class TaskService {
     localStorage.setItem('dataClass', JSON.stringify(localData))
   }
 
-  changeData(selectedClass: string , name: string, data: string, description: string) {
+  changeData(selectedClass: string , name: string, data: string, description: string, priority: number) {
     let localData: Task[] = this.getTasksData()
     const changeTask = JSON.parse(localStorage.getItem('changeTask') ?? '{}')
     let index =  localData.findIndex(el => el.id === changeTask.id);
@@ -192,6 +192,7 @@ export class TaskService {
     localData[index].name = name
     localData[index].data = data
     localData[index].description = description
+    localData[index].priority = priority
 
     localStorage.setItem('dataStorage', JSON.stringify(localData))
 
@@ -243,7 +244,7 @@ export class TaskService {
       localStorage.removeItem('openCreateOrChangeWindow')
     }
     if (openCreateOrChangeWindow === 'openChangeWindow') {
-      this.changeData(selectedClass, name, data, description)
+      this.changeData(selectedClass, name, data, description, priority)
       localStorage.removeItem('openCreateOrChangeWindow')
     }
     else return

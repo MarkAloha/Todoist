@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table.component';
 import { CalendarModule } from 'primeng/calendar';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 
@@ -45,10 +45,11 @@ import { SliderModule } from 'primeng/slider';
 })
 
 export class CreateWindow implements OnInit {
-  tasks!: Task[];
+  tasks: Task[] = [];
   formGroup!: FormGroup;
-  changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull') 
-  ClassItem: Class[] = [] ;
+  changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull')
+  ClassItem: Class[] = [];
+  priority: number = this.changeTask.priority
 
   nameChange = localStorage.getItem('changeName') ?? 'null'
   changeId = Number(localStorage.getItem('changeId')) ?? 'null'
@@ -77,19 +78,19 @@ export class CreateWindow implements OnInit {
       inputClass: new FormControl<string>(this.defaultClass),
       nameTask: new FormControl<string>(this.changeTask.name),
       description: new FormControl<string | undefined>(this.changeTask.description),
-      priority: new FormControl<number>(this.changeTask.priority)
+      priority: new FormControl<number>(this.priority),
     })
-    this.ClassItem = this.taskService.getClassDataUser() 
+    this.ClassItem = this.taskService.getClassDataUser()
   }
 
 
   addOrChangeTask(name: string, description: string) {
     this.taskService.addOrChangeTask(
-      this.formGroup?.value.inputClass.name??this.formGroup?.value.inputClass, 
+      this.formGroup?.value.inputClass.name ?? this.formGroup?.value.inputClass,
       name, this.formGroup.value.date, description, this.formGroup.value.priority);
-    console.log('formGroup',this.formGroup)
-    console.log('ClassItem',this.ClassItem)
-    console.log('defaultClass',this.defaultClass)
+    console.log('formGroup', this.formGroup)
+    console.log('ClassItem', this.ClassItem)
+    console.log('defaultClass', this.defaultClass)
     this.ref.close();
   }
 }
