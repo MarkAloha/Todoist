@@ -1,16 +1,17 @@
 @import "primeicons/primeicons.css";
 
 .pi-times {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .pi-pencil {
-    cursor: pointer
+    cursor: pointer;
+    padding-right: 10px;
 }
 
 .nameTd {
     word-wrap: break-word;
-    max-width: 10%;
+    // max-width: 10%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -23,12 +24,19 @@
     background-color: rgb(0, 255, 255)
 }
 
-// .card {
-//     display: flex;
+.p-datatable .p-datatable-tbody > tr  {
+    display: flex;
+}
+
+// .tableColum { 
+//     // display: flex;    
 // }
 
-.item {
-    margin: 0 15px 0 0
+.headerTable {
+    display: flex;
+    > .tableHeaderItem {
+        padding: 0 1rem 0 0;
+    }
 }
 
 .search {

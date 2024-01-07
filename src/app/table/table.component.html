@@ -4,17 +4,17 @@
     <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
-                <h1>Задачи</h1>
+                <h2>Задачи</h2>
 
-                <div #showButton class="card">
+                <div #showButton class="headerTable">
 
-                    <p-button class="item" (click)="showAddTask(-1)" icon="pi pi-info-circle"
+                    <p-button class="tableHeaderItem" (click)="showAddTask(-1)" icon="pi pi-info-circle"
                         label="Создать"></p-button>
 
-                    <p-button class="item" (click)="showAddClass()" icon="pi pi-info-circle"
+                    <p-button class="tableHeaderItem" (click)="showAddClass()" icon="pi pi-info-circle"
                         label="Категории"></p-button>
 
-                    <p-button (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle"
+                    <p-button class="tableHeaderItem" (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle"
                         label="Поиск"></p-button>
 
                     <form [formGroup]="formGroup">
@@ -67,20 +67,20 @@
 
         <ng-template pTemplate="body" let-task let-rowIndex="rowIndex">
             <tr>
-                <td class="nameTd">
+                <td class="nameTd tableColum">
 
                     <div class="taskNameTd">{{task.name}}</div>
                     <div>
                         <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
-                        <i (click)="confirm(task.id)" style="color:red" class="pi pi-times"></i>
                         <i (click)="showAddTask(task.id)" style="color: rgb(0, 217, 255)" class="pi pi-pencil"></i>
+                        <i (click)="confirm(task.id)" style="color:red" class="pi pi-times"></i>
                     </div>
 
                 </td>
-                <td>{{task.category}}</td>
-                <td>{{task.description}}</td>
-                <td>{{task.data | date: 'd/M/yyyy'}}</td>
-                <td><p-tag [value]="task.status? 'Выполнено' : 'В процессе'"
+                <td class="tableColum">{{task.category}}</td>
+                <td class="tableColum">{{task.description}}</td>
+                <td class="tableColum">{{task.data | date: 'd/M/yyyy'}}</td>
+                <td class="tableColum"><p-tag [value]="task.status? 'Выполнено' : 'В процессе'"
                         [severity]="getSeverity(task.status)"></p-tag>
                     <p-checkbox (ngModelChange)="checkboxStatusChange(task.status, task.id)" [(ngModel)]="task.status"
                         name="task{{rowIndex}}" [binary]="true" inputId={{task.id}}></p-checkbox>
