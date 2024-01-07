@@ -16,6 +16,7 @@ import { TableComponent } from '../table.component';
 import { CalendarModule } from 'primeng/calendar';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
 
 @Component({
   selector: 'create-window',
@@ -34,7 +35,8 @@ import { DropdownModule } from 'primeng/dropdown';
     CalendarModule,
     FormsModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    SliderModule
 
   ],
   templateUrl: './createwindow.html',
@@ -74,7 +76,8 @@ export class CreateWindow implements OnInit {
       date: new FormControl<Date>(this.defaultDate),
       inputClass: new FormControl<string>(this.defaultClass),
       nameTask: new FormControl<string>(this.changeTask.name),
-      description: new FormControl<any>(this.changeTask.description)
+      description: new FormControl<any>(this.changeTask.description),
+      priority: new FormControl<any>(this.changeTask.priority)
     })
     this.ClassItem = this.taskService.getClassDataUser() 
   }
@@ -83,7 +86,7 @@ export class CreateWindow implements OnInit {
   addOrChangeTask(name: string, description: string) {
     this.taskService.addOrChangeTask(
       this.formGroup?.value.inputClass.name??this.formGroup?.value.inputClass, 
-      name, this.formGroup.value.date, description);
+      name, this.formGroup.value.date, description, this.formGroup.value.priority);
     console.log('formGroup',this.formGroup)
     console.log('ClassItem',this.ClassItem)
     console.log('defaultClass',this.defaultClass)

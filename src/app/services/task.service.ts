@@ -16,7 +16,8 @@ export class TaskService {
       description: 'дока 2',
       status: true,
       category: 'дом',
-      userId: 1
+      userId: 1,
+      priority: '1'
     },
 
     {
@@ -26,7 +27,8 @@ export class TaskService {
       description: 'ноги',
       status: false,
       category: 'работа',
-      userId: 1
+      userId: 1,
+      priority: '23'
     },
 
     {
@@ -36,7 +38,8 @@ export class TaskService {
       description: 'сон',
       status: true,
       category: 'магазин',
-      userId: 1
+      userId: 1,
+      priority: '46'
     },
 
     {
@@ -46,7 +49,8 @@ export class TaskService {
       description: 'еду',
       status: false,
       category: 'магазин',
-      userId: 1
+      userId: 1,
+      priority: '7'
     },
   ];
   dataClass: Class[] = [
@@ -232,10 +236,10 @@ export class TaskService {
   }
 
   
-  addOrChangeTask(selectedClass: string  , name: string, data: string, description: string) {
+  addOrChangeTask(selectedClass: string  , name: string, data: string, description: string, priority: string) {
     const openCreateOrChangeWindow = localStorage.getItem('openCreateOrChangeWindow')
     if (openCreateOrChangeWindow === 'openCreateWindow') {
-      this.addData(selectedClass, name, data, description)
+      this.addData(selectedClass, name, data, description, priority)
       localStorage.removeItem('openCreateOrChangeWindow')
     }
     if (openCreateOrChangeWindow === 'openChangeWindow') {
@@ -245,7 +249,7 @@ export class TaskService {
     else return
   }
 
-  addData(selectedClass: string | Class , name: string, data: string, description: string) {
+  addData(selectedClass: string | Class , name: string, data: string, description: string, priority: string) {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)
@@ -259,7 +263,8 @@ export class TaskService {
       description,
       category,
       status: false,
-      userId
+      userId,
+      priority
     };
 
 
