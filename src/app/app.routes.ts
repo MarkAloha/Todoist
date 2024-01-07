@@ -5,7 +5,7 @@ import { RegistrationComponent } from "./registration.component/registration.com
 import { NotFoundComponent } from "./not-found.component/not-found.component";
 import { LoginComponent } from "./login.component/login.component";
 import { authGuard } from "./guards/auth.guard";
-import { ChangeWindow } from "./table/changewindow.component/changewindow";
+import { ChangeWindow } from "./table/test.component/testwindow";
 
 export const routes: Routes = [
     { path: '', component: TableComponent, pathMatch: 'full', canActivate: [authGuard] },

@@ -17,10 +17,10 @@ import {
   DynamicDialogRef,
 } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
-import { CreateWindow } from './createwindow.component/createwindow';
+import { CreateWindow } from './create-change.window.component/create-change.window';
 import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-import { ChangeWindow } from './changewindow.component/changewindow';
+import { ChangeWindow } from './test.component/testwindow';
 import { ClassWindow } from './classwindow.component/classwindow';
 import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';

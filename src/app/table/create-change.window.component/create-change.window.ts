@@ -1,4 +1,3 @@
-import { CreateChangeForm } from './../../domain/types';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Class, Task } from '../../domain/types';
@@ -39,8 +38,8 @@ import { SliderModule } from 'primeng/slider';
     SliderModule
 
   ],
-  templateUrl: './createwindow.html',
-  styleUrl: './createwindow.scss'
+  templateUrl: './create-change.window.html',
+  styleUrl: './create-change.window.scss'
 
 })
 

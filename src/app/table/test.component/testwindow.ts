@@ -33,7 +33,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
     ReactiveFormsModule
 
   ],
-  templateUrl: './changewindow.html'
+  templateUrl: './testwindow.html'
 
 })
 export class ChangeWindow implements OnInit {
