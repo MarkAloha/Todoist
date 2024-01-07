@@ -3,8 +3,9 @@
         <label [for]="class.name">{{class.name}}</label>
 
 
-        <p-button size="small" class="btn" (click)="editable.set(true)">Изменить</p-button>
-        <p-button size="small" class="btn" (click)="deleteClassWindow(class.id)">Удалить</p-button>
+
+        <i (click)="editable.set(true)" style="color: rgb(0, 217, 255)" class="pi pi-pencil"></i>
+        <i (click)="deleteClassWindow(class.id)" style="color:red" class="pi pi-times"></i>
     </div>
 
     <div *ngIf="editable()">
