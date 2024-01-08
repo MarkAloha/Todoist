@@ -20,15 +20,10 @@ export class HeaderComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router) {
-
-
-
-  }
+    private router: Router) {}
 
   ngOnInit() {
     this.loginActiveUser = this.authService.getLoginActiveUser()
-    console.log( this.loginActiveUser)
   }
 
   logout() {

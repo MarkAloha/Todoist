@@ -9,10 +9,6 @@ import { RegistrationComponent } from './registration.component/registration.com
 import { PrimeNGConfig } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 
-
-
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -31,18 +27,11 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './app.component.scss',
 })
 
-
-
 export class AppComponent implements OnInit {
 
   constructor(
-    private taskService: TaskService,
-    private router: Router,
-    
-  ) { }
+  ) {}
 
-  ngOnInit() {      
-   
+  ngOnInit() {
   }
-
 }

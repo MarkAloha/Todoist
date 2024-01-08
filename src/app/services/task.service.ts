@@ -11,11 +11,11 @@ export class TaskService {
   data: Task[] = [
     {
       id: 0,
-      name: 'поиграть',
+      name: 'спать',
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
-      description: 'дока 2',
+      description: 'на кровати',
       status: true,
-      category: 'дом',
+      category: 'Дом',
       userId: 1,
       priority: 1
     },
@@ -24,9 +24,9 @@ export class TaskService {
       id: 1,
       name: 'тренировка',
       data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
-      description: 'ноги',
+      description: 'ноги(пропустить)',
       status: false,
-      category: 'работа',
+      category: 'Спорт',
       userId: 1,
       priority: 23
     },
@@ -35,9 +35,9 @@ export class TaskService {
       id: 2,
       name: 'поспать',
       data: 'Wed Dec 27 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
-      description: 'сон',
+      description: 'прогуглить что это',
       status: true,
-      category: 'магазин',
+      category: 'Важное',
       userId: 1,
       priority: 47
     },
@@ -58,7 +58,8 @@ export class TaskService {
     { id: 2, name: 'Дом', userId: 1 },
     { id: 3, name: 'Магазин', userId: 1 },
     { id: 4, name: 'Учёба', userId: 1 },
-    { id: 5, name: 'Быт', userId: 1 },
+    { id: 5, name: 'Важно', userId: 1 },
+    { id: 6, name: 'Спорт', userId: 1 },
   ]
 
 
@@ -70,9 +71,6 @@ export class TaskService {
     const localData = this.getTasksDataUser()
     if (key === 'nameSearch') {
       const newLocalData = localData.filter(item => item.name?.includes(value))
-      console.log(newLocalData)
-      console.log(value)
-      console.log(key)
       return newLocalData
     }
     if (key === 'descriptionSearch') {
@@ -90,20 +88,12 @@ export class TaskService {
     else return []
   }
 
-  // createWindowChangeClass (category: string | undefined) {
-  //   const localData = this.getClassDataUser()
-  //   let index = localData.findIndex(el => el.name === category )
-  //   const classChange = localData[index]
-  //   localStorage.setItem('classChange', JSON.stringify(classChange))
-  // }
-
   checkboxStatusChange (status: boolean, id: number) {
+    // изменяет статус
     const localData = this.getTasksData()
     const index = localData.findIndex(el => el.id === id)
     localData[index].status = !status
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-    console.log(localData)
-    console.log(status)
   }
 
   changeCreateTask(id: number) {
@@ -157,7 +147,6 @@ export class TaskService {
     let index = localData.findIndex(el => el.id === id)
     localData.splice(index, 1)
     localStorage.setItem('dataClass', JSON.stringify(localData))
-    console.log('localClass', localData)
 
   }
 
@@ -168,7 +157,6 @@ export class TaskService {
 
     localData.splice(index, 1)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-    console.log('local', localData)
 
   }
 
@@ -195,8 +183,6 @@ export class TaskService {
     localData[index].priority = priority
 
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-
-    console.log(index)
 
   }
 
@@ -254,7 +240,6 @@ export class TaskService {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
     const category = this.checkCreateOrChangeClass(selectedClass)
-    console.log(selectedClass)
     const id = this.createIdItem()
 
     const sampleAdd: Task = {
@@ -272,7 +257,6 @@ export class TaskService {
 
     localData.unshift(sampleAdd)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-    console.log('data', localData)
   }
 
   addClass(name: string) {
@@ -294,7 +278,6 @@ export class TaskService {
     }
     localDataClass.push(item)
     localStorage.setItem('dataClass', JSON.stringify(localDataClass))
-    console.log('dataClass', localDataClass)
   }
 
   setData() {

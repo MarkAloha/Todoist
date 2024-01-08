@@ -27,8 +27,7 @@ export class ItemComponent {
     @Input() class!: Class;
     @Output() remove = new EventEmitter<Item>();
 
-    constructor(private taskService: TaskService, public ref: DynamicDialogRef,) {
-       
+    constructor(private taskService: TaskService, public ref: DynamicDialogRef,) {      
         
       }  
 
@@ -41,10 +40,4 @@ export class ItemComponent {
         this.taskService.deleteClass(id)        
         this.ref.close();
     }
-
-    addClass(name: string) {
-        this.taskService.addClass(name)
-        this.ref.close();
-    }
-
 }

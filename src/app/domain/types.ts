@@ -30,8 +30,9 @@ export interface LoginForm {
 }
 
 export interface CreateChangeForm {
-    date: Date;
-    inputClass: string;
-    nameTask: string;
-    description: string;
+    date: any;
+    inputClass: any;
+    nameTask: any;
+    description: any;
+    priority: any;
 }

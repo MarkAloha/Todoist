@@ -62,10 +62,7 @@ export class TableComponent implements OnInit,OnDestroy {
   tasks!: Task[];
   checked: boolean = false;
   searchButton: boolean = false;
-  // searchStr: any = '';
-  formGroup!: any;
-  ru:any;
-  
+  formGroup!: FormGroup;
 
   @ViewChild('showButton') showButton: any
   @ViewChild('changeButton') changeButton: any
@@ -76,18 +73,13 @@ export class TableComponent implements OnInit,OnDestroy {
     public taskService: TaskService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
-  ) { 
-
-   }
+  ) {}
 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
-
     this.primengConfig.setTranslation(this.taskService.setLanguage())   
-
-    this.tasks = this.taskService.getTasksDataUser();
-    
+    this.tasks = this.taskService.getTasksDataUser();    
     this.formGroup = new FormGroup({
       date: new FormControl<Date | null>(null)
     })

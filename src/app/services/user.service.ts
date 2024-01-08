@@ -32,7 +32,6 @@ export class UserService {
             userDataLocal.unshift(newUser)
             localStorage.setItem('userDataStorage', JSON.stringify(userDataLocal))
         }
-        console.log('userData', userDataLocal)
     }
 
     getUserData(): User[] {

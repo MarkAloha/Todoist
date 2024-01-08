@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-import { Class, Task } from '../../domain/types';
+import { Class, CreateChangeForm, Task } from '../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -44,22 +44,13 @@ import { SliderModule } from 'primeng/slider';
 })
 
 export class CreateWindow implements OnInit {
-  tasks: Task[] = [];
   formGroup!: FormGroup;
   changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull')
   ClassItem: Class[] = [];
-  priority: number = this.changeTask.priority
-
-  nameChange = localStorage.getItem('changeName') ?? 'null'
-  changeId = Number(localStorage.getItem('changeId')) ?? 'null'
-
-
+  priority: number = this.changeTask.priority 
   defaultClass: string = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
   defaultDate: Date = new Date(this.changeTask.data)
-
-
-
-
+  
   @ViewChild('bitBox') bitBox: any
   @ViewChild('showButton') showButton: any
 
@@ -72,7 +63,7 @@ export class CreateWindow implements OnInit {
   }
 
   ngOnInit() {
-    this.formGroup = new FormGroup({
+    this.formGroup = new FormGroup<CreateChangeForm>({
       date: new FormControl<Date>(this.defaultDate),
       inputClass: new FormControl<string>(this.defaultClass),
       nameTask: new FormControl<string>(this.changeTask.name),
@@ -82,14 +73,10 @@ export class CreateWindow implements OnInit {
     this.ClassItem = this.taskService.getClassDataUser()
   }
 
-
   addOrChangeTask(name: string, description: string) {
     this.taskService.addOrChangeTask(
       this.formGroup?.value.inputClass.name ?? this.formGroup?.value.inputClass,
       name, this.formGroup.value.date, description, this.formGroup.value.priority);
-    console.log('formGroup', this.formGroup)
-    console.log('ClassItem', this.ClassItem)
-    console.log('defaultClass', this.defaultClass)
     this.ref.close();
   }
 }

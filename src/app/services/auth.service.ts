@@ -25,7 +25,6 @@ export class AuthService {
     setPersonalId(id: number, login:string) {
         localStorage.setItem('activeUser', JSON.stringify(id))
         localStorage.setItem('activeUserLogin', login)
-        console.log('activeUser', localStorage.getItem('activeUser'))
     }
 
     getPersonaId() {
@@ -58,7 +57,6 @@ export class AuthService {
         const userDataLocal = this.userService.getUserData()
         const find = userDataLocal.find((element) => element.email === userInfo.email)
         // Получаем массив со всеми пользователями и ищем совпадения с введеным эмаилом
-        console.log('find', find)
 
         if (userInfo.email === find?.email && userInfo.password === find?.password) {
             this.setToken('davwacrtbdrtdmryftbuyytuadwawd');

@@ -39,27 +39,20 @@ export class ClassWindow implements OnInit {
   tasks!: Task[];
   categories: Class[];
   class!: Class[]
-
+  change = true
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
       this.categories = []
   }
 
-  change = true
-
-
   ngOnInit() {
     this.categories = this.taskService.getClassDataUser()
-  }
-
-  
+  } 
 
   addClass(name: string) {   
     this.taskService.addClass(name)
     this.categories = this.taskService.getClassDataUser()
     // this.ref.close();
   }
-
-
 }
