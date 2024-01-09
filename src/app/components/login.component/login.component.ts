@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  subscription!: Subscription;
+  subscription: Subscription | null = null;
   loginForm: FormGroup
 
   constructor(

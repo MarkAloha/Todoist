@@ -37,23 +37,11 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 })
 export class ChangeWindow implements OnInit {
 
-  tasks!: Task[];
-  cities: any= [{ name: 'New York', code: 'NY' },
-  { name: 'Rome', code: 'RM' },
-  { name: 'London', code: 'LDN' },
-  { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }]
-  selectedCity!: any
-  formGroup!: FormGroup;
-
   constructor(private taskService: TaskService, private router: Router,) {    
 
   }
 
-  ngOnInit() {
-    this.formGroup = new FormGroup({
-      inputClass: new FormControl<string>(''),
-    })
+  ngOnInit() {    
   }
 
 

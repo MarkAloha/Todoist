@@ -36,9 +36,8 @@ import { ItemComponent } from '../class-edit.window.compotent/item.component';
 
 })
 export class ClassWindow implements OnInit {
-  tasks!: Task[];
   categories: Class[];
-  class!: Class[]
+  class: Class[] | null = null
   change = true
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,

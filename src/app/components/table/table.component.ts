@@ -59,10 +59,10 @@ import { ClassWindow } from './class.window.component/classwindow';
   styleUrl: './table.component.scss',
 })
 export class TableComponent implements OnInit,OnDestroy {
-  tasks!: Task[];
+  tasks: Task[] = [];
   checked: boolean = false;
   searchButton: boolean = false;
-  formGroup!: FormGroup;
+  formGroup: FormGroup;
 
   @ViewChild('showButton') showButton: any
   @ViewChild('changeButton') changeButton: any
@@ -73,16 +73,18 @@ export class TableComponent implements OnInit,OnDestroy {
     public taskService: TaskService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
-  ) {}
+  ) {
+    this.formGroup = new FormGroup({
+      date: new FormControl<Date | null>(null)
+    })
+  }
 
   ref: DynamicDialogRef | undefined;
 
   ngOnInit() {
     this.primengConfig.setTranslation(this.taskService.setLanguage())   
     this.tasks = this.taskService.getTasksDataUser();    
-    this.formGroup = new FormGroup({
-      date: new FormControl<Date | null>(null)
-    })
+    
   }  
 
   checkboxStatusChange(status:boolean, id: number) {

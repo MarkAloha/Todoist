@@ -25,7 +25,7 @@ import { ClassWindow } from '../class.window.component/classwindow';
 export class ItemComponent {
     
     editable: WritableSignal<boolean> = signal(false);
-    @Input() class!: Class;
+    @Input() class: Class | null = null;
     @Output() remove = new EventEmitter<Item>();
 
     constructor(private taskService: TaskService, public ref: DynamicDialogRef,) {      
