@@ -1,15 +1,13 @@
 <div>
     <div *ngIf="!editable()">
-        <label [for]="class.name">{{class.name}}</label>
-
-
+        {{class.name}}
 
         <i (click)="editable.set(true)" style="color: rgb(0, 217, 255)" class="pi pi-pencil"></i>
         <i (click)="deleteClassWindow(class.id)" style="color:red" class="pi pi-times"></i>
     </div>
 
     <div *ngIf="editable()">
-        <input type="text" pInputText [value]="class.name" #editedItem
+        <input id="className" type="text" pInputText [value]="class.name" #editedItem
             (keyup.enter)="changeClassWindow(class.id, editedItem.value )">
         <div>
             <p-button size="small" (click)="editable.set(false)">Отмена</p-button>

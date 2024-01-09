@@ -3,35 +3,32 @@
   <form [formGroup]="formGroup">
     <div class="item">
     <label for="addItemInput">Название: </label>
-    <input formControlName="nameTask"  #newItem
-    (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+    <input type="text" id="addItemInput" formControlName="nameTask"  #newItem
+    (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '"  />
   </div>
 
     <div class="item">
       Описание:
-      <input formControlName="description"  #newItemDescription
-        (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" id="addItemInput" />
+      <input type="text" id="description" formControlName="description"  #newItemDescription
+        (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '"  />
     </div>
 
-    <div class="w-full item">
+    <div type="text" class="item">
       Приоритет
-      <input  type="text" formControlName="priority"   />
-      <p-slider formControlName="priority"   ></p-slider>
+      <input  id="priority" type="text" formControlName="priority"   />
+      <p-slider  id="slider" formControlName="priority" ></p-slider>
     </div>
 
     <div  class="card flex justify-content-center item"> Категория:
-      <p-dropdown  formControlName="inputClass"  [options]="ClassItem"  
+      <p-dropdown id="inputClass"  formControlName="inputClass"  [options]="ClassItem"  
       placeholder="Выбрать категорию" [editable]="true" optionLabel="name" ></p-dropdown>
     </div>
 
     <div class="item"> Дата:
-      <p-calendar   dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
-    </div>
+      <p-calendar id="date"  dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
+    </div> 
 
-   
-    
-
-    <p-button [disabled]="formGroup.invalid" (click)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
+    <p-button id="send" [disabled]="formGroup.invalid" (click)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
       запланировать!
     </p-button>
 
