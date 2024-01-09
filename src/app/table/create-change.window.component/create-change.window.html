@@ -31,7 +31,7 @@
    
     
 
-    <p-button  (click)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
+    <p-button [disabled]="formGroup.invalid" (click)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
       запланировать!
     </p-button>
 

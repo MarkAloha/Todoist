@@ -105,9 +105,9 @@ export class TaskService {
       const openCreateOrChangeWindow = 'openCreateWindow'
 
     const classChangeCreate = {
-      id: -1,
-    name: '',
-    userId: -1
+      id: null,
+    name: null,
+    userId: null
     }
 
     const createTask = {

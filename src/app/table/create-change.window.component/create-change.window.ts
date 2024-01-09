@@ -61,8 +61,8 @@ export class CreateWindow  {
         date: new FormControl<Date>(this.defaultDate, Validators.required),
         inputClass: new FormControl<string>(this.defaultClass, Validators.required),
         nameTask: new FormControl<string>(this.changeTask.name, Validators.required),
-        description: new FormControl<string | undefined>(this.changeTask.description),
-        priority: new FormControl<number>(this.priority),
+        description: new FormControl<string | undefined>(this.changeTask.description, Validators.required),
+        priority: new FormControl<number>(this.priority, Validators.required),
       })
       this.ClassItem = this.taskService.getClassDataUser()
 
