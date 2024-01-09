@@ -1,12 +1,13 @@
-import { ClassWindow } from '../table/classwindow.component/classwindow';
+
 import { Component, Input, Output, EventEmitter, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
-import { Item } from "../item"
-import { Class } from '../domain/types';
-import { TaskService } from '../services/task.service';
+import { Item } from "../../../item"
+import { Class } from '../../../domain/types';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
+import { TaskService } from '../../../services/task.service';
+import { ClassWindow } from '../class.window.component/classwindow';
 
 @Component({
     selector: 'app-item',

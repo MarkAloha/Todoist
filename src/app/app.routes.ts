@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { TableComponent } from "./table/table.component";
-import { RegistrationComponent } from "./registration.component/registration.component";
-import { NotFoundComponent } from "./not-found.component/not-found.component";
-import { LoginComponent } from "./login.component/login.component";
 import { authGuard } from "./guards/auth.guard";
-import { ChangeWindow } from "./table/test.component/testwindow";
+import { TableComponent } from "./components/table/table.component";
+import { LoginComponent } from "./components/login.component/login.component";
+import { RegistrationComponent } from "./components/registration.component/registration.component";
+import { ChangeWindow } from "./components/test.component/testwindow";
+import { NotFoundComponent } from "./components/not-found.component/not-found.component";
 
 export const routes: Routes = [
     { path: '', component: TableComponent, pathMatch: 'full', canActivate: [authGuard] },

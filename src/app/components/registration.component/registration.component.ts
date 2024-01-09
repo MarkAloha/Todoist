@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RouterModule, RouterLink, RouterOutlet, Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginForm } from '../domain/types';
+import { LoginForm } from '../../domain/types';
 
 @Component({
   selector: 'app-authorization',

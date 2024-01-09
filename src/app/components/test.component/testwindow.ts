@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../domain/types';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -10,7 +10,6 @@ import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from '../table.component';
 import { RouterModule, Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';

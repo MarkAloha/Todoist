@@ -1,5 +1,5 @@
+import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
-import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -16,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class HeaderComponent {
 
-  loginActiveUser!: string | null
+  loginActiveUser: string | null = null
 
   constructor(
     private authService: AuthService,

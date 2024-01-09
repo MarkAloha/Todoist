@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TaskService } from '../../services/task.service';
-import { Class, CreateChangeForm, Task } from '../../domain/types';
+import { Class, CreateChangeForm, Task } from '../../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -16,6 +15,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
+import { TaskService } from '../../../services/task.service';
 
 @Component({
   selector: 'create-window',

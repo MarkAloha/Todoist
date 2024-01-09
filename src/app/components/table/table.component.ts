@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TaskService } from '../services/task.service';
-import { Task } from '../domain/types';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -20,13 +18,15 @@ import { ToastModule } from 'primeng/toast';
 import { CreateWindow } from './create-change.window.component/create-change.window';
 import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-import { ChangeWindow } from './test.component/testwindow';
-import { ClassWindow } from './classwindow.component/classwindow';
 import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import '@angular/common/locales/global/ru'
+import { TaskService } from '../../services/task.service';
+import { Task } from '../../domain/types';
+import { ChangeWindow } from '../test.component/testwindow';
+import { ClassWindow } from './class.window.component/classwindow';
 
 
 
@@ -52,7 +52,7 @@ import '@angular/common/locales/global/ru'
     HeaderComponent,
     InputTextModule,
     ReactiveFormsModule,
-    CalendarModule
+    CalendarModule,
   ],
   providers: [DialogService, MessageService, TaskService, DynamicDialogConfig, ConfirmationService, Router, PrimeNGConfig,],
   templateUrl: './table.component.html',
