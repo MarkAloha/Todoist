@@ -111,11 +111,12 @@ export class TaskService {
     }
 
     const createTask = {
-      id: -1,
-      name: '',
-      description: '',
-      userId: -1,
-      data: new Date()
+      id: null,
+      name: null,
+      description: null,
+      userId: null,
+      data: new Date(),
+      priority: null
   }
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('createTask', JSON.stringify(createTask))

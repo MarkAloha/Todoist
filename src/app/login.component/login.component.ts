@@ -12,22 +12,27 @@ import { Subscription } from 'rxjs';
   imports: [CommonModule,
     ReactiveFormsModule,
     RouterModule,
-     
+
   ],
-  providers: [AuthService, Router, ],
+  providers: [AuthService, Router,],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  subscription!: Subscription ;
-  loginForm!: FormGroup
+  subscription!: Subscription;
+  loginForm: FormGroup
 
   constructor(
     private router: Router,
     private authService: AuthService
   ) {
-
+    this.loginForm = new FormGroup<LoginForm>({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.pattern(
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+      )])
+    })
   }
 
   submitLogin() {
@@ -39,13 +44,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup<LoginForm>({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required, Validators.pattern(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-      )])
-    })
-
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/'])
     }
@@ -53,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.subscription) {
-    this.subscription.unsubscribe()
+      this.subscription.unsubscribe()
     }
   }
 }

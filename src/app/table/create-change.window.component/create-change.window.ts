@@ -43,8 +43,8 @@ import { SliderModule } from 'primeng/slider';
 
 })
 
-export class CreateWindow implements OnInit {
-  formGroup!: FormGroup;
+export class CreateWindow  {
+  formGroup: FormGroup;
   changeTask: Task = JSON.parse(localStorage.getItem('changeTask') ?? localStorage.getItem('createTask') ?? 'localChangeNull')
   ClassItem: Class[] = [];
   priority: number = this.changeTask.priority 
@@ -57,20 +57,18 @@ export class CreateWindow implements OnInit {
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
+      this.formGroup = new FormGroup<CreateChangeForm>({
+        date: new FormControl<Date>(this.defaultDate, Validators.required),
+        inputClass: new FormControl<string>(this.defaultClass, Validators.required),
+        nameTask: new FormControl<string>(this.changeTask.name, Validators.required),
+        description: new FormControl<string | undefined>(this.changeTask.description),
+        priority: new FormControl<number>(this.priority),
+      })
+      this.ClassItem = this.taskService.getClassDataUser()
+
     document.addEventListener('click', (e) => {
       this.taskService.checkClickCreateWindow(this.bitBox, this.table, this.ref)
     })
-  }
-
-  ngOnInit() {
-    this.formGroup = new FormGroup<CreateChangeForm>({
-      date: new FormControl<Date>(this.defaultDate),
-      inputClass: new FormControl<string>(this.defaultClass),
-      nameTask: new FormControl<string>(this.changeTask.name),
-      description: new FormControl<string | undefined>(this.changeTask.description),
-      priority: new FormControl<number>(this.priority),
-    })
-    this.ClassItem = this.taskService.getClassDataUser()
   }
 
   addOrChangeTask(name: string, description: string) {

@@ -99,8 +99,8 @@ export class TableComponent implements OnInit,OnDestroy {
 
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {
-      header: 'Изменить',
-      width: '100%',
+      header: 'Категории',
+      width: '40%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -129,8 +129,8 @@ export class TableComponent implements OnInit,OnDestroy {
 
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Задача',
-      width: '70%',
-      height: '100%',
+      width: '60%',
+      height: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
