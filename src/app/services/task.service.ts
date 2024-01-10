@@ -142,7 +142,7 @@ export class TaskService {
 
   }
 
-  deleteClass(id: number) {
+  deleteClass(id: number| undefined) {
     const localData = this.getClassData()
 
     let index = localData.findIndex(el => el.id === id)
@@ -151,7 +151,7 @@ export class TaskService {
 
   }
 
-  deleteData(id: number) {
+  deleteData(id: number| undefined) {
     const localData = this.getTasksData()
 
     let index = localData.findIndex(el => el.id === id);
@@ -161,7 +161,7 @@ export class TaskService {
 
   }
 
-  changeClass(id: number, name: string) {
+  changeClass(id: number | undefined, name: string) {
     const localData = this.getClassData()
 
     let index = localData.findIndex(el => el.id === id)

@@ -34,5 +34,4 @@ export interface CreateChangeForm {
     inputClass: any;
     nameTask: any;
     description: any;
-    priority: any;
 }

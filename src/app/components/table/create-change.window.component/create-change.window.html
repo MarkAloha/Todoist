@@ -15,8 +15,8 @@
 
     <div type="text" class="item">
       Приоритет
-      <input  id="priority" type="text" formControlName="priority"   />
-      <p-slider  id="slider" formControlName="priority" ></p-slider>
+      <input [(ngModel)]="this.priority" id="priority" type="text"  [ngModelOptions]="{standalone: true}"  />
+      <p-slider [(ngModel)]="this.priority" id="slider" [ngModelOptions]="{standalone: true}" ></p-slider>
     </div>
 
     <div  class="card flex justify-content-center item"> Категория:

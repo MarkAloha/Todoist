@@ -26,7 +26,7 @@ import '@angular/common/locales/global/ru'
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../domain/types';
 import { ChangeWindow } from '../test.component/testwindow';
-import { ClassWindow } from './class.window.component/classwindow';
+import { ClassWindow } from './class.window.component/class.window.component';
 
 
 
