@@ -7,7 +7,7 @@
 
     <tr *ngFor="let c of categories ">
 
-        <app-item [class]="c"></app-item>
+        <class-change-window (updateListClass)="addItem()"  [class]="c"></class-change-window>
 
        
 

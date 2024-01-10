@@ -13,7 +13,7 @@ import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table.component';
 import { InputTextModule } from 'primeng/inputtext';
-import { ClassEditWindow } from '../class-edit.window.compotent/class-edit.window.compotent';
+import { ClassEditWindow } from './class-edit.window.compotent/class-edit.window.compotent';
 
 @Component({
   selector: 'class-window',
@@ -49,9 +49,27 @@ export class ClassWindow implements OnInit {
     this.categories = this.taskService.getClassDataUser()
   } 
 
+  addItem() {
+    this.categories = this.taskService.getClassDataUser()
+  }
+
   addClass(name: string) {   
     this.taskService.addClass(name)
     this.categories = this.taskService.getClassDataUser()
     // this.ref.close();
+  }
+
+  changeClassWindow(id: number | undefined , name: string) {
+    this.taskService.changeClass(id, name)
+    this.ref.close();
+}
+
+  deleteClassWindow(id: number | undefined) {
+    this.taskService.deleteClass(id)        
+    this.ref.close();
+}
+
+  newClassList() {
+    this.categories = this.taskService.getClassDataUser()
   }
 }
