@@ -34,11 +34,16 @@ export class ClassEditWindow {
 
     changeClassWindow(id: number | undefined , name: string) {
         this.taskService.changeClass(id, name);
-        this.updateListClass.emit()       
+        this.updateListClass.emit()   
+        this.setEditable(false)    
     }
 
     deleteClassWindow(id: number | undefined) {
         this.taskService.deleteClass(id)        
         this.updateListClass.emit()  
+    }
+
+    setEditable(item:boolean) {
+        this.editable.set(item)
     }
 }

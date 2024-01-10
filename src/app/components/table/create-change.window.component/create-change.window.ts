@@ -65,7 +65,7 @@ export class CreateWindow  {
       })
       this.ClassItem = this.taskService.getClassDataUser()
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', () => {
       this.taskService.checkClickCreateWindow(this.bitBox, this.table, this.ref)
     })
   }
