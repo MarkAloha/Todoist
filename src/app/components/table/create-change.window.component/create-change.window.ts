@@ -49,7 +49,7 @@ export class CreateWindow  {
   ClassItem: Class[] = [];
   priority: number = this.changeTask.priority 
   defaultClass: string = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
-  defaultDate: Date = new Date(this.changeTask.data)
+  defaultDate: Date = new Date(this.changeTask.date)
   
   @ViewChild('bitBox') bitBox: any
   @ViewChild('showButton') showButton: any
@@ -70,10 +70,15 @@ export class CreateWindow  {
     })
   }
 
-  addOrChangeTask(name: string, description: string) {
-    this.taskService.addOrChangeTask(
-      this.formGroup?.value.inputClass.name ?? this.formGroup?.value.inputClass,
-      name, this.formGroup.value.date, description, this.priority  );
+  addOrChangeTask() {
+    const createChangeForm = {
+      name: this.formGroup.value.nameTask,
+      category: this.formGroup?.value.inputClass.name ?? this.formGroup?.value.inputClass ,
+      date: this.formGroup.value.date ,
+      description: this.formGroup.value.description,
+      priority: this.priority ,
+    }
+    this.taskService.addOrChangeTask(createChangeForm);
     this.ref.close();
   }
 }

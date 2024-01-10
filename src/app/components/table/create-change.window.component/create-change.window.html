@@ -4,13 +4,13 @@
     <div class="item">
     <label for="addItemInput">Название: </label>
     <input type="text" id="addItemInput" formControlName="nameTask"  #newItem
-    (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '"  />
+    (keyup.enter)="addOrChangeTask(); newItem.value = ' '"  />
   </div>
 
     <div class="item">
       Описание:
       <input type="text" id="description" formControlName="description"  #newItemDescription
-        (keyup.enter)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '"  />
+        (keyup.enter)="addOrChangeTask(); newItem.value = ' '"  />
     </div>
 
     <div type="text" class="item">
@@ -28,7 +28,7 @@
       <p-calendar id="date"  dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
     </div> 
 
-    <p-button id="send" [disabled]="formGroup.invalid" (click)="addOrChangeTask(newItem.value, newItemDescription.value); newItem.value = ' '" class="btn-add">
+    <p-button id="send" [disabled]="formGroup.invalid" (click)="addOrChangeTask(); newItem.value = ' '" class="btn-add">
       запланировать!
     </p-button>
 

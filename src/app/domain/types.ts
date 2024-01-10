@@ -2,12 +2,20 @@ import { FormControl } from "@angular/forms";
 
 export interface Task {
     id: number;
-    data: string ;
+    date: string ;
     name: string;
-    description?: string;
+    description: string;
     category: string;
     status: boolean;
     userId: number;
+    priority: number;
+}
+
+export interface MiniTask {
+    name: string,
+    date: string,
+    description: string;
+    category: string;
     priority: number;
 }
 

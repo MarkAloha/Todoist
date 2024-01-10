@@ -1,4 +1,4 @@
-import { Component, OnInit,  ElementRef,  } from '@angular/core';
+import { Component, OnInit, ElementRef, } from '@angular/core';
 import { TaskService } from '../../../services/task.service';
 import { Class, Task } from '../../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -42,34 +42,20 @@ export class ClassWindow implements OnInit {
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
-      this.categories = []
+    this.categories = []
   }
 
   ngOnInit() {
-    this.categories = this.taskService.getClassDataUser()
-  } 
+    this.setClassList()
+  }
 
-  addItem() {
+  setClassList() {
+    // Обновляем список при изменениях в дочернем компоненте
     this.categories = this.taskService.getClassDataUser()
   }
 
-  addClass(name: string) {   
+  addClass(name: string) {
     this.taskService.addClass(name)
-    this.categories = this.taskService.getClassDataUser()
-    // this.ref.close();
-  }
-
-  changeClassWindow(id: number | undefined , name: string) {
-    this.taskService.changeClass(id, name)
-    this.ref.close();
-}
-
-  deleteClassWindow(id: number | undefined) {
-    this.taskService.deleteClass(id)        
-    this.ref.close();
-}
-
-  newClassList() {
-    this.categories = this.taskService.getClassDataUser()
+    this.setClassList()
   }
 }

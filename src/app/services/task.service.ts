@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { Class, Task } from '../domain/types';
+import { Class, MiniTask, Task } from '../domain/types';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class TaskService {
     {
       id: 0,
       name: 'спать',
-      data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
+      date: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'на кровати',
       status: true,
       category: 'Дом',
@@ -23,7 +23,7 @@ export class TaskService {
     {
       id: 1,
       name: 'тренировка',
-      data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
+      date: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'ноги(пропустить)',
       status: false,
       category: 'Спорт',
@@ -34,7 +34,7 @@ export class TaskService {
     {
       id: 2,
       name: 'поспать',
-      data: 'Wed Dec 27 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
+      date: 'Wed Dec 27 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'прогуглить что это',
       status: true,
       category: 'Важное',
@@ -45,7 +45,7 @@ export class TaskService {
     {
       id: 3,
       name: 'поесть',
-      data: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
+      date: 'Tue Dec 26 2023 00:00:00 GMT+0300 (Москва, стандартное время)',
       description: 'еду',
       status: false,
       category: 'магазин',
@@ -82,7 +82,7 @@ export class TaskService {
       return newLocalData
     }
     if (key === 'dataSearch') {
-      const newLocalData = localData.filter(item => new Date(item.data??'data task undefined').getTime() <= new Date(value).getTime())
+      const newLocalData = localData.filter(item => new Date(item.date??'data task undefined').getTime() <= new Date(value).getTime())
       return newLocalData
     }
     else return []
@@ -97,12 +97,11 @@ export class TaskService {
   }
 
   changeCreateTask(id: number) {
-
-    // при использовании кнопки "создать задачу" получаем ID -1, при "изменить задачу" получаем ID задачи (=<0)
+    // при использовании кнопки "создать задачу" подготавливает данные для окна, в зависимости от задачи.
 
     if (id === -1) {
-
-      const openCreateOrChangeWindow = 'openCreateWindow'
+    
+    const openCreateOrChangeWindow = 'openCreateWindow'
 
     const classChangeCreate = {
       id: null,
@@ -115,9 +114,10 @@ export class TaskService {
       name: null,
       description: null,
       userId: null,
-      data: new Date(),
+      date: new Date(),
       priority: null
   }
+
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
     localStorage.setItem('createTask', JSON.stringify(createTask))
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
@@ -125,18 +125,20 @@ export class TaskService {
   }
 
   else {
+
     const openCreateOrChangeWindow = 'openChangeWindow'
 
     // Получаем объект задачи которую изменяем
     const localClassData = this.getClassDataUser()
     const localDataTasks = this.getTasksDataUser()
     const localChangeTask = localDataTasks.find(el => el.id == id)
-    localStorage.setItem('changeTask', JSON.stringify(localChangeTask))
 
     // Получаем объект категорий 
     const indexClass = localClassData.findIndex(el => el?.name?.toLowerCase() === localChangeTask?.category?.toLowerCase()?? '')   
     const classChangeCreate = localClassData[indexClass] ?? 'Категория не найдена'
+
     localStorage.setItem('openCreateOrChangeWindow', openCreateOrChangeWindow)
+    localStorage.setItem('changeTask', JSON.stringify(localChangeTask))
     localStorage.setItem('classChangeCreate', JSON.stringify(classChangeCreate))
   }
 
@@ -144,60 +146,46 @@ export class TaskService {
 
   deleteClass(id: number| undefined) {
     const localData = this.getClassData()
-
     let index = localData.findIndex(el => el.id === id)
     localData.splice(index, 1)
     localStorage.setItem('dataClass', JSON.stringify(localData))
-
   }
 
-  deleteData(id: number| undefined) {
+  deleteTask(id: number| undefined) {
     const localData = this.getTasksData()
-
-    let index = localData.findIndex(el => el.id === id);
-
+    let index = localData.findIndex(el => el.id === id)
     localData.splice(index, 1)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-
   }
 
   changeClass(id: number | undefined, name: string) {
     const localData = this.getClassData()
-
     let index = localData.findIndex(el => el.id === id)
     localData[index].name = name
-
     localStorage.setItem('dataClass', JSON.stringify(localData))
   }
 
-  changeData(selectedClass: string , name: string, data: string, description: string, priority: number) {
+  changeTask(item: MiniTask) {
     let localData: Task[] = this.getTasksData()
     const changeTask = JSON.parse(localStorage.getItem('changeTask') ?? '{}')
-    let index =  localData.findIndex(el => el.id === changeTask.id);
-    
+    let index =  localData.findIndex(el => el.id === changeTask.id);  
    
-
-    localData[index].category = selectedClass
-    localData[index].name = name
-    localData[index].data = data
-    localData[index].description = description
-    localData[index].priority = priority
+    localData[index].category = item.category
+    localData[index].name = item.name
+    localData[index].date = item.date
+    localData[index].description = item.description
+    localData[index].priority = item.priority
 
     localStorage.setItem('dataStorage', JSON.stringify(localData))
-
   }
 
   checkCreateOrChangeClass(selectedClass: string | Class) {
     if (typeof selectedClass == 'object') {
-
       const classItem: Class = selectedClass
-
       return classItem.name
 
     } else {
-
       this.addClass(selectedClass)
-
       return selectedClass
     }
   }
@@ -216,7 +204,7 @@ export class TaskService {
   return ru
   }
 
-  createIdItem() {
+  createIdTask() {    
     let idLast: number = JSON.parse(localStorage.getItem('idLast') ?? '3')
     const id = idLast + 1
     localStorage.setItem('idLast', JSON.stringify(id))
@@ -224,49 +212,44 @@ export class TaskService {
   }
 
   
-  addOrChangeTask(selectedClass: string  , name: string, data: string, description: string, priority: number) {
+  addOrChangeTask(item: MiniTask) {
+    // при открытии окна "создать" или "изменить" мы сетапим значение, здесь читаем его и решаем что делаем дальше, после удаляем
     const openCreateOrChangeWindow = localStorage.getItem('openCreateOrChangeWindow')
     if (openCreateOrChangeWindow === 'openCreateWindow') {
-      this.addData(selectedClass, name, data, description, priority)
+      this.addTask(item)
       localStorage.removeItem('openCreateOrChangeWindow')
     }
     if (openCreateOrChangeWindow === 'openChangeWindow') {
-      this.changeData(selectedClass, name, data, description, priority)
+      this.changeTask(item)
       localStorage.removeItem('openCreateOrChangeWindow')
     }
     else return
   }
 
-  addData(selectedClass: string | Class , name: string, data: string, description: string, priority: number) {
+  addTask(item: MiniTask) {
     const localData = this.getTasksData()
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
-    const category = this.checkCreateOrChangeClass(selectedClass)
-    const id = this.createIdItem()
+    const category = this.checkCreateOrChangeClass(item.category)
+    const id = this.createIdTask()
 
     const sampleAdd: Task = {
       id,
-      name,
-      data,
-      description,
+      name: item.name,
+      date: item.date,
+      description: item.description,
       category,
       status: false,
       userId,
-      priority
+      priority: item.priority
     };
-
-
-
     localData.unshift(sampleAdd)
     localStorage.setItem('dataStorage', JSON.stringify(localData))
   }
 
   addClass(name: string) {
     const localDataClass = this.getClassData()
-
     // получаем ID активного пользователя
     const userId = JSON.parse(this.authService.getPersonaId() ?? '1')
-
-
     // Получаем последний ID или устанавливаем, прибавляем +1 записываем в localStorage
     const idLast: number = JSON.parse(localStorage.getItem('idLastClass')?? '5') 
     const id = idLast + 1
