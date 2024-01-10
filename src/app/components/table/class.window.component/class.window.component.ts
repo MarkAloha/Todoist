@@ -13,7 +13,7 @@ import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table.component';
 import { InputTextModule } from 'primeng/inputtext';
-import { ItemComponent } from '../class-edit.window.compotent/item.component';
+import { ClassEditWindow } from '../class-edit.window.compotent/class-edit.window.compotent';
 
 @Component({
   selector: 'class-window',
@@ -29,10 +29,10 @@ import { ItemComponent } from '../class-edit.window.compotent/item.component';
     DynamicDialogModule,
     ToastModule,
     TableComponent,
-    ItemComponent,
+    ClassEditWindow,
     InputTextModule,
   ],
-  templateUrl: './classwindow.html'
+  templateUrl: './class.window.component.html'
 
 })
 export class ClassWindow implements OnInit {

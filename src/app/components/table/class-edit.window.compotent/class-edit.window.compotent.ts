@@ -7,7 +7,7 @@ import { Class } from '../../../domain/types';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { TaskService } from '../../../services/task.service';
-import { ClassWindow } from '../class.window.component/classwindow';
+import { ClassWindow } from '../class.window.component/class.window.component';
 
 @Component({
     selector: 'app-item',
@@ -19,25 +19,24 @@ import { ClassWindow } from '../class.window.component/classwindow';
             
             ],
     providers: [TaskService],
-    templateUrl: './item.component.html',
-    styleUrl: './item.component.scss'
+    templateUrl: 'class-edit.window.compotent.html',
+    styleUrl: 'class-edit.window.compotent.scss'
 })
-export class ItemComponent {
+export class ClassEditWindow {
     
     editable: WritableSignal<boolean> = signal(false);
     @Input() class: Class | null = null;
-    @Output() remove = new EventEmitter<Item>();
 
     constructor(private taskService: TaskService, public ref: DynamicDialogRef,) {      
         
       }  
 
-    changeClassWindow(id: number, name: string) {
+    changeClassWindow(id: number | undefined , name: string) {
         this.taskService.changeClass(id, name)
         this.ref.close();
     }
 
-    deleteClassWindow(id: number) {
+    deleteClassWindow(id: number | undefined) {
         this.taskService.deleteClass(id)        
         this.ref.close();
     }
