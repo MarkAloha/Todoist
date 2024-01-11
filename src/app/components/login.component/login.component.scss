@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
-
+$focus-color: null;
 
 * {
     margin: 0;
@@ -8,7 +8,7 @@
 }
 
 :root {
-    $focus-color: #5dceff !global
+    $focus-color: #5dceff !global;
 }
 
 .container-all {
@@ -87,6 +87,7 @@ span {
     background-color: #fff;
     transition: all 0.3s ease-in-out;
     padding: 0 4px;
+    cursor: text;
 }
 
 .button {
@@ -97,4 +98,16 @@ span {
     padding: 8px 22px;
     border-radius: 4px;
     margin-top: 2px;
+}
+
+.registration {
+    position: relative;
+    left: 13px;
+    top: 28px;
+    font-size: 17px;
+    text-decoration: none;
+    color: $focus-color;
+}
+a:visited {
+    color: $focus-color;
 }

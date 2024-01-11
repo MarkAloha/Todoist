@@ -17,15 +17,15 @@
         <p *ngIf="this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched"><small>Требуется
             пароль (Минимум 8 символов и 1 цифра)</small></p>
       </label>
-      <div class="button">Войти</div>
+      <a class="registration" routerLink="../registration">Регистрация</a>
+      <div (click)="submitLogin()" class="button">Войти</div>
 
+      <!-- <div class="registration">
+        <p>Нет аккаунта? <a routerLink="../registration">Зарегистрироваться</a></p>
+      </div> -->
 
   </form>
 
-  <!-- <button [disabled]="loginForm.invalid" type="submit">Войти</button> -->
-
-  <!-- <div>
-    <p>Нет аккаунта? <a routerLink="../registration">Зарегистрироваться</a></p>
-  </div> -->
+  
 
 </div>
