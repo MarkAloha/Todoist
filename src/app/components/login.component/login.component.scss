@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2? Family= Rubik:wght@400;500 & display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+
 
 * {
     margin: 0;
     box-sizing: border-box;
+}
+
+:root{
+   $focus-color: #5dceff !global
 }
 
 .container-all {
@@ -13,11 +19,53 @@
     justify-items: center;
 }
 
-.form {
-    display: grid;
-    padding: 32px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0, 0.1);
+    .form {
+        width: 300px;
+        display: grid;
+        padding: 32px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0, 0.1);
 
-}
+    }
+
+        .title {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+            label {
+                position: relative;
+                margin-bottom: 16px;
+            }
+
+            input {
+                height: 40px;
+                width: 100%;
+                outline: none;
+                padding: 0 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            input:focus {
+                border-color: $focus-color
+            }
+
+            input:focus + span {
+                color: $focus-color;
+            }
+
+            span {
+                position: absolute;
+                top: 26%;
+                left: 16px;
+                font-weight: 300;
+                color: #555;
+                background-color: #fff;
+            }
+
+            // .button {
+
+            // }
