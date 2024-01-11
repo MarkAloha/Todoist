@@ -12,3 +12,12 @@
     align-items: center;
     justify-items: center;
 }
+
+.form {
+    display: grid;
+    padding: 32px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0, 0.1);
+
+}
