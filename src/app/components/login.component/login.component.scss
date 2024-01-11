@@ -26,6 +26,7 @@
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding-bottom: 24px;
 
 }
 
@@ -59,7 +60,9 @@ input:-webkit-autofill:focus {
 input:-webkit-autofill+span {
     top: -10px;
     color: $focus-color;
-    border: $focus-color;
+    border: $focus-color;    
+    font-size: 12px;
+    top: -6px;
 }
 
 
@@ -71,6 +74,8 @@ input:focus {
 input:focus+span {
     top: -10px;
     color: $focus-color;
+    font-size: 12px;    
+    top: -6px;
 }
 
 span {
@@ -81,8 +86,15 @@ span {
     color: #555;
     background-color: #fff;
     transition: all 0.3s ease-in-out;
+    padding: 0 4px;
 }
 
-// .button {
-
-// }
+.button {
+    cursor: pointer;
+    justify-self: end;
+    background-color: $focus-color;
+    color: #fff;
+    padding: 8px 22px;
+    border-radius: 4px;
+    margin-top: 2px;
+}
