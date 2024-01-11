@@ -8,15 +8,17 @@
   </div>
 
     <div class="item">
-      Описание:
+      Описание: 
       <input type="text" id="description" formControlName="description"  #newItemDescription
         (keyup.enter)="addOrChangeTask(); newItem.value = ' '"  />
     </div>
 
     <div type="text" class="item">
-      Приоритет
+      Приоритет: 
       <input [(ngModel)]="this.priority" id="priority" type="text"  [ngModelOptions]="{standalone: true}"  />
-      <p-slider [(ngModel)]="this.priority" id="slider" [ngModelOptions]="{standalone: true}" ></p-slider>
+      
+      <p-slider class='slider' [(ngModel)]="this.priority" id="slider" [ngModelOptions]="{standalone: true}" ></p-slider>
+    
     </div>
 
     <div  class="card flex justify-content-center item"> Категория:

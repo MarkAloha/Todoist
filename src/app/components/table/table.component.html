@@ -59,7 +59,7 @@
                 <th pSortableColumn="name">Название</th>
                 <th pSortableColumn="category">Категория</th>
                 <th pSortableColumn="description">Описание</th>
-                <th pSortableColumn="data">Дата</th>
+                <th pSortableColumn="date">Дата</th>
                 <th pSortableColumn="priority">Приоритет</th>
                 <th pSortableColumn="status">Статус</th>
             </tr>
@@ -80,7 +80,7 @@
                 </td>
                 <td class="tableColum">{{task.category}}</td>
                 <td class="tableColum">{{task.description}}</td>
-                <td class="tableColum">{{task.data | date: 'd/M/yyyy'}}</td>
+                <td class="tableColum">{{task.date | date: 'd/M/yyyy'}}</td>
                 <td class="tableColum">{{task.priority}}</td>
                 <td class="tableColum"><p-tag [value]="task.status? 'Выполнено' : 'В процессе'"
                         [severity]="getSeverity(task.status)"></p-tag>

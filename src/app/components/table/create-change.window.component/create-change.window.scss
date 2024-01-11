@@ -5,10 +5,12 @@
 }
 
 
-.item {
-    padding: 1rem;
-    > p-slider {
-        width: 200px;
-        max-width: 200px;
+    .item {
+        display: flex;
+        padding: 1rem;
+        > .slider {
+            width: 200px;
+            max-width: 200px;
+        }
     }
-}
+       
