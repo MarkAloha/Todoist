@@ -33,6 +33,31 @@ export class LoginComponent implements OnInit, OnDestroy {
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
       )])
     })
+
+    
+    
+
+  }
+
+  checkFilled() {
+    const login = this.loginForm.value.email
+    const password = this.loginForm.value.password
+    const inputLogin = document.querySelector('#inputLogin')
+    const inputPassword = document.querySelector('#inputPassword')
+    if (login){
+      inputLogin?.classList.add('filled')
+    }
+    else {
+      inputLogin?.classList.remove('filled')
+    }
+
+    if (password){
+      inputPassword?.classList.add('filled')
+    }
+    else {
+      inputPassword?.classList.remove('filled')
+    }
+    
   }
 
   submitLogin() {
@@ -40,7 +65,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: () => this.router.navigate(['/']),
       error: (err) => alert(err.message)
     })
-
   }
 
   ngOnInit(): void {
