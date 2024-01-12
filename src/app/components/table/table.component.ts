@@ -24,7 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import '@angular/common/locales/global/ru'
 import { TaskService } from '../../services/task.service';
-import { Task } from '../../domain/types';
+import { FormSearch, SearchForm, Task } from '../../domain/types';
 import { ChangeWindow } from '../test.component/testwindow';
 import { ClassWindow } from './class.window.component/class.window.component';
 
@@ -62,7 +62,7 @@ export class TableComponent implements OnInit,OnDestroy {
   tasks: Task[] = [];
   checked: boolean = false;
   searchButton: boolean = false;
-  formGroup: FormGroup;
+  formGroup: FormGroup<SearchForm>;
 
   @ViewChild('showButton') showButton: object | undefined
   @ViewChild('changeButton') changeButton: object | undefined
@@ -74,8 +74,11 @@ export class TableComponent implements OnInit,OnDestroy {
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
   ) {
-    this.formGroup = new FormGroup({
-      date: new FormControl<Date | null>(null)
+    this.formGroup = new FormGroup<SearchForm>({
+      name: new FormControl (null) ,
+      category: new FormControl (null) ,
+      description: new FormControl (null),
+      date: new FormControl (null),
     })
   }
 
@@ -92,8 +95,15 @@ export class TableComponent implements OnInit,OnDestroy {
     this.taskService.checkboxStatusChange(status, id)
   }
 
-  multiSearch(value:string, key:string) {
-    this.tasks = this.taskService.multiSearch(value,key)
+  multiSearch() {
+    console.log(this.formGroup)
+    const formSearch: FormSearch = {
+      name: this.formGroup.value.name,
+      category: this.formGroup.value.category,
+      description: this.formGroup.value.description ,
+      date: this.formGroup.value.date,
+    }
+    this.tasks = this.taskService.multiSearch(formSearch)
   }
 
   clearSearch() {

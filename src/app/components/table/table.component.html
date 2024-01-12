@@ -22,32 +22,27 @@
 
                             <div class="serchItem">
                                 Название
-                                <input id="searchName" #searchName pInputText class="p-inputtext-sm" type="text">
-                                <button (click)="multiSearch(searchName.value, 'nameSearch'); searchName.value=''
-                            ">Искать</button>
+                                <input id="searchName" formControlName='name' pInputText class="p-inputtext-sm" type="text">                               
                             </div>
 
                             <div class="serchItem">
                                 Категория
-                                <input id="searchCategory" #searchCategory pInputText class="p-inputtext-sm" type="text">
-                                <button
-                                    (click)="multiSearch(searchCategory.value, 'categorySearch'); searchCategory.value=''">Искать</button>
+                                <input id="searchCategory" formControlName="category" #searchCategory pInputText class="p-inputtext-sm" type="text">
                             </div>
 
                             <div class="serchItem">
                                 Описание
-                                <input id="searchDescription" #searchDescription pInputText class="p-inputtext-sm" type="text">
-                                <button
-                                    (click)="multiSearch(searchDescription.value, 'descriptionSearch'); searchDescription.value=''">Искать</button>
+                                <input id="searchDescription" formControlName="description" #searchDescription pInputText class="p-inputtext-sm" type="text">
                             </div>
 
                             <div class="serchItem">
                                 Дата
-                                <p-calendar id="date" formControlName="date"></p-calendar>
-                                <button (click)="multiSearch(this.formGroup.value.date, 'dataSearch')">Искать</button>
+                                <p-calendar id="date" formControlName="date" formControlName="date"></p-calendar>
+                                
                             </div>
 
-                            <button (click)="clearSearch()">Очистить</button>
+                            <p-button (click)="multiSearch()">Искать</p-button>
+                            <p-button (click)="clearSearch()">Очистить</p-button>
 
                         </div>
                     </form>

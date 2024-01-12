@@ -36,6 +36,12 @@ export interface LoginForm {
     email: FormControl <string | null>;
     password: FormControl <string | null>;
 }
+export interface SearchForm {
+    name: FormControl <string | null>;
+    category: FormControl <string | null>;
+    description: FormControl<string | null>;
+    date: FormControl<Date | null>;
+}
 
 export interface CreateChangeForm {
     date: FormControl<Date | null>;
@@ -44,10 +50,13 @@ export interface CreateChangeForm {
     description: FormControl<string | null>;
 }
 
-export interface divBlock {
+export interface DivBlock {
     nativeElement: object;
 }
 
-export interface Ref {
-    
+export interface FormSearch {
+    name: string | null | undefined;
+    category: string | null | undefined;
+    description: string | null | undefined;
+    date: Date | null | undefined;
 }

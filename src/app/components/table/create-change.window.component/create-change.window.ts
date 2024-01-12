@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Class, CreateChangeForm, Task, divBlock } from '../../../domain/types';
+import { Class, CreateChangeForm, DivBlock, Task, } from '../../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -51,8 +51,8 @@ export class CreateWindow  {
   defaultClass: string = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
   defaultDate: Date = new Date(this.changeTask.date)
   
-  @ViewChild('bitBox') bitBox: divBlock | null = null
-  @ViewChild('showButton') showButton: divBlock | null = null
+  @ViewChild('bitBox') bitBox: DivBlock | null = null
+  @ViewChild('showButton') showButton: DivBlock | null = null
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {

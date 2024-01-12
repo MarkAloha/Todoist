@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { Class, MiniTask, Ref, Task, divBlock } from '../domain/types';
+import { Class, FormSearch, MiniTask, Task, DivBlock, } from '../domain/types';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Injectable({
@@ -68,25 +68,24 @@ export class TaskService {
 
   }
 
-  multiSearch(value: string, key: string) {
-    const localData = this.getTasksDataUser()
-    if (key === 'nameSearch') {
-      const newLocalData = localData.filter(item => item.name?.includes(value))
+  multiSearch(formSearch: FormSearch) {
+    let localData = this.getTasksDataUser()
+    console.log(localData)
+
+    if (formSearch.name) {
+      localData = localData.filter(item => item.name?.includes(String(formSearch.name)))      
+    }
+    if (formSearch.description) {
+      localData = localData.filter(item => item.description?.includes(String(formSearch.description)))
+    }
+    if (formSearch.category) {
+      localData = localData.filter(item => item.category?.includes(String(formSearch.category)))
+    }
+    if (formSearch.date) {
+      const newLocalData = localData.filter(item => new Date(item.date??'data task undefined').getTime() <= new Date(String(formSearch.date)).getTime())
       return newLocalData
     }
-    if (key === 'descriptionSearch') {
-      const newLocalData = localData.filter(item => item.description?.includes(value))
-      return newLocalData
-    }
-    if (key === 'categorySearch') {
-      const newLocalData = localData.filter(item => item.category?.includes(value))
-      return newLocalData
-    }
-    if (key === 'dataSearch') {
-      const newLocalData = localData.filter(item => new Date(item.date??'data task undefined').getTime() <= new Date(value).getTime())
-      return newLocalData
-    }
-    else return []
+    return localData
   }
 
   checkboxStatusChange (status: boolean, id: number) {
@@ -300,7 +299,7 @@ export class TaskService {
     }
   }
 
-  checkClickCreateWindow(bitBox: divBlock | null, table: divBlock | null, ref: DynamicDialogRef) {
+  checkClickCreateWindow(bitBox: DivBlock | null, table: DivBlock | null, ref: DynamicDialogRef) {
     if (typeof document !== 'undefined') {
       console.log(ref)
       document.addEventListener('click', (e) => {
