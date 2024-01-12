@@ -33,13 +33,21 @@ export interface User {
 }
 
 export interface LoginForm {
-    email: FormControl;
-    password: FormControl;
+    email: FormControl <string | null>;
+    password: FormControl <string | null>;
 }
 
 export interface CreateChangeForm {
-    date: any;
-    inputClass: any;
-    nameTask: any;
-    description: any;
+    date: FormControl<Date | null>;
+    inputClass: FormControl<string | null>;
+    nameTask: FormControl<string | null>;
+    description: FormControl<string | null>;
+}
+
+export interface divBlock {
+    nativeElement: object;
+}
+
+export interface Ref {
+    
 }

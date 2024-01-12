@@ -70,20 +70,17 @@ input:-webkit-autofill+span {
 
 input:focus {
     border-color: $focus-color;
-    background-color: #fff
+    background-color: #fff;
+    
 }
-
-// input.filed  {
-//     background-color: red;
-// }
 
 input:focus+span,
 input.filled+span {
     top: -10px;
-    color: $focus-color;
     font-size: 12px;    
     top: -6px;
     border-color: $focus-color;
+    color: $focus-color;
 }
 
 span {
@@ -109,6 +106,7 @@ span {
 }
 
 .registration {
+    width: 46%;
     margin-top: -20px;
     position: relative;
     left: 13px;

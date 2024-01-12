@@ -1,6 +1,7 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { Class, MiniTask, Task } from '../domain/types';
+import { Class, MiniTask, Ref, Task, divBlock } from '../domain/types';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Injectable({
   providedIn: 'root',
@@ -299,11 +300,13 @@ export class TaskService {
     }
   }
 
-  checkClickCreateWindow(bitBox: any, table: any, ref: any) {
+  checkClickCreateWindow(bitBox: divBlock | null, table: divBlock | null, ref: DynamicDialogRef) {
     if (typeof document !== 'undefined') {
+      console.log(ref)
       document.addEventListener('click', (e) => {
-        const click = e.composedPath().includes(bitBox.nativeElement) || e.composedPath().includes(table.showButton.nativeElement)
-        // || e.composedPath().includes(this.table.changeButton.nativeElement)
+        const click = 
+        e.composedPath().includes(bitBox?.nativeElement as HTMLElement) || 
+        e.composedPath().includes(table?.nativeElement as HTMLElement)
         if (!click) {
           if (ref) {
             ref.close();

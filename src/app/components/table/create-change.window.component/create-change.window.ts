@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Class, CreateChangeForm, Task } from '../../../domain/types';
+import { Class, CreateChangeForm, Task, divBlock } from '../../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -51,22 +51,22 @@ export class CreateWindow  {
   defaultClass: string = JSON.parse(localStorage.getItem('classChangeCreate') ?? 'localChangeNull')
   defaultDate: Date = new Date(this.changeTask.date)
   
-  @ViewChild('bitBox') bitBox: any
-  @ViewChild('showButton') showButton: any
+  @ViewChild('bitBox') bitBox: divBlock | null = null
+  @ViewChild('showButton') showButton: divBlock | null = null
 
   constructor(private taskService: TaskService, public ref: DynamicDialogRef, private el: ElementRef,
     public table: TableComponent) {
 
       this.formGroup = new FormGroup<CreateChangeForm>({
-        date: new FormControl<Date>(this.defaultDate, Validators.required),
-        inputClass: new FormControl<string>(this.defaultClass, Validators.required),
-        nameTask: new FormControl<string>(this.changeTask.name, Validators.required),
-        description: new FormControl<string | undefined>(this.changeTask.description, Validators.required),
+        date: new FormControl(this.defaultDate, Validators.required),
+        inputClass: new FormControl(this.defaultClass, Validators.required),
+        nameTask: new FormControl(this.changeTask.name, Validators.required),
+        description: new FormControl(this.changeTask.description, Validators.required),
       })
       this.ClassItem = this.taskService.getClassDataUser()
 
     document.addEventListener('click', () => {
-      this.taskService.checkClickCreateWindow(this.bitBox, this.table, this.ref)
+      this.taskService.checkClickCreateWindow(this.bitBox, this.showButton, this.ref)
     })
   }
 

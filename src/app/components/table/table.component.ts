@@ -64,8 +64,8 @@ export class TableComponent implements OnInit,OnDestroy {
   searchButton: boolean = false;
   formGroup: FormGroup;
 
-  @ViewChild('showButton') showButton: any
-  @ViewChild('changeButton') changeButton: any
+  @ViewChild('showButton') showButton: object | undefined
+  @ViewChild('changeButton') changeButton: object | undefined
 
   constructor(
     public dialogService: DialogService,
@@ -84,6 +84,7 @@ export class TableComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.primengConfig.setTranslation(this.taskService.setLanguage())   
     this.tasks = this.taskService.getTasksDataUser();    
+    
     
   }  
 
