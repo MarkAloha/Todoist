@@ -1,19 +1,35 @@
-.formGroup {
+// .bitBox {
+//     padding-bottom: 150px;
+// }
+
+.p-dialog-header {
     display: grid;
+    justify-content: center;
 }
 
-.bitBox {
-    padding-bottom: 150px;
+.container-create-window {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: 100px 250px;
+    justify-content: center;
+    
 }
 
-    .item {
-        padding: 1rem;
-        > p-slider {
-            width: 200px;
-            max-width: 200px;
-        }
-    }
-       
-    .slider {
+.item {
+    padding: 1rem;
+
+    >p-slider {
         width: 200px;
+        max-width: 200px;
     }
+}
+
+.slider {
+    width: 353px;
+    padding: 0 0 20px 110px;
+}
+
+.item input {
+    // position: absolute;
+    // top: 40px; left: 40px;
+}

@@ -1,39 +1,53 @@
 <div class="bitBox" #bitBox>
-
   <form [formGroup]="formGroup">
-    <div class="item">
-    <label for="addItemInput">Название: </label>
-    <input type="text" id="addItemInput" formControlName="nameTask"  #newItem
-    (keyup.enter)="addOrChangeTask(); newItem.value = ' '"  />
-  </div>
+    <div class="container-create-window">
 
-    <div class="item">
-      Описание: 
-      <input type="text" id="description" formControlName="description"  #newItemDescription
-        (keyup.enter)="addOrChangeTask(); newItem.value = ' '"  />
-    </div>
+      <div class="item-cw n1">Название: </div>
 
-    <div type="text" class="item">
-      Приоритет: 
-      <input [(ngModel)]="this.priority" id="priority" type="text"  [ngModelOptions]="{standalone: true}"  />
+      <div class="item-cw i1">
+        <input type="text" id="addItemInput" 
+        pInputText formControlName="nameTask" 
+        #newItem (keyup.enter)="addOrChangeTask(); 
+        newItem.value = ' '" />
+      </div>
+
+      <div class="item-cw n2"> Описание:</div>
+
+      <div class="item-cw i2">
+        <input type="text" id="description"
+         pInputText formControlName="description" 
+         #newItemDescription (keyup.enter)="addOrChangeTask(); 
+         newItem.value = ' '" />
+      </div>
+
+      <div class="item-cw n3"> Приоритет:</div>
+
+      <div class="item-cw i3">
+        <input [(ngModel)]="this.priority" pInputText 
+          id="priority" type="text" [ngModelOptions]="{standalone: true}" />
+          <div> <p-slider [(ngModel)]="this.priority" id="slider"
+          [ngModelOptions]="{standalone: true}"></p-slider></div>
+      </div>
       
-     <div> <p-slider class='slider' [(ngModel)]="this.priority" id="slider" [ngModelOptions]="{standalone: true}" ></p-slider></div>
-    
+      <div class="item-cw n4"> Категория:</div>
+
+      <div class="item-cw i4">
+        <p-dropdown id="inputClass" formControlName="inputClass" 
+          [options]="ClassItem" placeholder="Выбрать категорию"
+          [editable]="true" optionLabel="name"></p-dropdown>
+      </div>
+
+      <div class="item-cw n5"> Дата:</div>
+      
+      <div class="item-cw i5">
+        <p-calendar id="date" dateFormat="dd.mm.yy" 
+        formControlName="date"></p-calendar>
+      </div>
+
+      <p-button id="send" [disabled]="formGroup.invalid" 
+        (click)="addOrChangeTask(); newItem.value = ' '"
+        class="item-cw i6"> запланировать!</p-button>
+
     </div>
-
-    <div  class="card flex justify-content-center item"> Категория:
-      <p-dropdown id="inputClass"  formControlName="inputClass"  [options]="ClassItem"  
-      placeholder="Выбрать категорию" [editable]="true" optionLabel="name" ></p-dropdown>
-    </div>
-
-    <div class="item"> Дата:
-      <p-calendar id="date"  dateFormat="dd.mm.yy" formControlName="date"></p-calendar>
-    </div> 
-
-    <p-button id="send" [disabled]="formGroup.invalid" (click)="addOrChangeTask(); newItem.value = ' '" class="btn-add">
-      запланировать!
-    </p-button>
-
   </form>
-
 </div>

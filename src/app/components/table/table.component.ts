@@ -142,13 +142,11 @@ export class TableComponent implements OnInit,OnDestroy {
 
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Задача',
-      width: '60%',
-      height: '70%',
+      width: '500px',
+      height: '500px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-
-
 
     this.ref.onClose.subscribe((task: Task) => {
       this.tasks = this.taskService.getTasksDataUser();

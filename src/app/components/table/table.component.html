@@ -1,54 +1,44 @@
 <app-header></app-header>
 
-<div #changeButton class="card">
+<div #changeButton class="containerAll">
     <p-table [value]="tasks" [tableStyle]="{'min-width': '60rem'}">
-        <ng-template pTemplate="caption">
-            <div class="flex align-items-center justify-content-between">
+
+        <ng-template pTemplate="caption">          
                 <h2>Задачи</h2>
-
-                <div #showButton class="headerTable">
-
-                    <p-button class="tableHeaderItem" (click)="showAddTask(-1)" icon="pi pi-info-circle"
+                <div class="btn-header" #showButton >
+                    <p-button class="btn-head el1" (click)="showAddTask(-1)" icon="pi pi-info-circle"
                         label="Создать"></p-button>
-
-                    <p-button class="tableHeaderItem" (click)="showAddClass()" icon="pi pi-info-circle"
+                    <p-button class="btn-head el2" (click)="showAddClass()" icon="pi pi-info-circle"
                         label="Категории"></p-button>
-
-                    <p-button class="tableHeaderItem" (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle"
-                        label="Поиск"></p-button>
+                    <p-button class="btn-head el3" (click)="searchButton = !searchButton; clearSearch()"
+                        icon="pi pi-info-circle" label="Поиск"></p-button>
                 </div>
+                <div class="search" *ngIf="searchButton">
                     <form [formGroup]="formGroup">
-                        <div class="search" *ngIf="searchButton">
-
-                            <div class="serchItem">
-                                Название
-                                <input id="searchName" formControlName='name' pInputText class="p-inputtext-sm" type="text">                               
-                            </div>
-
-                            <div class="serchItem">
-                                Категория
-                                <input id="searchCategory" formControlName="category" #searchCategory pInputText class="p-inputtext-sm" type="text">
-                            </div>
-
-                            <div class="serchItem">
-                                Описание
-                                <input id="searchDescription" formControlName="description" #searchDescription pInputText class="p-inputtext-sm" type="text">
-                            </div>
-
-                            <div class="serchItem">
-                                Дата
-                                <p-calendar id="date" formControlName="date" formControlName="date"></p-calendar>
-                                
-                            </div>
-
-                            <p-button class="btn" (click)="multiSearch()">Искать</p-button>
-                            <p-button class="btn" (click)="clearSearch()">Очистить</p-button>
-
+                        <div class="serchItem">
+                            Название
+                            <input id="searchName" formControlName='name' pInputText class="p-inputtext-sm" type="text">
                         </div>
+                        <div class="serchItem">
+                            Категория
+                            <input id="searchCategory" formControlName="category" #searchCategory pInputText
+                                class="p-inputtext-sm" type="text">
+                        </div>
+                        <div class="serchItem">
+                            Описание
+                            <input id="searchDescription" formControlName="description" #searchDescription pInputText
+                                class="p-inputtext-sm" type="text">
+                        </div>
+                        <div class="serchItem">
+                            Дата
+                            <p-calendar id="date" formControlName="date" formControlName="date"></p-calendar>
+                        </div>
+                        <p-button class="btn" (click)="multiSearch()">Искать</p-button>
+                        <p-button class="btn" (click)="clearSearch()">Очистить</p-button>
                     </form>
-                </div>
-            
+                </div>         
         </ng-template>
+
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="name">Название</th>
@@ -58,7 +48,6 @@
                 <th pSortableColumn="priority">Приоритет</th>
                 <th pSortableColumn="status">Статус</th>
             </tr>
-
         </ng-template>
 
         <ng-template pTemplate="body" let-task let-rowIndex="rowIndex">
@@ -90,17 +79,10 @@
                 Всего {{tasks ? tasks.length : 0 }} задачи.
             </div>
         </ng-template>
+
     </p-table>
 </div>
 
-<div class="admin">
 
-    <h3> Панель администратора </h3>
 
-    <p-button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD"></p-button>
-
-    <div>
-        <p>
-            <a [routerLink]="['/ChangeWindow']">Тестовая страница</a>
-    </div>
-</div>
+<button (click)="addTaskAdmin()" icon="pi pi-info-circle" label="testADD">testADD</button>

@@ -1,6 +1,9 @@
 @import "primeicons/primeicons.css";
 
-
+.card {
+    display: grid;
+    width: 100%;
+}
 
 .pi-times {
     cursor: pointer;
@@ -11,44 +14,53 @@
     padding-right: 10px;
 }
 
-.nameTd {
-    word-wrap: break-word;
-    // max-width: 10%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.btn-header {
+    display: grid;
+    grid-template-columns:150px 150px 150px;
+    
 
-    >.taskNameTd {
-        max-width: auto;
-    }
-}
-
-.admin {
-    background-color: rgb(0, 255, 255)
-}
-
-.p-datatable .p-datatable-tbody>tr {
-    display: flex;
 }
 
 
-.headerTable {
-    display: flex;
-
-    >.tableHeaderItem {
-        padding: 0 1rem 0 0;
-    }
+.btn-head {
+    display: grid;
+    padding: 0 10px 0 10px;
+    
 }
+// .nameTd {
+//     word-wrap: break-word;
+//     // max-width: 10%;
+//     display: flex;
+//     justify-content: space-between;
+//     flex-wrap: wrap;
 
-.search {
-    padding: 36px 20px 15px 20px;
-    display: flex;
-}
+//     >.taskNameTd {
+//         max-width: auto;
+//     }
+// }
 
-.serchItem {
-    padding: 0px 10px 0px 0px
-}
+// .p-datatable .p-datatable-tbody>tr {
+//     display: flex;
+// }
 
-.btn {
-    padding: 10px;
-}
+
+// .headerTable {
+//     display: flex;
+
+//     >.tableHeaderItem {
+//         padding: 0 1rem 0 0;
+//     }
+// }
+
+// .search {
+//     padding: 36px 20px 15px 20px;
+//     display: grid;
+// }
+
+// .serchItem {
+//     padding: 10px
+// }
+
+// .btn {
+//     padding: 10px;
+// }

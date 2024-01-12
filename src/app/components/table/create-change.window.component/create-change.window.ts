@@ -16,6 +16,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { TaskService } from '../../../services/task.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'create-window',
@@ -35,7 +36,8 @@ import { TaskService } from '../../../services/task.service';
     FormsModule,
     ReactiveFormsModule,
     DropdownModule,
-    SliderModule
+    SliderModule,
+    InputTextModule,
 
   ],
   templateUrl: './create-change.window.html',

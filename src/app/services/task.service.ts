@@ -301,7 +301,6 @@ export class TaskService {
 
   checkClickCreateWindow(bitBox: DivBlock | null, table: DivBlock | null, ref: DynamicDialogRef) {
     if (typeof document !== 'undefined') {
-      console.log(ref)
       document.addEventListener('click', (e) => {
         const click = 
         e.composedPath().includes(bitBox?.nativeElement as HTMLElement) || 
