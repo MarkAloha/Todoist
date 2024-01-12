@@ -1,6 +1,30 @@
-<a [routerLink]="['/']"> Главная страница </a>
+<div class="container-all">
 
-<h2 >Добро пожаловать</h2>
+  <form class="form" [formGroup]="loginForm" >
+
+    <div class="title"> Регистрация </div>
+      <label id="login">
+        <input id="inputLogin" (change)="checkFilled()" formControlName="email" type="text" />
+        <span>Логин</span>
+        <p *ngIf="this.loginForm.get('email')?.invalid && this.loginForm.get('email')?.touched"><small>Требуется ввести
+            email</small></p>
+      </label>
+
+      <label id="password">
+        <input id="inputPassword" formControlName="password" type="password" />
+        <span>Пароль</span>
+        <p *ngIf="this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched"><small>Требуется
+            пароль (Минимум 8 символов и 1 цифра)</small></p>
+      </label>
+      <a class="authorization" routerLink="/login">Авторизация</a>
+      <div (click)="addUser()" class="button">Создать</div>
+
+  </form>  
+
+</div>
+
+<!-- <a [routerLink]="['/']"> Войти </a>
+
               <p class="text-white-50 mb-5">Введите логин и пароль</p>
   
               <form [formGroup]="loginForm" (ngSubmit)="addUser()">     
@@ -18,4 +42,4 @@
                 </div>
                 <button [disabled]="loginForm.invalid" type="submit">Создать</button>
 
-              </form>
+              </form> -->

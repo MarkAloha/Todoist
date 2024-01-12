@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
@@ -31,7 +32,8 @@ export class RegistrationComponent {
   constructor(
     private userService: UserService, 
     public ref: DynamicDialogRef,
-    private router: Router,) {
+    private router: Router,
+    private authService: AuthService) {
 
     this.loginForm = new FormGroup<LoginForm>({
 
@@ -40,6 +42,15 @@ export class RegistrationComponent {
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
       )])
     })
+  }
+
+  checkFilled() {    
+    const login = this.loginForm.value.email
+    const password = this.loginForm.value.password
+    const inputLogin = document.querySelector('#inputLogin')
+    const inputPassword = document.querySelector('#inputPassword')
+   
+    this.authService.checkFilled(login,password,inputLogin,inputPassword)    
   }
 
   addUser() {

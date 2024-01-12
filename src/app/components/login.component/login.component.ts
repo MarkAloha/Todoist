@@ -40,23 +40,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   checkFilled() {
+    
     const login = this.loginForm.value.email
     const password = this.loginForm.value.password
     const inputLogin = document.querySelector('#inputLogin')
     const inputPassword = document.querySelector('#inputPassword')
-    if (login){
-      inputLogin?.classList.add('filled')
-    }
-    else {
-      inputLogin?.classList.remove('filled')
-    }
-
-    if (password){
-      inputPassword?.classList.add('filled')
-    }
-    else {
-      inputPassword?.classList.remove('filled')
-    }
+   
+    this.authService.checkFilled(login,password,inputLogin,inputPassword)
     
   }
 

@@ -1,7 +1,6 @@
 <div class="container-all">
 
-
-  <form class="form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <form class="form" [formGroup]="loginForm" >
 
     <div class="title"> Авторизация </div>
       <label id="login">
@@ -20,12 +19,6 @@
       <a class="registration" routerLink="../registration">Регистрация</a>
       <div (click)="submitLogin()" class="button">Войти</div>
 
-      <!-- <div class="registration">
-        <p>Нет аккаунта? <a routerLink="../registration">Зарегистрироваться</a></p>
-      </div> -->
-
-  </form>
-
-  
+  </form>  
 
 </div>

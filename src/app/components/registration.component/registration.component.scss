@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+$focus-color: null;
+
+* {
+    margin: 2px;
+    box-sizing: border-box;
+}
+
+:root {
+    $focus-color: #5dceff !global;
+}
+
+.container-all {
+    height: 100vh;
+    font-family: 'Rubik', sans-serif;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.form {
+    width: 300px;
+    display: grid;
+    padding: 32px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding-bottom: 24px;
+
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 300;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+label {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    padding: 0 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+// При автозаполнении от гугла меняет цвет
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
+    border: 1px solid $focus-color;
+}
+
+input:-webkit-autofill+span {
+    top: -10px;
+    color: $focus-color;
+    border: $focus-color;    
+    font-size: 12px;
+    top: -6px;
+}
+
+
+
+input:focus {
+    border-color: $focus-color;
+    background-color: #fff;
+    
+}
+
+input:focus+span,
+input.filled+span {
+    top: -10px;
+    font-size: 12px;    
+    top: -6px;
+    border-color: $focus-color;
+    color: $focus-color;
+}
+
+span {
+    position: absolute;
+    top: 19%;
+    left: 16px;
+    font-weight: 300;
+    color: #555;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    padding: 0 4px;
+    cursor: text;
+}
+
+.button {
+    cursor: pointer;
+    justify-self: end;
+    background-color: $focus-color;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.authorization {
+    width: 46%;
+    margin-top: -20px;
+    position: relative;
+    left: 13px;
+    top: 31px;
+    font-size: 17px;
+    text-decoration: none;
+    color: $focus-color;
+}
+a:visited {
+    color: $focus-color;
+}

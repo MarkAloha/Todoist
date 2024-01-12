@@ -16,7 +16,7 @@
 
                     <p-button class="tableHeaderItem" (click)="searchButton = !searchButton; clearSearch()" icon="pi pi-info-circle"
                         label="Поиск"></p-button>
-
+                </div>
                     <form [formGroup]="formGroup">
                         <div class="search" *ngIf="searchButton">
 
@@ -41,13 +41,13 @@
                                 
                             </div>
 
-                            <p-button (click)="multiSearch()">Искать</p-button>
-                            <p-button (click)="clearSearch()">Очистить</p-button>
+                            <p-button class="btn" (click)="multiSearch()">Искать</p-button>
+                            <p-button class="btn" (click)="clearSearch()">Очистить</p-button>
 
                         </div>
                     </form>
                 </div>
-            </div>
+            
         </ng-template>
         <ng-template pTemplate="header">
             <tr>

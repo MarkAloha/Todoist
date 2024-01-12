@@ -1,5 +1,7 @@
 @import "primeicons/primeicons.css";
 
+
+
 .pi-times {
     cursor: pointer;
 }
@@ -15,7 +17,8 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    > .taskNameTd {
+
+    >.taskNameTd {
         max-width: auto;
     }
 }
@@ -24,14 +27,15 @@
     background-color: rgb(0, 255, 255)
 }
 
-.p-datatable .p-datatable-tbody > tr  {
+.p-datatable .p-datatable-tbody>tr {
     display: flex;
 }
 
 
 .headerTable {
     display: flex;
-    > .tableHeaderItem {
+
+    >.tableHeaderItem {
         padding: 0 1rem 0 0;
     }
 }
@@ -43,4 +47,8 @@
 
 .serchItem {
     padding: 0px 10px 0px 0px
+}
+
+.btn {
+    padding: 10px;
 }

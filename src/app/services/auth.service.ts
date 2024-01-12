@@ -75,4 +75,20 @@ export class AuthService {
     logout() {
         localStorage.removeItem('token')
     }
+
+    checkFilled(login:any,password:any,inputLogin:any,inputPassword:any) {
+        if (login){
+            inputLogin?.classList.add('filled')
+          }
+          else {
+            inputLogin?.classList.remove('filled')
+          }
+      
+          if (password){
+            inputPassword?.classList.add('filled')
+          }
+          else {
+            inputPassword?.classList.remove('filled')
+          }
+    }
 }
