@@ -11,7 +11,7 @@
       </label>
 
       <label id="password">
-        <input id="inputPassword" formControlName="password" type="password" />
+        <input id="inputPassword" (change)="checkFilled()" formControlName="password" type="password" />
         <span>Пароль</span>
         <p *ngIf="this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched"><small>Требуется
             пароль (Минимум 8 символов и 1 цифра)</small></p>
