@@ -12,7 +12,6 @@ import { Subscription } from 'rxjs';
   imports: [CommonModule,
     ReactiveFormsModule,
     RouterModule,
-
   ],
   providers: [AuthService, Router,],
   templateUrl: './login.component.html',
@@ -32,22 +31,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: new FormControl(null, [Validators.required, Validators.pattern(
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
       )])
-    })
-
-    
-    
-
+    }) 
   }
 
-  checkFilled() {
-    
+  checkFilled() {    
     const login = this.loginForm.value.email
     const password = this.loginForm.value.password
     const inputLogin = document.querySelector('#inputLogin')
     const inputPassword = document.querySelector('#inputPassword')
-   console.log(password)
-    this.authService.checkFilled(login,password,inputLogin,inputPassword)
-    
+    this.authService.checkFilled(login,password,inputLogin,inputPassword)    
   }
 
   submitLogin() {
