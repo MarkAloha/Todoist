@@ -6,35 +6,41 @@
         <ng-template pTemplate="caption">          
                 <h2>Задачи</h2>
                 <div class="btn-header" #showButton >
-                    <p-button class="btn-head el1" (click)="showAddTask(-1)" icon="pi pi-info-circle"
+                    <p-button class="btn-head el1" (click)="showAddTask(-1)"
                         label="Создать"></p-button>
-                    <p-button class="btn-head el2" (click)="showAddClass()" icon="pi pi-info-circle"
+                    <p-button class="btn-head el2" (click)="showAddClass()" 
                         label="Категории"></p-button>
                     <p-button class="btn-head el3" (click)="searchButton = !searchButton; clearSearch()"
-                        icon="pi pi-info-circle" label="Поиск"></p-button>
+                         label="Поиск"></p-button>
                 </div>
-                <div class="search" *ngIf="searchButton">
-                    <form [formGroup]="formGroup">
-                        <div class="serchItem">
-                            Название
-                            <input id="searchName" formControlName='name' pInputText class="p-inputtext-sm" type="text">
-                        </div>
-                        <div class="serchItem">
-                            Категория
-                            <input id="searchCategory" formControlName="category" #searchCategory pInputText
-                                class="p-inputtext-sm" type="text">
-                        </div>
-                        <div class="serchItem">
-                            Описание
-                            <input id="searchDescription" formControlName="description" #searchDescription pInputText
-                                class="p-inputtext-sm" type="text">
-                        </div>
-                        <div class="serchItem">
-                            Дата
-                            <p-calendar id="date" formControlName="date" formControlName="date"></p-calendar>
-                        </div>
-                        <p-button class="btn" (click)="multiSearch()">Искать</p-button>
-                        <p-button class="btn" (click)="clearSearch()">Очистить</p-button>
+                <div  *ngIf="searchButton">
+                    <form  [formGroup]="formGroup">
+                        <div class="search">
+                            <div class="item-s">
+                                Название
+                                <input id="searchName" formControlName='name' pInputText class="p-inputtext-sm" type="text">
+                            </div>
+                            <div class="item-s">
+                                Категория
+                                <input id="searchCategory" formControlName="category" #searchCategory pInputText
+                                    class="p-inputtext-sm" type="text">
+                            </div>
+                            <div class="item-s">
+                                Описание
+                                <input id="searchDescription" formControlName="description" #searchDescription pInputText
+                                    class="p-inputtext-sm" type="text">
+                            </div>
+                            <div class="item-s">
+                                Дата
+                                <p-calendar id="date" formControlName="date" formControlName="date"></p-calendar>
+                            </div>
+                            <div class="item-s">
+                            <p-button class="btn" (click)="multiSearch()">Искать</p-button>
+                            </div>
+                            <div class="item-s">
+                            <p-button class="btn" (click)="clearSearch()">Очистить</p-button>
+                            </div>
+                    </div>
                     </form>
                 </div>         
         </ng-template>

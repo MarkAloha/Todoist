@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -34,6 +34,7 @@ import { ClassWindow } from './class.window.component/class.window.component';
 @Component({
   selector: 'app-table',
   standalone: true,
+  encapsulation:ViewEncapsulation.None,
   imports: [
     CommonModule,
     CheckboxModule,
@@ -86,9 +87,7 @@ export class TableComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.primengConfig.setTranslation(this.taskService.setLanguage())   
-    this.tasks = this.taskService.getTasksDataUser();    
-    
-    
+    this.tasks = this.taskService.getTasksDataUser();  
   }  
 
   checkboxStatusChange(status:boolean, id: number) {
@@ -113,7 +112,6 @@ export class TableComponent implements OnInit,OnDestroy {
   showAddClass() {
     this.ref = this.dialogService.open(ClassWindow, {
       header: 'Категории',
-      width: '40%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -142,8 +140,6 @@ export class TableComponent implements OnInit,OnDestroy {
 
     this.ref = this.dialogService.open(CreateWindow, {
       header: 'Задача',
-      width: '500px',
-      height: '500px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
