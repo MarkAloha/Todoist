@@ -8,3 +8,13 @@
     display: grid;
     justify-content: end;
 }
+
+@media (max-width: 475px) {
+    .container {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 150px;
+        place-items: end center;
+        justify-content: center;
+    }
+}
