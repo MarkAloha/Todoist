@@ -18,3 +18,18 @@
             padding: 0 1rem 0 1rem;
         }
     }
+
+    @media (max-width:406px) {
+        .navbar {
+            display: grid;
+            grid-template-columns:200px;            
+            place-items: end center;  
+            justify-content: center;
+        }
+        .login {
+            display: grid;
+            grid-template-columns:200px;            
+            place-items: end center;  
+            justify-content: center;
+        }
+    }
