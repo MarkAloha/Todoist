@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, } from '@angular/core';
 import { TaskService } from '../../../services/task.service';
-import { Class, Task } from '../../../domain/types';
+import { Class } from '../../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -32,7 +32,8 @@ import { ClassEditWindow } from './class-edit.window.compotent/class-edit.window
     ClassEditWindow,
     InputTextModule,
   ],
-  templateUrl: './class.window.component.html'
+  templateUrl: './class.window.component.html',
+  styleUrl: './class.window.component.scss'
 
 })
 export class ClassWindow implements OnInit {

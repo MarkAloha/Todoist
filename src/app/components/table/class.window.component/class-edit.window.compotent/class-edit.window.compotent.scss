@@ -1,5 +1,28 @@
 @import "primeicons/primeicons.css";
 
+.container-class-edit {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    gap: 80px;
+    padding-top: 15px;
+}
+
+.container-del {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    gap: 10px;
+}
+
+.container-del-all {
+    padding-top: 15px;
+}
+
+.d1 {
+    display: flex;
+    justify-content: end;
+}
+
 .pi-times {
     cursor: pointer;
 }

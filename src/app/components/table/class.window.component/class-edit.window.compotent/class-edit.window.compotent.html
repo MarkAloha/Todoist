@@ -1,17 +1,21 @@
 <div>
-    <div *ngIf="!editable()">
-        {{class?.name}}
-
-        <i (click)="setEditable(true)" style="color: rgb(0, 217, 255)" class="pi pi-pencil"></i>
-        <i (click)="deleteClassWindow(class?.id)" style="color:red" class="pi pi-times"></i>
+    <div class="container-class-edit" *ngIf="!editable()">
+        <div class="item-ce n1"> {{class?.name}} </div>
+        <div class="item-ce d1">
+            <i (click)="setEditable(true)" style="color: rgb(0, 217, 255)" class="pi pi-pencil"></i>
+            <i (click)="deleteClassWindow(class?.id)" style="color:red" class="pi pi-times"></i>
+        </div>
     </div>
 
     <div *ngIf="editable()">
-        <input id="className" type="text" pInputText [value]="class?.name" #editedItem
-            (keyup.enter)="changeClassWindow(class?.id, editedItem.value )">
-        <div>
-            <p-button size="small" (click)="setEditable(false)">Отмена</p-button>
-            <p-button size="small" (click)="changeClassWindow(class?.id, editedItem.value)">Сохранить</p-button>
+        <div class="container-del-all">
+            <input class="p-inputtext-sm" id="className" type="text" pInputText [value]="class?.name" #editedItem
+                (keyup.enter)="changeClassWindow(class?.id, editedItem.value )">
+            <div class="container-del">
+                <p-button class="item-de i1" size="small" (click)="setEditable(false)">Отмена</p-button>
+                <p-button class="item-de i2" size="small"
+                    (click)="changeClassWindow(class?.id, editedItem.value)">Сохранить</p-button>
+            </div>
         </div>
     </div>
 </div>

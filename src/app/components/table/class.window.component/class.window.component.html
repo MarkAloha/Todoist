@@ -1,8 +1,8 @@
-Новая категория
-<input Новая категория #newItem pInputText (keyup.enter)="addClass(newItem.value); newItem.value=''" id="addItemInput" />
+<div class="container">
+<div class="item-c i1"><input class="p-inputtext-sm" #newItem pInputText  (keyup.enter)="addClass(newItem.value); newItem.value=''" id="addItemInput" /> </div>
 
-<p-button size="small" (click)="addClass(newItem.value); newItem.value=''" label="Сохранить"></p-button>
-
+<div class="item-c b1"><p-button size="small" (click)="addClass(newItem.value); newItem.value=''" label="Сохранить"></p-button></div>
+</div>
 <table>
 
     <tr *ngFor="let c of categories ">
