@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Class, CreateChangeForm, DivBlock, Task, } from '../../../domain/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
@@ -22,6 +22,7 @@ import { InputTextModule } from 'primeng/inputtext';
   selector: 'create-window',
   providers: [DialogService, MessageService, TaskService],
   standalone: true,
+  encapsulation:ViewEncapsulation.None,
   imports: [
     CommonModule,
     TableModule,

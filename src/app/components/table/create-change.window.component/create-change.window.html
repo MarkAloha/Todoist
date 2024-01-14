@@ -40,14 +40,15 @@
       <div class="item-cw n5"> Дата:</div>
       
       <div class="item-cw i5">
-        <p-calendar id="date" dateFormat="dd.mm.yy" 
-        formControlName="date"></p-calendar>
+        <p-calendar  id="date" dateFormat="dd.mm.yy" 
+        formControlName="date" ></p-calendar>
       </div>
-
+      <div></div>
+      <div class="item-cw i6">
       <p-button id="send" [disabled]="formGroup.invalid" 
         (click)="addOrChangeTask(); newItem.value = ' '"
-        class="item-cw i6"> запланировать!</p-button>
-
+        > запланировать!</p-button>
+      </div>
     </div>
   </form>
 </div>
